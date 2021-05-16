@@ -7,12 +7,12 @@ const Footer = () => {
       <a className="font-weight-lighttext-primary lead">
         Rolling<span className="font-weight-bold">news.</span>
       </a>
-        <div className="d-flex">
+        <div className="d-md-flex text-center my-2">
           <Nav.Link className="text-muted">Políticas de privacidad</Nav.Link>
           <Nav.Link className="text-muted">Contacto</Nav.Link>
           <Nav.Link className="text-muted">Contrato de suscripción</Nav.Link>
         </div>
-        <p></p>
+        <p className='text-muted'>&copy; Rollingnews 2021 todos los derechos reservados</p>
     </div>
   );
 };
