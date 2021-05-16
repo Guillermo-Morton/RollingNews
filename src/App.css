@@ -1,4 +1,15 @@
-
+.div-imagen-grande{
+    height: 300px;
+}
+.div-imagen-chica{
+    height: 150px;
+}
+.div-anuncio{
+    height: 100%;
+}
+.div-clima{
+    height: 500px;
+}
 /* media queries /
 / @media mediatype /
 / device lg-grande */

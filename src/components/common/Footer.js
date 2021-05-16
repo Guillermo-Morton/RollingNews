@@ -3,7 +3,7 @@ import {Nav } from "react-bootstrap";
 
 const Footer = () => {
   return (
-    <div className="d-flex align-items-center flex-column bg-light my-5 py-3">
+    <div className="d-flex align-items-center flex-column bg-light mt-5 py-3">
       <a className="font-weight-lighttext-primary lead">
         Rolling<span className="font-weight-bold">news.</span>
       </a>

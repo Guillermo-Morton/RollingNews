@@ -54,10 +54,10 @@ const NavB = () => {
     <div className="bg-light">
       <div className="d-flex justify-content-between container-fluid py-2">
         <Nav.Link className="btn btn-outline-primary px-5 py-1" href="#">
-          Features
+          Ingresar
         </Nav.Link>
         <Nav.Link className="btn btn-outline-primary px-5 py-1" href="#">
-          Pricing
+          Suscríbete
         </Nav.Link>
       </div>
       <Navbar
