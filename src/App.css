@@ -1,3 +1,4 @@
+/* Divs ilustrativos */
 .div-imagen-grande{
     height: 300px;
 }
@@ -7,8 +8,15 @@
 .div-anuncio{
     height: 100%;
 }
+.div-anuncio2{
+    height: 1050px;
+}
 .div-clima{
     height: 500px;
+}
+/* Color de fuente */
+.fuente{
+    color:rgb(97, 97, 97);
 }
 /* media queries /
 / @media mediatype /

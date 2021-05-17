@@ -1,9 +1,9 @@
 import React from 'react';
 
-const Fotografia = () => {
+const Deportes = () => {
     return (
-        <div className="container text-muted">
-        <h2 className='mt-5'>FOTOGRAFÍA</h2>
+        <div className="container">
+        <h2 className='mt-5'>CATEGORIA x</h2>
         <section>
           <div className="row">
             <div className="col-lg-9">
@@ -127,4 +127,4 @@ const Fotografia = () => {
     );
 };
 
-export default Fotografia;
+export default Deportes;

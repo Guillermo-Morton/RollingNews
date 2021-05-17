@@ -2,7 +2,7 @@ import React from "react";
 
 const Inicio = () => {
   return (
-    <div className="container text-muted">
+    <div className="container">
       <section className="my-3">
         <h2 className='mt-5'>LO MÁS BUSCADO</h2>
         <div className="row">

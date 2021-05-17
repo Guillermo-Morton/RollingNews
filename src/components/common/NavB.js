@@ -52,13 +52,13 @@ const NavB = () => {
 
   return (
     <div className="bg-light">
-      <div className="d-flex justify-content-between container-fluid py-2">
-        <Nav.Link className="btn btn-outline-primary px-5 py-1" href="#">
+      <div className="container-fluid py-2 px-3 d-flex justify-content-between">
+        <NavLink exact={true} to="/ingresar" className="btn btn-outline-primary px-3 py-1">
           Ingresar
-        </Nav.Link>
-        <Nav.Link className="btn btn-outline-primary px-5 py-1" href="#">
-          Suscríbete
-        </Nav.Link>
+        </NavLink>
+        <NavLink exact={true} to="/administracion" className="btn btn-outline-primary px-3 py-1">
+          Administración
+        </NavLink>
       </div>
       <Navbar
         className='d-md-flex flex-md-column'
@@ -67,11 +67,11 @@ const NavB = () => {
         bg="light"
         variant="light"
       >
-        <Navbar.Brand className="text-primary" href="#home">
+        <NavLink exact={true} to='/' className="text-primary text-decoration-none">
           <h2 className="font-weight-light text-center">
             Rolling<span className="font-weight-bold">news.</span>
           </h2>
-        </Navbar.Brand>
+        </NavLink>
  
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
@@ -79,13 +79,13 @@ const NavB = () => {
             <NavLink className="nav-link" exact={true} to="/">
               Actualidad
             </NavLink>
-            <NavLink className="nav-link" exact={true} to="/espectaculos">
+            <NavLink className="nav-link" exact={true} to="/categoria">
               Espectáculos
             </NavLink>
-            <NavLink className="nav-link" exact={true} to="/tecnologia">
+            <NavLink className="nav-link" exact={true} to="/a">
               Tecnología
             </NavLink>
-            <NavLink className="nav-link" exact={true} to="/deportes">
+            <NavLink className="nav-link" exact={true} to="/a">
               Deportes
             </NavLink>
               <Dropdown>
@@ -93,10 +93,10 @@ const NavB = () => {
                   Categorías
                 </Dropdown.Toggle>
                 <Dropdown.Menu as={CustomMenu}>
-                  <NavLink className='nav-link' exact={true} to="/politica">Política</NavLink>
-                  <NavLink className='nav-link' exact={true} to="/economia">Economía</NavLink>
-                  <NavLink className='nav-link' exact={true} to="/salud">Salud</NavLink>
-                  <NavLink className='nav-link' exact={true} to="/fotografia">Fotografía </NavLink>
+                  <NavLink className='nav-link' exact={true} to="/a">Política</NavLink>
+                  <NavLink className='nav-link' exact={true} to="/a">Economía</NavLink>
+                  <NavLink className='nav-link' exact={true} to="/a">Salud</NavLink>
+                  <NavLink className='nav-link' exact={true} to="/a">Fotografía </NavLink>
                 </Dropdown.Menu>
               </Dropdown>      
           </Nav>

@@ -12,7 +12,7 @@ const Footer = () => {
           <Nav.Link className="text-muted">Contacto</Nav.Link>
           <Nav.Link className="text-muted">Contrato de suscripción</Nav.Link>
         </div>
-        <p className='text-muted'>&copy; Rollingnews 2021 todos los derechos reservados</p>
+        <p className='text-muted text-center'>&copy; Rollingnews 2021 todos los derechos reservados</p>
     </div>
   );
 };
