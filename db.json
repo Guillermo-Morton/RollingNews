@@ -65,6 +65,17 @@
       "imagen1": "aaa",
       "imagen2": "hola",
       "id": 6
+    },
+    {
+      "titulo": "Un pibe se vuelve pobre por jugar con criptomonedas",
+      "subtitulo": "Alto tonto",
+      "parrafo1": "dasd",
+      "parrafo2": "sdad",
+      "parrafo3": "adsa",
+      "categoria": "tecnologia",
+      "imagen1": "asdad",
+      "imagen2": "asdad",
+      "id": 7
     }
   ]
 }

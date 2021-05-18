@@ -63,7 +63,7 @@ function App() {
             <ListarCategorias></ListarCategorias>
           </Route>
           <Route exact path="/administracion/noticias">
-            <ListarNoticias></ListarNoticias>
+            <ListarNoticias consultarAPI={consultarAPI} noticias={noticias}></ListarNoticias>
           </Route>
         </Switch>
         <Footer></Footer>
