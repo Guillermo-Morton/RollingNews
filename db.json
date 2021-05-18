@@ -1,0 +1,70 @@
+{
+  "rollingnews": [
+    {
+      "titulo": "Mono qliao se escapa de zoo",
+      "subtitulo": "Lanzó caca xd",
+      "parrafo1": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, asperiores.",
+      "parrafo2": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, asperiores.",
+      "parrafo3": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, asperiores.",
+      "categoria": "espectaculos",
+      "imagen1": "mono.jpg",
+      "imagen2": "mono.jpg",
+      "id": 1
+    },
+    {
+      "titulo": "Mexicano qliao se escapa de zoo",
+      "subtitulo": "Lanzó caca xd",
+      "parrafo1": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, asperiores.",
+      "parrafo2": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, asperiores.",
+      "parrafo3": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, asperiores.",
+      "categoria": "espectaculos",
+      "imagen1": "mexicano.jpg",
+      "imagen2": "mexicano.jpg",
+      "id": 2
+    },
+    {
+      "titulo": "Argentino qliao se escapa de tucumán",
+      "subtitulo": "No sobrevivió",
+      "parrafo1": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, asperiores.",
+      "parrafo2": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, asperiores.",
+      "parrafo3": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, asperiores.",
+      "categoria": "espectaculos",
+      "imagen1": "argentino.jpg",
+      "imagen2": "argentino.jpg",
+      "id": 3
+    },
+    {
+      "titulo": "titulo",
+      "subtitulo": "asdsa",
+      "parrafo1": "aaaa",
+      "parrafo2": "aasda",
+      "parrafo3": "asdas",
+      "categoria": "deportes",
+      "imagen1": "asdasd",
+      "imagen2": "asda",
+      "id": 4
+    },
+    {
+      "titulo": "titulo",
+      "subtitulo": "asdsa",
+      "parrafo1": "aaaa",
+      "parrafo2": "aasda",
+      "parrafo3": "asdaadasdasd",
+      "categoria": "economia",
+      "imagen1": "asdasd",
+      "imagen2": "asda",
+      "id": 5
+    },
+    {
+      "titulo": "sapo qlioasd",
+      "subtitulo": "asdasd",
+      "parrafo1": "adasdsalorem",
+      "parrafo2": "lorem",
+      "parrafo3": "asda",
+      "categoria": "salud",
+      "imagen1": "aaa",
+      "imagen2": "hola",
+      "id": 6
+    }
+  ]
+}

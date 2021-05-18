@@ -5,15 +5,34 @@ import NavB from "./components/common/NavB";
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Inicio from "./components/Inicio";
-import Categoria from "./components/categorias/Categoria";
+import SeccionCategoria from "./components/categorias/SeccionCategoria";
 import DetalleNoticia from "./components/DetalleNoticia";
 import Ingreso from "./components/cuentas/Ingreso";
 import Administración from "./components/administracion/Administración";
 import NuevaNoticia from "./components/administracion/NuevaNoticia";
-import ListarCategorias from "./components/administracion/ListarCategorias"
-import ListarNoticias from "./components/administracion/ListarNoticias"
+import ListarCategorias from "./components/administracion/tablaCategoria/ListarCategorias"
+import ListarNoticias from "./components/administracion/tablaNoticias/ListarNoticias"
 
 function App() {
+  const URL = process.env.REACT_APP_API_URL;
+  const [noticias, setNoticias]=useState([]);
+
+  useEffect(()=>{
+    consultarAPI();
+  },[])
+
+  const consultarAPI = async()=>{
+    try{
+      const consulta = await fetch(URL);
+      const respuesta = await consulta.json();
+      console.log(respuesta);
+      setNoticias(respuesta);
+    }catch(error){
+      console.log(error);
+    }
+  }
+  
+
   return (
     <div className='fuente'>
       <Router>
@@ -23,7 +42,7 @@ function App() {
             <Inicio></Inicio>
           </Route>
           <Route exact path="/categoria">
-            <Categoria></Categoria>
+            <SeccionCategoria></SeccionCategoria>
           </Route>
           <Route exact path="/detalle">
             <DetalleNoticia></DetalleNoticia>
@@ -38,7 +57,7 @@ function App() {
             <Administración></Administración>
           </Route>
           <Route exact path="/administracion/nueva">
-            <NuevaNoticia></NuevaNoticia>
+            <NuevaNoticia consultarAPI={consultarAPI}></NuevaNoticia>
           </Route>
           <Route exact path="/administracion/categorias">
             <ListarCategorias></ListarCategorias>
@@ -49,7 +68,7 @@ function App() {
         </Switch>
         <Footer></Footer>
       </Router>
-    </div>
+    </div>                                                                                                                                       
   );
 }
 
