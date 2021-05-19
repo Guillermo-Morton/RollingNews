@@ -6,7 +6,7 @@
       "parrafo1": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, asperiores.",
       "parrafo2": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, asperiores.",
       "parrafo3": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, asperiores.",
-      "categoria": "espectaculos",
+      "categoria": "Tecnología",
       "imagen1": "mexicano.jpg",
       "imagen2": "mexicano.jpg",
       "id": 2
@@ -17,7 +17,7 @@
       "parrafo1": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, asperiores.",
       "parrafo2": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, asperiores.",
       "parrafo3": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, asperiores.",
-      "categoria": "espectaculos",
+      "categoria": "Economía",
       "imagen1": "argentino.jpg",
       "imagen2": "argentino.jpg",
       "id": 3
@@ -28,7 +28,7 @@
       "parrafo1": "dasd",
       "parrafo2": "sdad",
       "parrafo3": "adsa",
-      "categoria": "tecnologia",
+      "categoria": "Salud",
       "imagen1": "asdad",
       "imagen2": "asdad",
       "id": 7
@@ -39,7 +39,7 @@
       "parrafo1": "HOLA S",
       "parrafo2": "SDASD",
       "parrafo3": "asdasd",
-      "categoria": "tecnologia",
+      "categoria": "Política",
       "imagen1": "fidel.jpg",
       "imagen2": "asdas",
       "id": 8
@@ -50,7 +50,7 @@
       "parrafo1": "asda",
       "parrafo2": "asd",
       "parrafo3": "asd",
-      "categoria": "espectaculos",
+      "categoria": "Fotografía",
       "imagen1": "sda",
       "imagen2": "sda",
       "id": 10
@@ -61,10 +61,56 @@
       "parrafo1": "asdasd",
       "parrafo2": "asda",
       "parrafo3": "asd",
-      "categoria": "espectaculos",
+      "categoria": "Espectáculos",
       "imagen1": "asdasda",
       "imagen2": "sdasd",
       "id": 11
+    }
+  ],
+  "categorias": [
+    {
+      "categoriaDisponible": "Sapos",
+      "id": "g5-Ke_d"
+    },
+    {
+      "categoriaDisponible": "qliao",
+      "id": "Ul4RMTI"
+    },
+    {
+      "categoriaDisponible": "macaco",
+      "id": "UozH67B"
+    },
+    {
+      "categoriaDisponible": "Caramelo",
+      "id": "vN5EMhz"
+    },
+    {
+      "categoriaDisponible": "Sapoflaite",
+      "id": "7dmBkf-"
+    },
+    {
+      "categoriaDisponible": "Sapowanaco",
+      "id": "NcPwGwX"
+    },
+    {
+      "categoriaDisponible": "sapo",
+      "id": "NbP-zgS"
+    },
+    {
+      "categoriaDisponible": "agua",
+      "id": "OeoToSZ"
+    },
+    {
+      "categoriaDisponible": "asd",
+      "id": "3Kg-aKJ"
+    },
+    {
+      "categoriaDisponible": "gagag",
+      "id": "jjgkxzl"
+    },
+    {
+      "categoriaDisponible": "aaaaa",
+      "id": "mnXIyH-"
     }
   ]
 }

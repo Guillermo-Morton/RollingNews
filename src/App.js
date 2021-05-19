@@ -13,13 +13,17 @@ import NuevaNoticia from "./components/administracion/NuevaNoticia";
 import ListarCategorias from "./components/administracion/tablaCategoria/ListarCategorias"
 import ListarNoticias from "./components/administracion/tablaNoticias/ListarNoticias"
 import EditarNoticia from "./components/administracion/EditarNoticia";
+import NuevaCategoria from "./components/administracion/NuevaCategoria";
 
 function App() {
   const URL = process.env.REACT_APP_API_URL;
+  const URL2 = process.env.REACT_APP_API_URL2;
   const [noticias, setNoticias]=useState([]);
+  const [categorias, setCategorias]=useState([])
 
   useEffect(()=>{
     consultarAPI();
+    consultarCategoria();
   },[])
 
   const consultarAPI = async()=>{
@@ -30,6 +34,16 @@ function App() {
       setNoticias(respuesta);
     }catch(error){
       console.log(error);
+    }
+  }
+  const consultarCategoria = async()=>{
+    try{
+      const consulta = await fetch(URL2);
+      const respuesta = await consulta.json();
+      console.log(respuesta);
+      setCategorias(respuesta);
+    }catch(error){
+      console.log(error)
     }
   }
   
@@ -64,7 +78,7 @@ function App() {
             <EditarNoticia consultarAPI={consultarAPI}></EditarNoticia>
           </Route>
           <Route exact path="/administracion/categorias">
-            <ListarCategorias></ListarCategorias>
+            <ListarCategorias consultarCategoria={consultarCategoria} categorias={categorias}></ListarCategorias>
           </Route>
           <Route exact path="/administracion/noticias">
             <ListarNoticias consultarAPI={consultarAPI} noticias={noticias}></ListarNoticias>

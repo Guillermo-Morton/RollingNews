@@ -3,6 +3,7 @@ import { Button, Form, Alert } from "react-bootstrap";
 import { withRouter } from "react-router";
 import Swal from "sweetalert2";
 
+
 const NuevaNoticia = (props) => {
   const URL = process.env.REACT_APP_API_URL;
   // states
@@ -91,7 +92,7 @@ const NuevaNoticia = (props) => {
         AGREGAR UNA NUEVA NOTICIA
       </h2>
       <Form onSubmit={handleSubmit}>
-        <Form.Group cont>
+        <Form.Group >
           {error === true ? (
             <Alert variant={"danger"}>Todos los campos son obligatorios</Alert>
           ) : null}
@@ -103,7 +104,7 @@ const NuevaNoticia = (props) => {
             value={titulo}
           />
         </Form.Group>
-        <Form.Group cont>
+        <Form.Group >
           <Form.Label>Subtítulo</Form.Label>
           <Form.Control
             onChange={(e) => setSubtitulo(e.target.value)}

@@ -39,8 +39,6 @@ const EditarNoticia = (props) => {
     }
   };
 
-
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     //   validar datos, si falla mostrar alert
@@ -171,19 +169,15 @@ const EditarNoticia = (props) => {
         </Form.Group>
         <Form.Group>
           <Form.Label>Seleccionar categoría</Form.Label>
-          <Form.Control
-            as="select"
-            defaultValue={noticia.categoria}
-            ref={categoriaRef}
-            
-          >
-            <option value="espectaculos">Espectáculos</option>
-            <option value="tecnologia">Tecnología</option>
-            <option value="deportes">Deportes</option>
-            <option value="politica">Política</option>
-            <option value="economia">Economía</option>
-            <option value="salud">Salud</option>
-            <option value="fotografia">Fotografía</option>
+          <Form.Control as="select" ref={categoriaRef}>
+            <option value={noticia.categoria}>Sin modificar</option>
+            <option value="Espectáculos">Espectáculos</option>
+            <option value="Tecnología">Tecnología</option>
+            <option value="Deportes">Deportes</option>
+            <option value="Política">Política</option>
+            <option value="Economía">Economía</option>
+            <option value="Salud">Salud</option>
+            <option value="Fotografía">Fotografía</option>
           </Form.Control>
         </Form.Group>
         <Button variant="primary" type="submit">

@@ -1,7 +1,6 @@
 import { faEdit, faTrashAlt } from "@fortawesome/free-regular-svg-icons";
 import { faPen } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Button } from "bootstrap";
 import React from "react";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
