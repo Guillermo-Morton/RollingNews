@@ -1,18 +1,7 @@
 {
   "rollingnews": [
     {
-      "titulo": "Mono qliao se escapa de zoo",
-      "subtitulo": "Lanzó caca xd",
-      "parrafo1": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, asperiores.",
-      "parrafo2": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, asperiores.",
-      "parrafo3": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, asperiores.",
-      "categoria": "espectaculos",
-      "imagen1": "mono.jpg",
-      "imagen2": "mono.jpg",
-      "id": 1
-    },
-    {
-      "titulo": "Mexicano qliao se escapa de zoo",
+      "titulo": "Mexicano qliao se escapa de brasil",
       "subtitulo": "Lanzó caca xd",
       "parrafo1": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, asperiores.",
       "parrafo2": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, asperiores.",
@@ -34,39 +23,6 @@
       "id": 3
     },
     {
-      "titulo": "titulo",
-      "subtitulo": "asdsa",
-      "parrafo1": "aaaa",
-      "parrafo2": "aasda",
-      "parrafo3": "asdas",
-      "categoria": "deportes",
-      "imagen1": "asdasd",
-      "imagen2": "asda",
-      "id": 4
-    },
-    {
-      "titulo": "titulo",
-      "subtitulo": "asdsa",
-      "parrafo1": "aaaa",
-      "parrafo2": "aasda",
-      "parrafo3": "asdaadasdasd",
-      "categoria": "economia",
-      "imagen1": "asdasd",
-      "imagen2": "asda",
-      "id": 5
-    },
-    {
-      "titulo": "sapo qlioasd",
-      "subtitulo": "asdasd",
-      "parrafo1": "adasdsalorem",
-      "parrafo2": "lorem",
-      "parrafo3": "asda",
-      "categoria": "salud",
-      "imagen1": "aaa",
-      "imagen2": "hola",
-      "id": 6
-    },
-    {
       "titulo": "Un pibe se vuelve pobre por jugar con criptomonedas",
       "subtitulo": "Alto tonto",
       "parrafo1": "dasd",
@@ -76,6 +32,39 @@
       "imagen1": "asdad",
       "imagen2": "asdad",
       "id": 7
+    },
+    {
+      "titulo": "Roxipol deja el streamaaa",
+      "subtitulo": "Fido dido sustituto",
+      "parrafo1": "HOLA S",
+      "parrafo2": "SDASD",
+      "parrafo3": "asdasd",
+      "categoria": "tecnologia",
+      "imagen1": "fidel.jpg",
+      "imagen2": "asdas",
+      "id": 8
+    },
+    {
+      "titulo": "sadas",
+      "subtitulo": "asda",
+      "parrafo1": "asda",
+      "parrafo2": "asd",
+      "parrafo3": "asd",
+      "categoria": "espectaculos",
+      "imagen1": "sda",
+      "imagen2": "sda",
+      "id": 10
+    },
+    {
+      "titulo": "hola",
+      "subtitulo": "asdasdasd",
+      "parrafo1": "asdasd",
+      "parrafo2": "asda",
+      "parrafo3": "asd",
+      "categoria": "espectaculos",
+      "imagen1": "asdasda",
+      "imagen2": "sdasd",
+      "id": 11
     }
   ]
 }

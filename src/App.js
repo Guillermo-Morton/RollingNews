@@ -12,6 +12,7 @@ import Administración from "./components/administracion/Administración";
 import NuevaNoticia from "./components/administracion/NuevaNoticia";
 import ListarCategorias from "./components/administracion/tablaCategoria/ListarCategorias"
 import ListarNoticias from "./components/administracion/tablaNoticias/ListarNoticias"
+import EditarNoticia from "./components/administracion/EditarNoticia";
 
 function App() {
   const URL = process.env.REACT_APP_API_URL;
@@ -58,6 +59,9 @@ function App() {
           </Route>
           <Route exact path="/administracion/nueva">
             <NuevaNoticia consultarAPI={consultarAPI}></NuevaNoticia>
+          </Route>
+          <Route exact path="/administracion/editar/:id">
+            <EditarNoticia consultarAPI={consultarAPI}></EditarNoticia>
           </Route>
           <Route exact path="/administracion/categorias">
             <ListarCategorias></ListarCategorias>

@@ -13,7 +13,7 @@ const NuevaNoticia = (props) => {
   const [parrafo3, setParrafo3] = useState("");
   const [imagen1, setImagen1] = useState("");
   const [imagen2, setImagen2] = useState("");
-  const [categoria, setCategoria] = useState("");
+  const [categoria, setCategoria] = useState("espectaculos");
   const [error, setError] = useState(false);
 
   // funcion handleSubmit
@@ -47,7 +47,6 @@ const NuevaNoticia = (props) => {
         imagen1: imagen1,
         imagen2: imagen2,
       };
-      console.log(datos);
       try {
         const parametros = {
           method: "POST",
@@ -100,7 +99,7 @@ const NuevaNoticia = (props) => {
           <Form.Control
             onChange={(e) => setTitulo(e.target.value)}
             type="text"
-            placeholder="Escriba un titulo"
+            placeholder="Escriba un título"
             value={titulo}
           />
         </Form.Group>
@@ -109,7 +108,7 @@ const NuevaNoticia = (props) => {
           <Form.Control
             onChange={(e) => setSubtitulo(e.target.value)}
             type="text"
-            placeholder=""
+            placeholder="Escriba un subtítulo"
             value={subtitulo}
           />
         </Form.Group>
@@ -118,7 +117,7 @@ const NuevaNoticia = (props) => {
           <Form.Control
             onChange={(e) => setImagen1(e.target.value)}
             type="text"
-            placeholder=""
+            placeholder="Ejemplo: flores.jpg"
             value={imagen1}
           />
         </Form.Group>
@@ -127,7 +126,7 @@ const NuevaNoticia = (props) => {
           <Form.Control
             onChange={(e) => setImagen2(e.target.value)}
             type="text"
-            placeholder=""
+            placeholder="Ejemplo: arboles.jpg"
             value={imagen2}
           />
         </Form.Group>
@@ -138,6 +137,7 @@ const NuevaNoticia = (props) => {
             as="textarea"
             rows={3}
             value={parrafo1}
+            placeholder="Ingrese hasta 200 caracteres"
           />
         </Form.Group>
         <Form.Group>
@@ -147,6 +147,7 @@ const NuevaNoticia = (props) => {
             as="textarea"
             rows={3}
             value={parrafo2}
+            placeholder="Ingrese hasta 200 caracteres"
           />
         </Form.Group>
         <Form.Group>
@@ -156,6 +157,7 @@ const NuevaNoticia = (props) => {
             as="textarea"
             rows={3}
             value={parrafo3}
+            placeholder="Ingrese hasta 200 caracteres"
           />
         </Form.Group>
         <Form.Group>

@@ -13,6 +13,7 @@ const ListarNoticias = (props) => {
             <th>Título</th>
             <th>Subtítulo</th>
             <th>Categoría</th>
+            <th>Acciones</th>
           </tr>
         </thead>
         <tbody>
