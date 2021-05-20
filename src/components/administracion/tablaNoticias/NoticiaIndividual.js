@@ -9,7 +9,7 @@ const NoticiaIndividual = (props) => {
   const eliminarNoticia = (id) => {
     const URL = process.env.REACT_APP_API_URL + "/" + id;
 
-    console.log(URL);
+  
 
     Swal.fire({
       title: "¿Estas seguro de eliminar esta noticia?",
@@ -45,7 +45,6 @@ const NoticiaIndividual = (props) => {
           } else {
             Swal.fire("Error", "Intente nuevamente", "error");
           }
-          console.log(response);
         } catch (error) {
           console.log(error);
           Swal.fire("Error", "Espere unos minutos", "error");

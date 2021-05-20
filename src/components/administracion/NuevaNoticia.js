@@ -3,7 +3,6 @@ import { Button, Form, Alert } from "react-bootstrap";
 import { withRouter } from "react-router";
 import Swal from "sweetalert2";
 
-
 const NuevaNoticia = (props) => {
   const URL = process.env.REACT_APP_API_URL;
   // states
@@ -14,7 +13,7 @@ const NuevaNoticia = (props) => {
   const [parrafo3, setParrafo3] = useState("");
   const [imagen1, setImagen1] = useState("");
   const [imagen2, setImagen2] = useState("");
-  const [categoria, setCategoria] = useState("espectaculos");
+  const [categoria, setCategoria] = useState("Espectáculos");
   const [error, setError] = useState(false);
 
   // funcion handleSubmit
@@ -59,7 +58,6 @@ const NuevaNoticia = (props) => {
 
         // ejecutar la solicitud
         const respuesta = await fetch(URL, parametros);
-        console.log(respuesta);
         if ((await respuesta.status) === 201) {
           Swal.fire(
             "Producto Agregado",
@@ -78,7 +76,7 @@ const NuevaNoticia = (props) => {
           // consultamos la api
           props.consultarAPI();
           // redireccionamos a otra ruta
-          props.history.push('/administracion/noticias')
+          props.history.push("/administracion/noticias");
         }
       } catch (error) {
         console.log(error);
@@ -92,7 +90,7 @@ const NuevaNoticia = (props) => {
         AGREGAR UNA NUEVA NOTICIA
       </h2>
       <Form onSubmit={handleSubmit}>
-        <Form.Group >
+        <Form.Group>
           {error === true ? (
             <Alert variant={"danger"}>Todos los campos son obligatorios</Alert>
           ) : null}
@@ -104,7 +102,7 @@ const NuevaNoticia = (props) => {
             value={titulo}
           />
         </Form.Group>
-        <Form.Group >
+        <Form.Group>
           <Form.Label>Subtítulo</Form.Label>
           <Form.Control
             onChange={(e) => setSubtitulo(e.target.value)}
@@ -166,15 +164,10 @@ const NuevaNoticia = (props) => {
           <Form.Control
             onChange={(e) => setCategoria(e.target.value)}
             as="select"
-            value={categoria}
           >
-            <option value="espectaculos">Espectáculos</option>
-            <option value="tecnologia">Tecnología</option>
-            <option value="deportes">Deportes</option>
-            <option value="politica">Política</option>
-            <option value="economia">Economía</option>
-            <option value="salud">Salud</option>
-            <option value="fotografia">Fotografía</option>
+            {props.categorias.map((categoria) => (
+              <option>{categoria.categoriaDisponible}</option>
+            ))}
           </Form.Control>
         </Form.Group>
         <Button variant="primary" type="submit">

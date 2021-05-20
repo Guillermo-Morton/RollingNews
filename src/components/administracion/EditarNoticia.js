@@ -171,13 +171,9 @@ const EditarNoticia = (props) => {
           <Form.Label>Seleccionar categoría</Form.Label>
           <Form.Control as="select" ref={categoriaRef}>
             <option value={noticia.categoria}>Sin modificar</option>
-            <option value="Espectáculos">Espectáculos</option>
-            <option value="Tecnología">Tecnología</option>
-            <option value="Deportes">Deportes</option>
-            <option value="Política">Política</option>
-            <option value="Economía">Economía</option>
-            <option value="Salud">Salud</option>
-            <option value="Fotografía">Fotografía</option>
+            {props.categorias.map((categoria) => (
+              <option>{categoria.categoriaDisponible}</option>
+            ))}
           </Form.Control>
         </Form.Group>
         <Button variant="primary" type="submit">

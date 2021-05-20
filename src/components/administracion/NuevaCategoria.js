@@ -32,7 +32,6 @@ const NuevaCategoria = (props) => {
         };
         // ejecutar la solicitud
         const respuesta = await fetch(URL2, parametros);
-        console.log(respuesta);
         if ((await respuesta.status) === 201) {
           Swal.fire(
             "Categoria agregada",

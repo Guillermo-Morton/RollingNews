@@ -1,6 +1,31 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useParams, withRouter } from "react-router";
 
-const Deportes = () => {
+const SeccionCategoria = () => {
+  const URL = process.env.REACT_APP_API_URL;
+  const URL2 = process.env.REACT_APP_API_URL2;
+ // obtengo el parametro de la URL
+  const { id } = useParams();
+  // declaramos los states
+  const [categoria, setCategoria]= useState({});
+  // consultamos la categoria
+  const consultarCategoria = async () => {
+    try {
+      const respuesta = await fetch(URL2 + `/${id}`);
+      if (respuesta.status === 200) {
+        const resultado = await respuesta.json();
+        // actualizo el state
+        setCategoria(resultado);
+        console.log(categoria)
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+    //   Traer los datos del objeto 
+    useEffect(() => {
+      consultarCategoria();
+    }, [id]);
     return (
         <div className="container">
         <h2 className='mt-5'>CATEGORIA x</h2>
@@ -127,4 +152,4 @@ const Deportes = () => {
     );
 };
 
-export default Deportes;
+export default SeccionCategoria;

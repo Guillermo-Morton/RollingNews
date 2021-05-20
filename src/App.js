@@ -13,7 +13,6 @@ import NuevaNoticia from "./components/administracion/NuevaNoticia";
 import ListarCategorias from "./components/administracion/tablaCategoria/ListarCategorias"
 import ListarNoticias from "./components/administracion/tablaNoticias/ListarNoticias"
 import EditarNoticia from "./components/administracion/EditarNoticia";
-import NuevaCategoria from "./components/administracion/NuevaCategoria";
 
 function App() {
   const URL = process.env.REACT_APP_API_URL;
@@ -30,7 +29,6 @@ function App() {
     try{
       const consulta = await fetch(URL);
       const respuesta = await consulta.json();
-      console.log(respuesta);
       setNoticias(respuesta);
     }catch(error){
       console.log(error);
@@ -40,7 +38,6 @@ function App() {
     try{
       const consulta = await fetch(URL2);
       const respuesta = await consulta.json();
-      console.log(respuesta);
       setCategorias(respuesta);
     }catch(error){
       console.log(error)
@@ -51,12 +48,12 @@ function App() {
   return (
     <div className='fuente'>
       <Router>
-        <NavB></NavB>
+        <NavB categorias={categorias}></NavB>
         <Switch>
           <Route exact path="/">
             <Inicio></Inicio>
           </Route>
-          <Route exact path="/categoria">
+          <Route exact path="/categoria/:id">
             <SeccionCategoria></SeccionCategoria>
           </Route>
           <Route exact path="/detalle">
@@ -72,10 +69,10 @@ function App() {
             <Administración></Administración>
           </Route>
           <Route exact path="/administracion/nueva">
-            <NuevaNoticia consultarAPI={consultarAPI}></NuevaNoticia>
+            <NuevaNoticia categorias={categorias} consultarAPI={consultarAPI}></NuevaNoticia>
           </Route>
           <Route exact path="/administracion/editar/:id">
-            <EditarNoticia consultarAPI={consultarAPI}></EditarNoticia>
+            <EditarNoticia categorias={categorias} consultarAPI={consultarAPI}></EditarNoticia>
           </Route>
           <Route exact path="/administracion/categorias">
             <ListarCategorias consultarCategoria={consultarCategoria} categorias={categorias}></ListarCategorias>

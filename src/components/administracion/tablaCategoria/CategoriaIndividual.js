@@ -40,7 +40,6 @@ const CategoriaIndividual = (props) => {
           } else {
             Swal.fire("Error", "Intente nuevamente", "error");
           }
-          console.log(response);
         } catch (error) {
           console.log(error);
           Swal.fire("Error", "Espere unos minutos", "error");

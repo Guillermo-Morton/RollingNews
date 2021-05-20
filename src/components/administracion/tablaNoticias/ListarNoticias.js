@@ -9,7 +9,7 @@ const ListarNoticias = (props) => {
       <Table className="my-4" striped bordered hover size="sm">
         <thead>
           <tr>
-            <th>#</th>
+            <th>ID</th>
             <th>Título</th>
             <th>Subtítulo</th>
             <th>Categoría</th>
