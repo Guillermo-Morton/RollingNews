@@ -39,7 +39,7 @@
       "parrafo1": "HOLA S",
       "parrafo2": "SDASD",
       "parrafo3": "asdasd",
-      "categoria": "Política",
+      "categoria": "Sapo",
       "imagen1": "fidel.jpg",
       "imagen2": "asdas",
       "id": 8
@@ -54,17 +54,6 @@
       "imagen1": "sda",
       "imagen2": "sda",
       "id": 10
-    },
-    {
-      "titulo": "Mono locoaaaa",
-      "subtitulo": "hola",
-      "parrafo1": "asd",
-      "parrafo2": "asd",
-      "parrafo3": "asd",
-      "categoria": "Deportes",
-      "imagen1": "asd",
-      "imagen2": "adsasd",
-      "id": 12
     },
     {
       "titulo": "PEPE",
@@ -87,6 +76,17 @@
       "imagen1": "dasda",
       "imagen2": "sdasd",
       "id": 16
+    },
+    {
+      "titulo": "Sapo ura se come otro sapo",
+      "subtitulo": "asda",
+      "parrafo1": "asd",
+      "parrafo2": "ads",
+      "parrafo3": "asd",
+      "categoria": "Economía",
+      "imagen1": "asd",
+      "imagen2": "asd",
+      "id": 17
     }
   ],
   "categorias": [
@@ -123,12 +123,12 @@
       "id": "uakCShr"
     },
     {
-      "categoriaDisponible": "Autos",
-      "id": "DAZnlU-"
-    },
-    {
       "categoriaDisponible": "Sapo",
       "id": "W8cWnQr"
+    },
+    {
+      "categoriaDisponible": "Autos",
+      "id": "ZOpWqRA"
     }
   ]
 }
