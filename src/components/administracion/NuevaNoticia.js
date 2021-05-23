@@ -13,7 +13,7 @@ const NuevaNoticia = (props) => {
   const [parrafo3, setParrafo3] = useState("");
   const [imagen1, setImagen1] = useState("");
   const [imagen2, setImagen2] = useState("");
-  const [categoria, setCategoria] = useState("Espectáculos");
+  const [categoria, setCategoria] = useState("Actualidad");
   const [error, setError] = useState(false);
 
   // funcion handleSubmit

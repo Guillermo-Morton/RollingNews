@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Navbar, Nav, Dropdown, FormControl } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 
@@ -84,27 +84,30 @@ const NavB = (props) => {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav>
-            <NavLink className="nav-link" exact={true} to="/">
-              Actualidad
-            </NavLink>
-            <NavLink className="nav-link" exact={true} to="/categoria">
-              Espectáculos
-            </NavLink>
-            <NavLink className="nav-link" exact={true} to="/a">
-              Tecnología
-            </NavLink>
-            <NavLink className="nav-link" exact={true} to="/a">
-              Deportes
-            </NavLink>
+          {props && props.navegacion.map((categoria) => (
+                  <NavLink
+                    key={categoria && categoria.id}
+                    className="nav-link"
+                    exact={true}
+                    to={`/categoria/${categoria && categoria.id}`}
+                  >
+                    {categoria && categoria.categoriaDisponible}
+                  </NavLink>
+                ))}
             <Dropdown>
               <Dropdown.Toggle as={CustomToggle} id="dropdown-basic">
                 Categorías
               </Dropdown.Toggle>
               <Dropdown.Menu as={CustomMenu}>
-                {props.categorias.map((categoria) => (
-                  <NavLink key={categoria.id} className="nav-link" exact={true} to={`/categoria/${categoria.id}`}>
-                  {categoria.categoriaDisponible}
-                </NavLink>
+                {props.dropdown.map((categoria) => (
+                  <NavLink
+                    key={categoria && categoria.id}
+                    className="nav-link"
+                    exact={true}
+                    to={`/categoria/${categoria && categoria.id}`}
+                  >
+                    {categoria && categoria.categoriaDisponible}
+                  </NavLink>
                 ))}
               </Dropdown.Menu>
             </Dropdown>

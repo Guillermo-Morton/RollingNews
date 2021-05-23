@@ -10,45 +10,63 @@ import DetalleNoticia from "./components/DetalleNoticia";
 import Ingreso from "./components/cuentas/Ingreso";
 import Administración from "./components/administracion/Administración";
 import NuevaNoticia from "./components/administracion/NuevaNoticia";
-import ListarCategorias from "./components/administracion/tablaCategoria/ListarCategorias"
-import ListarNoticias from "./components/administracion/tablaNoticias/ListarNoticias"
+import ListarCategorias from "./components/administracion/tablaCategoria/ListarCategorias";
+import ListarNoticias from "./components/administracion/tablaNoticias/ListarNoticias";
 import EditarNoticia from "./components/administracion/EditarNoticia";
 
 function App() {
   const URL = process.env.REACT_APP_API_URL;
   const URL2 = process.env.REACT_APP_API_URL2;
-  const [noticias, setNoticias]=useState([]);
-  const [categorias, setCategorias]=useState([])
+  const [noticias, setNoticias] = useState([]);
+  const [categorias, setCategorias] = useState([]);
+  const [navegacion, setNavegacion] = useState([]);
+  const [dropdown, setDropdown] = useState([]);
 
-  useEffect(()=>{
+  useEffect(() => {
     consultarAPI();
     consultarCategoria();
-  },[])
+  }, []);
+  useEffect(() => {
+    categoriasNavbar();
+  }, [categorias]);
 
-  const consultarAPI = async()=>{
-    try{
+  const categoriasNavbar = () => {
+    const categoriasNavegacion = [];
+    const categoriasDropdown = [];
+    for (let i = 0; i < 4; i++) {
+      categoriasNavegacion.push(categorias[i]);
+    }
+    setNavegacion(categoriasNavegacion);
+
+    for (let i = 4; i < categorias.length; i++) {
+      categoriasDropdown.push(categorias[i]);
+    }
+    setDropdown(categoriasDropdown);
+  };
+
+  const consultarAPI = async () => {
+    try {
       const consulta = await fetch(URL);
       const respuesta = await consulta.json();
       setNoticias(respuesta);
-    }catch(error){
+    } catch (error) {
       console.log(error);
     }
-  }
-  const consultarCategoria = async()=>{
-    try{
+  };
+  const consultarCategoria = async () => {
+    try {
       const consulta = await fetch(URL2);
       const respuesta = await consulta.json();
       setCategorias(respuesta);
-    }catch(error){
-      console.log(error)
+    } catch (error) {
+      console.log(error);
     }
-  }
-  
+  };
 
   return (
-    <div className='fuente'>
+    <div className="fuente">
       <Router>
-        <NavB categorias={categorias}></NavB>
+        <NavB dropdown={dropdown} navegacion={navegacion}></NavB>
         <Switch>
           <Route exact path="/">
             <Inicio></Inicio>
@@ -69,21 +87,33 @@ function App() {
             <Administración></Administración>
           </Route>
           <Route exact path="/administracion/nueva">
-            <NuevaNoticia categorias={categorias} consultarAPI={consultarAPI}></NuevaNoticia>
+            <NuevaNoticia
+              categorias={categorias}
+              consultarAPI={consultarAPI}
+            ></NuevaNoticia>
           </Route>
           <Route exact path="/administracion/editar/:id">
-            <EditarNoticia categorias={categorias} consultarAPI={consultarAPI}></EditarNoticia>
+            <EditarNoticia
+              categorias={categorias}
+              consultarAPI={consultarAPI}
+            ></EditarNoticia>
           </Route>
           <Route exact path="/administracion/categorias">
-            <ListarCategorias consultarCategoria={consultarCategoria} categorias={categorias}></ListarCategorias>
+            <ListarCategorias
+              consultarCategoria={consultarCategoria}
+              categorias={categorias}
+            ></ListarCategorias>
           </Route>
           <Route exact path="/administracion/noticias">
-            <ListarNoticias consultarAPI={consultarAPI} noticias={noticias}></ListarNoticias>
+            <ListarNoticias
+              consultarAPI={consultarAPI}
+              noticias={noticias}
+            ></ListarNoticias>
           </Route>
         </Switch>
         <Footer></Footer>
       </Router>
-    </div>                                                                                                                                       
+    </div>
   );
 }
 

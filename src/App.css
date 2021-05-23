@@ -4,6 +4,13 @@
 }
 .div-imagen-chica{
     height: 150px;
+ 
+}
+.noticias-chicas{
+    width: 33.33%;
+}
+.noticias-medianas{
+    width: 50%;
 }
 .div-anuncio{
     height: 100%;
