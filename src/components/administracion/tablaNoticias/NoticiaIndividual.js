@@ -1,4 +1,4 @@
-import { faEdit, faTrashAlt } from "@fortawesome/free-regular-svg-icons";
+import { faTrashAlt } from "@fortawesome/free-regular-svg-icons";
 import { faPen } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";

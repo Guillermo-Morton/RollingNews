@@ -1,5 +1,5 @@
 import React from "react";
-import {Nav } from "react-bootstrap";
+import { NavLink } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -8,9 +8,9 @@ const Footer = () => {
         Rolling<span className="font-weight-bold">news.</span>
       </a>
         <div className="d-md-flex text-center my-2">
-          <Nav.Link className="text-muted">Políticas de privacidad</Nav.Link>
-          <Nav.Link className="text-muted">Contacto</Nav.Link>
-          <Nav.Link className="text-muted">Contrato de suscripción</Nav.Link>
+          <NavLink to='' className="text-muted">Políticas de privacidad</NavLink>
+          <NavLink to='' className="text-muted">Contacto</NavLink>
+          <NavLink to='' className="text-muted">Contrato de suscripción</NavLink>
         </div>
         <p className='text-muted text-center'>&copy; Rollingnews 2021 todos los derechos reservados</p>
     </div>

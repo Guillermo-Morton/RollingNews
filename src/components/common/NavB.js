@@ -1,12 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Navbar, Nav, Dropdown, FormControl } from "react-bootstrap";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const NavB = (props) => {
   const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
-    <a
+    <Link
       className="nav-link"
       ref={ref}
+      to=''
       onClick={(e) => {
         e.preventDefault();
         onClick(e);
@@ -14,7 +15,7 @@ const NavB = (props) => {
     >
       {children}
       &#x25bc;
-    </a>
+    </Link>
   ));
   const CustomMenu = React.forwardRef(
     ({ children, style, className, "aria-labelledby": labeledBy }, ref) => {
@@ -84,7 +85,7 @@ const NavB = (props) => {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav>
-          {props && props.navegacion.map((categoria) => (
+          {props.navegacion.map((categoria) => (
                   <NavLink
                     key={categoria && categoria.id}
                     className="nav-link"

@@ -6,7 +6,7 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Inicio from "./components/Inicio";
 import SeccionCategoria from "./components/categorias/SeccionCategoria";
-import DetalleNoticia from "./components/DetalleNoticia";
+import DetalleNoticia from "./components/categorias/DetalleNoticia";
 import Ingreso from "./components/cuentas/Ingreso";
 import Administración from "./components/administracion/Administración";
 import NuevaNoticia from "./components/administracion/NuevaNoticia";
@@ -17,19 +17,49 @@ import EditarNoticia from "./components/administracion/EditarNoticia";
 function App() {
   const URL = process.env.REACT_APP_API_URL;
   const URL2 = process.env.REACT_APP_API_URL2;
+
+  // creamos los states
   const [noticias, setNoticias] = useState([]);
   const [categorias, setCategorias] = useState([]);
   const [navegacion, setNavegacion] = useState([]);
   const [dropdown, setDropdown] = useState([]);
+  const [masNoticias, setMasNoticias] = useState([]);
 
+  // aqui van nuestros useEffect
   useEffect(() => {
     consultarAPI();
     consultarCategoria();
   }, []);
+
   useEffect(() => {
     categoriasNavbar();
   }, [categorias]);
 
+  useEffect(() => {
+    masCategorias();
+  }, [noticias]);
+
+  // funcion pickRamdom para obtener 6 noticias aleatorias
+  const masCategorias = () => {
+    const max = noticias.length - 1;
+    const _indexNoticias = [];
+    const _masNoticias = [];
+    let result = [];
+    for (let i = 0; i < 12; i++) {
+      const resultado = Math.floor(Math.random() * (max - 1)) + 1;
+      _indexNoticias.push(resultado);
+      result = _indexNoticias.filter((item, index) => {
+        return _indexNoticias.indexOf(item) === index;
+      });
+    }
+    result.splice(6, result.length - 6);
+    for (let i in result) {
+      _masNoticias.push(noticias[result[i]]);
+    }
+    setMasNoticias(_masNoticias);
+  };
+
+  // funcion para manejar los datos de las categorias en el navbar
   const categoriasNavbar = () => {
     const categoriasNavegacion = [];
     const categoriasDropdown = [];
@@ -44,6 +74,7 @@ function App() {
     setDropdown(categoriasDropdown);
   };
 
+  // funciones para consultar a la api
   const consultarAPI = async () => {
     try {
       const consulta = await fetch(URL);
@@ -64,17 +95,17 @@ function App() {
   };
 
   return (
-    <div className="fuente">
+    <div className="text-dark">
       <Router>
         <NavB dropdown={dropdown} navegacion={navegacion}></NavB>
         <Switch>
           <Route exact path="/">
-            <Inicio></Inicio>
+            <Inicio masNoticias={masNoticias}></Inicio>
           </Route>
           <Route exact path="/categoria/:id">
-            <SeccionCategoria></SeccionCategoria>
+            <SeccionCategoria masNoticias={masNoticias}></SeccionCategoria>
           </Route>
-          <Route exact path="/detalle">
+          <Route exact path="/detalle/:id">
             <DetalleNoticia></DetalleNoticia>
           </Route>
           <Route exact path="/ingresar">

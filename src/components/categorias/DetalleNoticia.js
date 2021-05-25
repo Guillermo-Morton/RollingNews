@@ -1,60 +1,59 @@
-import React from "react";
-
+import React, { useState, useEffect } from "react";
+import { useParams} from "react-router";
 const DetalleNoticia = () => {
+  const URL = process.env.REACT_APP_API_URL;
+    // obtengo el parametro de la URL
+    const { id } = useParams();
+    // declaramos los states
+  const [noticia, setNoticia] = useState({});
+  const [categoria, setCategoria] = useState('');
+  // consultamos la noticia seleccionada
+  const consultarNoticia = async () => {
+    try {
+      const respuesta = await fetch(URL + `/${id}`);
+      if (respuesta.status === 200) {
+        const resultado = await respuesta.json();
+        // actualizo el state
+        setNoticia(resultado);
+        setCategoria(resultado.categoria.toUpperCase())
+        console.log(resultado);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    consultarNoticia();
+  }, [id]);
   return (
     <div className="container text-muted">
       <h2 className="mt-5">
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cumque dolore
-        illum recusandae, id sed esse.
+        {noticia.titulo}
       </h2>
       <div className="row">
         <div className="col-lg-9">
           <div className="row">
             <div className="col-lg-12">
               <section>
-                <div className="bg-secondary w-100 div-imagen-grande mb-2"></div>
+                <img src={noticia.imagen1} className="bg-secondary w-100 div-imagen-grande mb-2"></img>
                 <h5>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Dolorem ipsam omnis eius! Placeat officiis deserunt quaerat,
-                  enim corporis quia iusto dolorum laboriosam sunt natus?
-                  Impedit, sapiente? Dolor sed iusto architecto.
+                 {noticia.subtitulo}
                 </h5>
                 <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Provident iure id nobis enim rem tempora laboriosam et
-                  debitis, voluptatum nulla quo eveniet aliquid sint totam
-                  culpa, accusantium temporibus dignissimos consectetur
-                  molestias! Laudantium tenetur accusantium assumenda sit, ipsam
-                  aperiam. Sit, repudiandae.
+                  {noticia.parrafo1}
                 </p>
                 <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Provident iure id nobis enim rem tempora laboriosam et
-                  debitis, voluptatum nulla quo eveniet aliquid sint totam
-                  culpa, accusantium temporibus dignissimos consectetur
-                  molestias! Laudantium tenetur accusantium assumenda sit, ipsam
-                  aperiam. Sit, repudiandae.
+                 {noticia.parrafo2}
                 </p>
               </section>
 
               <section>
-                <div className="bg-secondary w-100 div-imagen-grande mb-2"></div>
-                <h5>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Dolorem ipsam omnis eius! Placeat officiis deserunt quaerat,
-                  enim corporis quia iusto dolorum laboriosam sunt natus?
-                  Impedit, sapiente? Dolor sed iusto architecto.
-                </h5>
+                <img src={noticia.imagen2} className="bg-secondary w-100 div-imagen-grande mb-2"></img>
                 <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Provident iure id nobis enim rem tempora laboriosam et
-                  debitis, voluptatum nulla quo eveniet aliquid sint totam
-                  culpa, accusantium temporibus dignissimos consectetur
-                  molestias! Laudantium tenetur accusantium assumenda sit, ipsam
-                  aperiam. Sit, repudiandae.
+                 {noticia.parrafo3}
                 </p>
               </section>
-              <h2 className='mt-5'>MÁS SOBRE ESPECTÁCULOS</h2>
+              <h2 className='mt-5'>MÁS SOBRE {categoria}</h2>
               <section className="row">
                 <div className="col-lg-4">
                   <div className="bg-secondary w-100 div-imagen-chica mb-2"></div>

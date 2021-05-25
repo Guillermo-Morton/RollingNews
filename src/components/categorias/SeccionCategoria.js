@@ -1,19 +1,24 @@
 import React, { useState, useEffect } from "react";
-import { useParams, withRouter } from "react-router";
+import { useParams} from "react-router";
+import { Link } from "react-router-dom";
 
-const SeccionCategoria = () => {
+const SeccionCategoria = (props) => {
   const URL = process.env.REACT_APP_API_URL;
   const URL2 = process.env.REACT_APP_API_URL2;
   // obtengo el parametro de la URL
   const { id } = useParams();
+
   // declaramos los states
   const [noticias, setNoticias] = useState([]);
   const [categoria, setCategoria] = useState("");
+  
   // states de secciones
   const [destacada, setDestacada] = useState({});
   const [noticiaSm, setNoticiaSm] = useState([]);
   const [noticiaMd, setNoticiaMd] = useState([]);
   const [masNoticias, setMasNoticias] = useState([]);
+  const [noticiasOtrasCategorias, setNoticiasOtrasCategorias]= useState([])
+
   // consultamos la categoria
   const consultarCategoria = async () => {
     try {
@@ -28,8 +33,8 @@ const SeccionCategoria = () => {
       console.log(error);
     }
   };
-  // Filtrar las noticias segun su categoría
 
+  // Filtrar las noticias segun su categoría
   const consultarAPI = async () => {
     try {
       const consulta = await fetch(URL);
@@ -38,28 +43,55 @@ const SeccionCategoria = () => {
       const noticiasFiltradas = respuesta.filter(
         (noticia) => noticia.categoria === categoria
       );
-      setNoticias(noticiasFiltradas);
+      const noticiasOtraCategoria = respuesta.filter(
+        (noticia) => noticia.categoria != categoria
+      );
+      // noticiasOtraCategoria.splice(6, noticiasOtraCategoria.length-6)
+      setNoticias(noticiasFiltradas.reverse());
+      setNoticiasOtrasCategorias(noticiasOtraCategoria.reverse());
     } catch (error) {
       console.log(error);
     }
   };
   const secciones = () => {
     // Destacada
-    setDestacada(noticias[noticias.length - 1]);
+    setDestacada(noticias[0]);
+    
     // Noticias chicas
     const _noticiaSm = [];
-    for (let i = 0; i < 6; i++) {
+    for (let i = 1; i < 7; i++) {
       _noticiaSm.push(noticias[i]);
-      _noticiaSm.reverse();
     }
     setNoticiaSm(_noticiaSm);
+    
     // Noticias Medianas
     const _noticiaMd = [];
-    for (let i = 6; i < 8; i++) {
+    for (let i = 7; i < 9; i++) {
       _noticiaMd.push(noticias[i]);
-      _noticiaMd.reverse();
     }
     setNoticiaMd(_noticiaMd);
+    
+    // Otras noticias
+
+  };
+  // funcion para obtener 6 noticias al azar de otras categorias
+  const otrasNoticias = () => {
+    const max = noticiasOtrasCategorias.length - 1;
+    const _indexNoticias = [];
+    const _masNoticias = [];
+    let result = [];
+    for (let i = 0; i < 12; i++) {
+      const resultado = Math.floor(Math.random() * (max - 1)) + 1;
+      _indexNoticias.push(resultado);
+      result = _indexNoticias.filter((item, index) => {
+        return _indexNoticias.indexOf(item) === index;
+      });
+    }
+    result.splice(6, result.length - 6);
+    for (let i in result) {
+      _masNoticias.push(noticiasOtrasCategorias[result[i]]);
+    }
+    setMasNoticias(_masNoticias);
   };
   // Traer los datos del objeto
   useEffect(() => {
@@ -71,24 +103,45 @@ const SeccionCategoria = () => {
   useEffect(() => {
     secciones();
   }, [noticias]);
+  useEffect(() => {
+    otrasNoticias();
+  }, [noticiasOtrasCategorias]);
   return (
     <div className="container">
-      <h2 className="mt-5">{categoria}</h2>
+      <h2 className="mt-5">{categoria.toUpperCase()}</h2>
       <section>
         <div className="row">
           <div className="col-lg-9">
-            <div className="row my-2">
-              <div className="col-lg-12 mb-5">
-                <div className="bg-secondary w-100 div-imagen-grande mb-2"></div>
+            <div className="my-2 px-2">
+              <Link
+                key={destacada && destacada.id}
+                exact="true"
+                to={`/detalle/${destacada && destacada.id}`}
+                className="w-100 mb-5  text-dark text-decoration-none"
+              >
+                <img
+                  className="w-100 mb-2"
+                  src={destacada && destacada.imagen1}
+                  alt=""
+                />
                 <h4>{destacada && destacada.titulo}</h4>
-              </div>
+              </Link>
             </div>
             <div className="d-flex flex-wrap">
               {noticiaSm.map((noticia) => (
-                <div className="noticias-chicas px-2">
-                  <div className="bg-secondary w-100 div-imagen-chica mb-2"></div>
+                <Link
+                  key={noticia && noticia.id}
+                  exact="true"
+                  to={`/detalle/${noticia && noticia.id}`}
+                  className="noticias-chicas px-2 text-decoration-none text-dark"
+                >
+                  <img
+                    className="w-100 mb-2 div-imagen-chica"
+                    src={noticia && noticia.imagen1}
+                    alt=""
+                  />
                   <h6>{noticia && noticia.titulo}</h6>
-                </div>
+                </Link>
               ))}
             </div>
           </div>
@@ -101,25 +154,43 @@ const SeccionCategoria = () => {
       <section>
         <div className="d-flex flex-wrap my-5">
           {noticiaMd.map((noticia) => (
-            <div className="px-2 noticias-medianas">
-              <div className="bg-secondary w-100 div-imagen-grande mb-2"></div>
-              <h6>
-              {noticia && noticia.titulo}
-              </h6>
-            </div>
+            <Link
+              key={noticia && noticia.id}
+              exact="true"
+              to={`/detalle/${noticia && noticia.id}`}
+              className="px-2 noticias-medianas text-dark text-decoration-none"
+            >
+              {/* <div className="bg-secondary w-100 div-imagen-grande mb-2"></div> */}
+              <img
+                className="w-100 mb-2 div-imagen-grande"
+                src={noticia && noticia.imagen1}
+                alt=""
+              />
+              <h6>{noticia && noticia.titulo}</h6>
+            </Link>
           ))}
         </div>
       </section>
 
       <section>
+          <h2>OTRAS NOTICIAS</h2>
         <div className="row mt-5">
           <div className="col-lg-9">
-          <div className="d-flex flex-wrap">
-              {noticiaSm.map((noticia) => (
-                <div className="noticias-chicas px-2">
-                  <div className="bg-secondary w-100 div-imagen-chica mb-2"></div>
+            <div className="d-flex flex-wrap">
+              {masNoticias.map((noticia) => (
+                <Link
+                  key={noticia && noticia.id}
+                  exact={true}
+                  to={`/detalle/${noticia && noticia.id}`}
+                  className="noticias-chicas px-2 text-decoration-none text-dark"
+                >
+                  <img
+                    className="w-100 mb-2 div-imagen-chica"
+                    src={noticia && noticia.imagen1}
+                    alt=""
+                  />
                   <h6>{noticia && noticia.titulo}</h6>
-                </div>
+                </Link>
               ))}
             </div>
           </div>

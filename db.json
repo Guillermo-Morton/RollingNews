@@ -139,7 +139,7 @@
       "parrafo2": "ads",
       "parrafo3": "ads",
       "categoria": "Actualidad",
-      "imagen1": "das",
+      "imagen1": "https://static.euronews.com/articles/stories/05/66/33/16/630x420_cmsv2_74b60ed1-1b76-50fb-9470-8c6313bb6246-5663316.jpg",
       "imagen2": "ads",
       "id": 22
     },
@@ -150,7 +150,7 @@
       "parrafo2": "asd",
       "parrafo3": "asd",
       "categoria": "Actualidad",
-      "imagen1": "asda",
+      "imagen1": "https://static.euronews.com/articles/stories/05/67/03/90/630x420_cmsv2_f459ebe0-10f2-5f56-8273-c2fc6979f117-5670390.jpg",
       "imagen2": "asd",
       "id": 23
     },
@@ -161,20 +161,9 @@
       "parrafo2": "asd",
       "parrafo3": "asd",
       "categoria": "Actualidad",
-      "imagen1": "asdasd",
+      "imagen1": "https://static.euronews.com/articles/stories/05/67/87/04/773x435_cmsv2_f7f6db11-bba9-56b5-adca-dd5adc519220-5678704.jpg",
       "imagen2": "asdas",
       "id": 24
-    },
-    {
-      "titulo": "El día que Lionel Messi advirtió que era un error dejar ir a Luis Suárez al Atlético Madrid",
-      "subtitulo": "asd",
-      "parrafo1": "asd",
-      "parrafo2": "asd",
-      "parrafo3": "asd",
-      "categoria": "Actualidad",
-      "imagen1": "asd",
-      "imagen2": "asd",
-      "id": 25
     },
     {
       "titulo": "La oposición venezolana pidió ayuda al Vaticano y a la Cruz Roja para liberar a los militares secuestrados por las FARC",
@@ -183,7 +172,7 @@
       "parrafo2": "asd",
       "parrafo3": "asd",
       "categoria": "Actualidad",
-      "imagen1": "asda",
+      "imagen1": "https://static.euronews.com/articles/stories/05/60/30/18/508x344_cmsv2_e6c7188e-b10a-59d4-a352-711d3e99a7ca-5603018.jpg",
       "imagen2": "asd",
       "id": 26
     },
@@ -194,7 +183,7 @@
       "parrafo2": "asd",
       "parrafo3": "asd",
       "categoria": "Actualidad",
-      "imagen1": "asd",
+      "imagen1": "https://static.euronews.com/articles/stories/05/66/68/68/508x344_cmsv2_d158584e-5804-583e-bdd4-777efc50bd49-5666868.jpg",
       "imagen2": "asd",
       "id": 27
     },
@@ -205,7 +194,7 @@
       "parrafo2": "ads",
       "parrafo3": "ads",
       "categoria": "Actualidad",
-      "imagen1": "asd",
+      "imagen1": "https://static.euronews.com/articles/stories/05/67/43/68/630x420_cmsv2_04eb1c9c-6b0c-5ff3-b396-106eeb937da6-5674368.jpg",
       "imagen2": "asd",
       "id": 28
     },
@@ -219,6 +208,61 @@
       "imagen1": "dsaasd",
       "imagen2": "assad",
       "id": 29
+    },
+    {
+      "titulo": "Sapo",
+      "subtitulo": "as",
+      "parrafo1": "da",
+      "parrafo2": "sasd",
+      "parrafo3": "ads",
+      "categoria": "Actualidad",
+      "imagen1": "https://static.euronews.com/articles/stories/05/69/01/94/945x531_cmsv2_3e7684de-4503-546e-9bd3-4ddb4e10c8d7-5690194.jpg",
+      "imagen2": "asd",
+      "id": 30
+    },
+    {
+      "titulo": "Pepe",
+      "subtitulo": "asda",
+      "parrafo1": "asd",
+      "parrafo2": "dasa",
+      "parrafo3": "dsa",
+      "categoria": "Actualidad",
+      "imagen1": "https://www.purina-latam.com/sites/g/files/auxxlc391/files/styles/social_share_large/public/Purina%C2%AE%20La%20llegada%20del%20gatito%20a%20casa.jpg?itok=_3VnSPSl",
+      "imagen2": "asd",
+      "id": 31
+    },
+    {
+      "titulo": "5 cosas que hacer durante un fin de semana en Novi Sad, Capital Europea de la Cultura en 2022",
+      "subtitulo": "Estación Cultural Egység",
+      "parrafo1": "La historia de Novi Sad está presente en toda la ciudad. Pasee por la Plaza de la Libertad de la parte antigua de la urbe para admirar la arquitectura del Ayuntamiento y la iglesia católica del Nombre de María, además de otros edificios que forman parte de su patrimonio. O, si quiere profundizar en el pasado de la ciudad, haga una excursión a algún otro lugar histórico destacado.",
+      "parrafo2": "La historia de la región, desde el Paleolítico hasta el siglo XX, está documentada en este museo, donde se exponen fascinantes hallazgos arqueológicos. Herramientas, joyas, cerámica y monedas ofrecen una imagen de la vida cotidiana, las costumbres funerarias y la cultura religiosa en los antiguos asentamientos de Vojvodina. También hay impresionantes artefactos militares. No se pierda los dos fabulosos cascos romanos, chapados en oro y con joyas, que se encontraron en una excavación en 1955, junto con otras piezas del equipo de un oficial de caballería romano.",
+      "parrafo3": "Es difícil pasar por alto la vibrante escena artística urbana de Novi Sad, ya que se pueden ver enormes murales y creativos grafitis en las paredes del centro de la ciudad y en otras zonas. Puede encontrar la ubicación de las últimas obras de arte en la página de Instagram de Novi Sad Street Art.",
+      "categoria": "Actualidad",
+      "imagen1": "https://static.euronews.com/articles/stories/05/68/93/10/945x629_cmsv2_426af46d-94f9-5517-9e43-f044ae6c6849-5689310.jpg",
+      "imagen2": "https://static.euronews.com/articles/stories/05/60/55/82/368x207_cmsv2_b37d2851-9148-539e-8a7f-284f21ed5d95-5605582.jpg",
+      "id": 32
+    },
+    {
+      "titulo": "SAPOQLIAO",
+      "subtitulo": "adsa",
+      "parrafo1": "s",
+      "parrafo2": "asd",
+      "parrafo3": "asd",
+      "categoria": "Economía",
+      "imagen1": "a",
+      "imagen2": "d",
+      "id": 33
+    },
+    {
+      "titulo": "Laa noticia mas nueva",
+      "subtitulo": "asd",
+      "parrafo1": "dsa",
+      "parrafo2": "asd",
+      "parrafo3": "asd",
+      "categoria": "Actualidad",
+      "imagen1": "https://static.euronews.com/articles/stories/05/68/97/20/773x435_cmsv2_8e72b9da-4f79-5cd7-be5c-bc00eabd2289-5689720.jpg",
+      "imagen2": "asd",
+      "id": 34
     }
   ],
   "categorias": [
@@ -259,8 +303,8 @@
       "id": "W8cWnQr"
     },
     {
-      "categoriaDisponible": "Autos",
-      "id": "ZOpWqRA"
+      "categoriaDisponible": "URA",
+      "id": "D1-euvB"
     }
   ]
 }
