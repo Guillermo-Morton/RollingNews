@@ -3,7 +3,7 @@
     {
       "titulo": "Mexicano qliao se escapa de brasil",
       "subtitulo": "Lanzó caca xd",
-      "parrafo1": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, asperiores.",
+      "parrafo1": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, asperiores.aaa",
       "parrafo2": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, asperiores.",
       "parrafo3": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, asperiores.",
       "categoria": "Tecnología",
@@ -149,7 +149,7 @@
       "parrafo1": "asda",
       "parrafo2": "asd",
       "parrafo3": "asd",
-      "categoria": "Actualidad",
+      "categoria": "Covid",
       "imagen1": "https://static.euronews.com/articles/stories/05/67/03/90/630x420_cmsv2_f459ebe0-10f2-5f56-8273-c2fc6979f117-5670390.jpg",
       "imagen2": "asd",
       "id": 23
@@ -204,7 +204,7 @@
       "parrafo1": "sadasdd",
       "parrafo2": "asdads",
       "parrafo3": "asdasd",
-      "categoria": "Política",
+      "categoria": "Actualidad",
       "imagen1": "dsaasd",
       "imagen2": "assad",
       "id": 29
@@ -226,7 +226,7 @@
       "parrafo1": "asd",
       "parrafo2": "dasa",
       "parrafo3": "dsa",
-      "categoria": "Actualidad",
+      "categoria": "Covid",
       "imagen1": "https://www.purina-latam.com/sites/g/files/auxxlc391/files/styles/social_share_large/public/Purina%C2%AE%20La%20llegada%20del%20gatito%20a%20casa.jpg?itok=_3VnSPSl",
       "imagen2": "asd",
       "id": 31
@@ -248,7 +248,7 @@
       "parrafo1": "s",
       "parrafo2": "asd",
       "parrafo3": "asd",
-      "categoria": "Economía",
+      "categoria": "Covid",
       "imagen1": "a",
       "imagen2": "d",
       "id": 33
@@ -259,10 +259,21 @@
       "parrafo1": "dsa",
       "parrafo2": "asd",
       "parrafo3": "asd",
-      "categoria": "Actualidad",
+      "categoria": "Covid",
       "imagen1": "https://static.euronews.com/articles/stories/05/68/97/20/773x435_cmsv2_8e72b9da-4f79-5cd7-be5c-bc00eabd2289-5689720.jpg",
       "imagen2": "asd",
       "id": 34
+    },
+    {
+      "titulo": "La mas nueva de las nuevas",
+      "subtitulo": "asd",
+      "parrafo1": "asd",
+      "parrafo2": "asd",
+      "parrafo3": "asd",
+      "categoria": "Covid",
+      "imagen1": "a",
+      "imagen2": "dsa",
+      "id": 35
     }
   ],
   "categorias": [
@@ -305,6 +316,10 @@
     {
       "categoriaDisponible": "URA",
       "id": "D1-euvB"
+    },
+    {
+      "categoriaDisponible": "Covid",
+      "id": "hS7HV50"
     }
   ]
 }

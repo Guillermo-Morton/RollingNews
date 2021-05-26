@@ -19,11 +19,21 @@ function App() {
   const URL2 = process.env.REACT_APP_API_URL2;
 
   // creamos los states
+
+  // contiene todaas las noticias del sitio 
   const [noticias, setNoticias] = useState([]);
+  // contiene las categorias disponibles
   const [categorias, setCategorias] = useState([]);
+  // contiene las categorias que se muestran en el navbar
   const [navegacion, setNavegacion] = useState([]);
+  // contiene las categorias que se muestran en el menu dropdown del navba
   const [dropdown, setDropdown] = useState([]);
+  // contiene 6 noticias aleatorias para mostrar en la seccion de 'mas noticias'
   const [masNoticias, setMasNoticias] = useState([]);
+  // contiene 2 noticias de la categoria Covid
+  const [covid, setCovid] = useState([]);
+  // contiene una lista de noticias excluyendo a las de la categoria covid
+  const [noticiasInicio, setNoticiasInicio] = useState([]);
 
   // aqui van nuestros useEffect
   useEffect(() => {
@@ -36,28 +46,31 @@ function App() {
   }, [categorias]);
 
   useEffect(() => {
-    masCategorias();
+    noticiasRandom(noticias.length - 1, 6, 12,noticias,setMasNoticias);
   }, [noticias]);
 
   // funcion pickRamdom para obtener 6 noticias aleatorias
-  const masCategorias = () => {
-    const max = noticias.length - 1;
+  const noticiasRandom = (max, numbers, presition, array, state) => {
+    // const max = noticias.length - 1;
     const _indexNoticias = [];
     const _masNoticias = [];
     let result = [];
-    for (let i = 0; i < 12; i++) {
+    for (let i = 0; i < presition; i++) {
       const resultado = Math.floor(Math.random() * (max - 1)) + 1;
       _indexNoticias.push(resultado);
       result = _indexNoticias.filter((item, index) => {
         return _indexNoticias.indexOf(item) === index;
       });
     }
-    result.splice(6, result.length - 6);
+    result.splice(numbers, result.length);
     for (let i in result) {
-      _masNoticias.push(noticias[result[i]]);
+      _masNoticias.push(array[result[i]]);
     }
-    setMasNoticias(_masNoticias);
+    state(_masNoticias);
+  
   };
+
+
 
   // funcion para manejar los datos de las categorias en el navbar
   const categoriasNavbar = () => {
@@ -79,7 +92,18 @@ function App() {
     try {
       const consulta = await fetch(URL);
       const respuesta = await consulta.json();
-      setNoticias(respuesta);
+      setNoticias(respuesta.reverse());
+      // lista de noticias sin las noticias sobre covid
+      const _noticiasInicio = respuesta.filter(
+        (noticia) => noticia.categoria != 'Covid'
+      );
+      setNoticiasInicio(_noticiasInicio)
+      // noticias para la seccion covid
+      const _covid = respuesta.filter(
+        (noticia) => noticia.categoria === 'Covid'
+      );
+      _covid.splice(2,_covid.length);
+      setCovid(_covid)
     } catch (error) {
       console.log(error);
     }
@@ -100,13 +124,13 @@ function App() {
         <NavB dropdown={dropdown} navegacion={navegacion}></NavB>
         <Switch>
           <Route exact path="/">
-            <Inicio masNoticias={masNoticias}></Inicio>
+            <Inicio masNoticias={masNoticias} noticias={noticiasInicio} covid={covid}></Inicio>
           </Route>
           <Route exact path="/categoria/:id">
             <SeccionCategoria masNoticias={masNoticias}></SeccionCategoria>
           </Route>
           <Route exact path="/detalle/:id">
-            <DetalleNoticia></DetalleNoticia>
+            <DetalleNoticia noticiasRandom={noticiasRandom} ></DetalleNoticia>
           </Route>
           <Route exact path="/ingresar">
             <Ingreso></Ingreso>
