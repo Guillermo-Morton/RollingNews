@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams} from "react-router";
 import { Link } from "react-router-dom";
 
-const SeccionCategoria = (props) => {
+const SeccionCategoria = () => {
   const URL = process.env.REACT_APP_API_URL;
   const URL2 = process.env.REACT_APP_API_URL2;
   // obtengo el parametro de la URL

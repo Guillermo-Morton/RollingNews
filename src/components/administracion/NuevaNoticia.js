@@ -72,11 +72,11 @@ const NuevaNoticia = (props) => {
           setParrafo3("");
           setImagen1("");
           setImagen2("");
-          setCategoria("");
+          // setCategoria("");
           // consultamos la api
           props.consultarAPI();
           // redireccionamos a otra ruta
-          props.history.push("/administracion/noticias");
+          // props.history.push("/administracion/noticias");
         }
       } catch (error) {
         console.log(error);

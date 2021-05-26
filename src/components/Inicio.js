@@ -1,12 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import ElTiempo from "./apis/ElTiempo";
 
 const Inicio = (props) => {
+  // state
+
+  // consigue 2 categorias aleatorias para mostrar como recomendadas
+  const[recomendadas, setRecomendadas]=useState([])
+  // contiene 6 noticias aleatorias para mostrar en la seccion de 'mas noticias'
+  const [masNoticias, setMasNoticias] = useState([]);
+  // consigue la ultima noticia agregada
   const destacada = props.noticias[0];
-  const recomendadas = [];
-  for (let i = 1; i < 3; i++) {
-    recomendadas.push(props.noticias[i])
-  }
+
+  useEffect(()=>{
+    props.noticiasRandom(props.noticias.length-1,2,10,props.noticias,setRecomendadas)
+    props.noticiasRandom(props.noticias.length-1,6,20,props.noticias,setMasNoticias)
+  },[props.noticias])
 
   return (
     <div className="container">
@@ -24,7 +33,7 @@ const Inicio = (props) => {
               className="bg-secondary w-100 div-imagen-grande mb-2"
             ></img>
             <h4>{destacada && destacada.titulo}</h4>
-            <p>{destacada && destacada.parrafo1}</p>
+            <p>{destacada && destacada.subtitulo}</p>
           </Link>
           <div className="col-lg-3">
               {recomendadas.map((noticia) => (
@@ -76,7 +85,7 @@ const Inicio = (props) => {
         <div className="row">
           <div className="col-lg-9">
             <div className="d-flex flex-wrap">
-              {props.masNoticias.map((noticia) => (
+              {masNoticias.map((noticia) => (
                 <Link
                   key={noticia && noticia.id}
                   exact="true"
@@ -92,12 +101,10 @@ const Inicio = (props) => {
                 </Link>
               ))}
             </div>
-            <h2 className="mt-5">EL TIEMPO</h2>
-            <div className="row my-2">
-              <div className="col-lg-12">
-                <div className="bg-secondary w-100 div-clima mb-2"></div>
-              </div>
-            </div>
+            <ElTiempo>
+              
+            </ElTiempo>
+        
           </div>
           <div className="col-lg-3">
             <div className="bg-secondary w-75 div-anuncio ml-auto"></div>

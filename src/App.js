@@ -28,8 +28,6 @@ function App() {
   const [navegacion, setNavegacion] = useState([]);
   // contiene las categorias que se muestran en el menu dropdown del navba
   const [dropdown, setDropdown] = useState([]);
-  // contiene 6 noticias aleatorias para mostrar en la seccion de 'mas noticias'
-  const [masNoticias, setMasNoticias] = useState([]);
   // contiene 2 noticias de la categoria Covid
   const [covid, setCovid] = useState([]);
   // contiene una lista de noticias excluyendo a las de la categoria covid
@@ -45,9 +43,6 @@ function App() {
     categoriasNavbar();
   }, [categorias]);
 
-  useEffect(() => {
-    noticiasRandom(noticias.length - 1, 6, 12,noticias,setMasNoticias);
-  }, [noticias]);
 
   // funcion pickRamdom para obtener 6 noticias aleatorias
   const noticiasRandom = (max, numbers, presition, array, state) => {
@@ -124,10 +119,10 @@ function App() {
         <NavB dropdown={dropdown} navegacion={navegacion}></NavB>
         <Switch>
           <Route exact path="/">
-            <Inicio masNoticias={masNoticias} noticias={noticiasInicio} covid={covid}></Inicio>
+            <Inicio noticiasRandom={noticiasRandom} noticias={noticiasInicio} covid={covid}></Inicio>
           </Route>
           <Route exact path="/categoria/:id">
-            <SeccionCategoria masNoticias={masNoticias}></SeccionCategoria>
+            <SeccionCategoria ></SeccionCategoria>
           </Route>
           <Route exact path="/detalle/:id">
             <DetalleNoticia noticiasRandom={noticiasRandom} ></DetalleNoticia>
