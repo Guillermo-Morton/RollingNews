@@ -1,13 +1,23 @@
-import React, { useState } from "react";
-import { Navbar, Nav, Dropdown, FormControl } from "react-bootstrap";
-import { Link, NavLink } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Navbar, Nav, Dropdown, FormControl, Button } from "react-bootstrap";
+import { Link, NavLink, useLocation, withRouter } from "react-router-dom";
 
 const NavB = (props) => {
+  // contiene el usuario logueado actualmente
+  const [usuarioLog, setUsuarioLog] = useState({});
+
+  const cerrarSesion = () => {
+    setUsuarioLog({});
+    setTimeout(() => {
+    props.history.push('/')},300)
+  };
+
+
   const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
     <Link
       className="nav-link"
       ref={ref}
-      to=''
+      to=""
       onClick={(e) => {
         e.preventDefault();
         onClick(e);
@@ -46,24 +56,52 @@ const NavB = (props) => {
       );
     }
   );
+  const mostrarIngresar =
+    usuarioLog.nombre === undefined ? (
+      <NavLink
+        exact={true}
+        to="/ingresar"
+        className="btn btn-outline-primary px-3 py-1"
+      >
+        Ingresar
+      </NavLink>
+    ) : (
+      <Button
+        className="px-3 py-1"
+        variant="outline-primary"
+        onClick={cerrarSesion}
+      >
+        Cerrar Sesion
+      </Button>
+    );
+  const mostrarAdministracion =
+    usuarioLog.nombre === "Admin" && usuarioLog.id === '0' ? (
+      <NavLink
+        exact={true}
+        to="/administracion"
+        className="btn btn-outline-primary px-3 py-1"
+      >
+        Administración
+      </NavLink>
+    ) : (
+     null
+    );
+
+  const location = useLocation();
+
+  useEffect(() => {
+    props.extraerLocal('usuarioLogueadoKey',setUsuarioLog);
+  }, [location.pathname]);
+
+  useEffect(() => {
+    localStorage.setItem("usuarioLogueadoKey", JSON.stringify(usuarioLog));
+  }, [usuarioLog]);
 
   return (
     <div className="bg-light">
       <div className="container-fluid py-2 px-3 d-flex justify-content-between">
-        <NavLink
-          exact={true}
-          to="/ingresar"
-          className="btn btn-outline-primary px-3 py-1"
-        >
-          Ingresar
-        </NavLink>
-        <NavLink
-          exact={true}
-          to="/administracion"
-          className="btn btn-outline-primary px-3 py-1"
-        >
-          Administración
-        </NavLink>
+        {mostrarIngresar}
+        {mostrarAdministracion}
       </div>
       <Navbar
         className="d-md-flex flex-md-column"
@@ -85,16 +123,16 @@ const NavB = (props) => {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav>
-          {props.navegacion.map((categoria) => (
-                  <NavLink
-                    key={categoria && categoria.id}
-                    className="nav-link"
-                    exact={true}
-                    to={`/categoria/${categoria && categoria.id}`}
-                  >
-                    {categoria && categoria.categoriaDisponible}
-                  </NavLink>
-                ))}
+            {props.navegacion.map((categoria) => (
+              <NavLink
+                key={categoria && categoria.id}
+                className="nav-link"
+                exact={true}
+                to={`/categoria/${categoria && categoria.id}`}
+              >
+                {categoria && categoria.categoriaDisponible}
+              </NavLink>
+            ))}
             <Dropdown>
               <Dropdown.Toggle as={CustomToggle} id="dropdown-basic">
                 Categorías
@@ -119,4 +157,4 @@ const NavB = (props) => {
   );
 };
 
-export default NavB;
+export default withRouter(NavB);

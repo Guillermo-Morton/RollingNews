@@ -60,7 +60,8 @@ const Inicio = (props) => {
 
       <section className="my-3">
         <h2 className="mt-5">COVID</h2>
-        <div className="d-flex flex-wrap my-5">
+        <div className="d-flex flex-wrap">
+          <img className='w-100 mb-4' src="https://www.redcross.org/content/dam/redcross/cruz-roja/news-articles/coronavirus_spanish.png.transform/1288/q70/feature/image.png" alt="" />
           {props.covid.map((noticia) => (
             <Link
               key={noticia && noticia.id}
@@ -68,7 +69,6 @@ const Inicio = (props) => {
               to={`/detalle/${noticia && noticia.id}`}
               className="px-2 noticias-medianas text-dark text-decoration-none"
             >
-              {/* <div className="bg-secondary w-100 div-imagen-grande mb-2"></div> */}
               <img
                 className="w-100 mb-2 div-imagen-grande"
                 src={noticia && noticia.imagen1}

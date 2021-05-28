@@ -401,5 +401,42 @@
       "categoriaDisponible": "Covid",
       "id": "hS7HV50"
     }
+  ],
+  "usuarios": [
+    {
+      "nombre": "Admin",
+      "pass": "12345",
+      "verified": true,
+      "email": "guillermort2000@gmail.com",
+      "id": "0"
+    },
+    {
+      "nombre": "Sapo",
+      "pass": "aaaaa",
+      "verified": true,
+      "email": "pepesapo@gmail.com",
+      "id": "6Ca1Dhd"
+    },
+    {
+      "nombre": "Pepe",
+      "pass": "asdfg",
+      "verified": false,
+      "email": "pepe@gmai.com",
+      "id": "gY3P3sF"
+    },
+    {
+      "nombre": "rocio",
+      "pass": "goyi",
+      "verified": false,
+      "email": "rociopereyrax@gmail.com",
+      "id": "aL6ZOiy"
+    },
+    {
+      "nombre": "Benja",
+      "pass": "hola",
+      "verified": true,
+      "email": "benja@gmail.com",
+      "id": "Si38-iO"
+    }
   ]
 }

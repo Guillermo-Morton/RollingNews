@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 const ElTiempo = () => {
   // datos para consultar a la api
-  const ciudad = "Yerba buena";
+  const ciudad = "Yerba Buena";
   const key = "a2a36be300f39f02b24f47f11053efeb";
   const URL = `https://api.openweathermap.org/data/2.5/weather?q=${ciudad}&appid=${key}&units=metric&lang=es`;
   //   nuestros state

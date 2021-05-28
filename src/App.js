@@ -13,6 +13,7 @@ import NuevaNoticia from "./components/administracion/NuevaNoticia";
 import ListarCategorias from "./components/administracion/tablaCategoria/ListarCategorias";
 import ListarNoticias from "./components/administracion/tablaNoticias/ListarNoticias";
 import EditarNoticia from "./components/administracion/EditarNoticia";
+import Sub from "./components/cuentas/Sub";
 
 function App() {
   const URL = process.env.REACT_APP_API_URL;
@@ -20,7 +21,7 @@ function App() {
 
   // creamos los states
 
-  // contiene todaas las noticias del sitio 
+  // contiene todaas las noticias del sitio
   const [noticias, setNoticias] = useState([]);
   // contiene las categorias disponibles
   const [categorias, setCategorias] = useState([]);
@@ -33,6 +34,7 @@ function App() {
   // contiene una lista de noticias excluyendo a las de la categoria covid
   const [noticiasInicio, setNoticiasInicio] = useState([]);
 
+
   // aqui van nuestros useEffect
   useEffect(() => {
     consultarAPI();
@@ -42,7 +44,6 @@ function App() {
   useEffect(() => {
     categoriasNavbar();
   }, [categorias]);
-
 
   // funcion pickRamdom para obtener 6 noticias aleatorias
   const noticiasRandom = (max, numbers, presition, array, state) => {
@@ -62,10 +63,7 @@ function App() {
       _masNoticias.push(array[result[i]]);
     }
     state(_masNoticias);
-  
   };
-
-
 
   // funcion para manejar los datos de las categorias en el navbar
   const categoriasNavbar = () => {
@@ -90,15 +88,15 @@ function App() {
       setNoticias(respuesta.reverse());
       // lista de noticias sin las noticias sobre covid
       const _noticiasInicio = respuesta.filter(
-        (noticia) => noticia.categoria != 'Covid'
+        (noticia) => noticia.categoria != "Covid"
       );
-      setNoticiasInicio(_noticiasInicio)
+      setNoticiasInicio(_noticiasInicio);
       // noticias para la seccion covid
       const _covid = respuesta.filter(
-        (noticia) => noticia.categoria === 'Covid'
+        (noticia) => noticia.categoria === "Covid"
       );
-      _covid.splice(2,_covid.length);
-      setCovid(_covid)
+      _covid.splice(2, _covid.length);
+      setCovid(_covid);
     } catch (error) {
       console.log(error);
     }
@@ -113,31 +111,50 @@ function App() {
     }
   };
 
+  const extraerLocal = (key,state) => {
+    let arr = [];
+    if (localStorage.getItem(key) === null) {
+      // no existe la key alertar sobre usuario incorrecto
+      console.log("no existe key");
+    } else {
+      // si existe la key
+      // este array recibe los datos del usuario logueado
+      arr = JSON.parse(localStorage.getItem(key));
+      state(arr);
+    }
+  };
+
+
   return (
     <div className="text-dark">
       <Router>
-        <NavB dropdown={dropdown} navegacion={navegacion}></NavB>
+        <NavB dropdown={dropdown} navegacion={navegacion} noticias={noticias} extraerLocal={extraerLocal}></NavB>
         <Switch>
           <Route exact path="/">
-            <Inicio noticiasRandom={noticiasRandom} noticias={noticiasInicio} covid={covid}></Inicio>
+            <Inicio
+              noticiasRandom={noticiasRandom}
+              noticias={noticiasInicio}
+              covid={covid}
+            ></Inicio>
           </Route>
           <Route exact path="/categoria/:id">
-            <SeccionCategoria ></SeccionCategoria>
+            <SeccionCategoria></SeccionCategoria>
           </Route>
           <Route exact path="/detalle/:id">
-            <DetalleNoticia noticiasRandom={noticiasRandom} ></DetalleNoticia>
+            <DetalleNoticia noticiasRandom={noticiasRandom}></DetalleNoticia>
           </Route>
           <Route exact path="/ingresar">
-            <Ingreso></Ingreso>
+            <Ingreso ></Ingreso>
           </Route>
           <Route exact path="/suscribirse">
-            <DetalleNoticia></DetalleNoticia>
+            <Sub></Sub>
           </Route>
           <Route exact path="/administracion">
-            <Administración></Administración>
+            <Administración extraerLocal={extraerLocal}></Administración>
           </Route>
           <Route exact path="/administracion/nueva">
             <NuevaNoticia
+              extraerLocal={extraerLocal}
               categorias={categorias}
               consultarAPI={consultarAPI}
             ></NuevaNoticia>
