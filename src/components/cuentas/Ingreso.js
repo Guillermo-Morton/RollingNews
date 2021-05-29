@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Form, Button, Alert  } from "react-bootstrap";
+import { Form, Button, Alert } from "react-bootstrap";
 import { Link, withRouter } from "react-router-dom";
 import { campoRequerido } from "../helpers/validaciones";
 
@@ -9,22 +9,19 @@ const Ingreso = (props) => {
   // states
   const [nombre, setNombre] = useState("");
   const [pass, setPass] = useState("");
-  const [usuarios, setUsuarios]= useState([])
-  const [usuarioLog, setUsuarioLog]= useState({})
-  const [log, setLog]= useState(false)
+  const [usuarios, setUsuarios] = useState([]);
+  const [usuarioLog, setUsuarioLog] = useState({});
+  const [log, setLog] = useState(false);
   const [error, setError] = useState(false);
   // funcion handle submit
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (
-      campoRequerido(nombre) &&
-      campoRequerido(pass)
-    ) {
+    if (campoRequerido(nombre) && campoRequerido(pass)) {
       consultarUsuarios();
       setError(false);
       setLog(true);
     } else {
-        setError(true);
+      setError(true);
     }
   };
 
@@ -35,35 +32,41 @@ const Ingreso = (props) => {
       const respuesta = await consulta.json();
       setUsuarios(respuesta);
       // confirmamos si los datos ingresados coinciden con los de algun usuario
-      for(let i in respuesta){
-        if(respuesta[i].nombre=== nombre && respuesta[i].pass === pass && respuesta[i].verified=== true){
-          setUsuarioLog(respuesta[i])
-           // redireccionamos a otra ruta
-          props.history.push('/')
+      for (let i in respuesta) {
+        if (
+          respuesta[i].nombre === nombre &&
+          respuesta[i].pass === pass &&
+          respuesta[i].verified === true
+        ) {
+          setUsuarioLog(respuesta[i]);
+          // redireccionamos a otra ruta
+          props.history.push("/");
         }
-      }  
-    }catch(error){
-      console.log(error)
-    }}
-
-    const loginLocal=()=>{
-      if(log){
-        console.log(true)
-        localStorage.setItem("usuarioLogueadoKey", JSON.stringify(usuarioLog));   
-      }else{
-        console.log(false)
       }
+    } catch (error) {
+      console.log(error);
     }
-    useEffect(()=>{
-      loginLocal();
-    },[usuarioLog])
+  };
+
+  const loginLocal = () => {
+    if (log) {
+      console.log(true);
+      localStorage.setItem("usuarioLogueadoKey", JSON.stringify(usuarioLog));
+    } else {
+      console.log(false);
+    }
+  };
+  useEffect(() => {
+    loginLocal();
+  }, [usuarioLog]);
+
   return (
     <div className="container my-5">
       <h2 className="my-4 text-center font-weight-light">
         Ingresá con tu cuenta
       </h2>
       <Form onSubmit={handleSubmit} className="w-75 mx-auto">
-      <Form.Group>
+        <Form.Group>
           {error === true ? (
             <Alert variant={"danger"}>Todos los campos son obligatorios</Alert>
           ) : null}
@@ -84,14 +87,19 @@ const Ingreso = (props) => {
             value={pass}
           />
         </Form.Group>
-        <div className='d-flex justify-content-center mb-3'>
+        <div className="d-flex justify-content-center mb-3">
           <a className="text-muted">¿Olvidaste tu contraseña?</a>
         </div>
         <div className="d-flex justify-content-center">
           <Button variant="primary" type="submit">
             Inicia sesíon
           </Button>
-          <Link exact={true} to='/suscribirse' className="mx-2 btn btn-outline-primary" type="submit">
+          <Link
+            exact={true}
+            to="/suscribirse"
+            className="mx-2 btn btn-outline-primary"
+            type="submit"
+          >
             Suscríbete
           </Link>
         </div>

@@ -1,8 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Form, Button, Alert } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import { campoRequerido } from "../helpers/validaciones";
+
+import emailjs from "emailjs-com";
+import { init } from "emailjs-com";
+init("user_iyqHcH4ERBxkxOuuTmb3T");
 
 const Sub = () => {
   // URL
@@ -11,8 +15,10 @@ const Sub = () => {
   const [nombre, setNombre] = useState("");
   const [pass, setPass] = useState("");
   const [email, setEmail] = useState("");
+  const [sent, setSent] = useState(false);
   const [verified, setVerified] = useState(false);
   const [error, setError] = useState(false);
+  const [code, setCode] = useState("");
   // funcion handle submit
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -21,7 +27,7 @@ const Sub = () => {
       campoRequerido(email) &&
       campoRequerido(pass)
     ) {
-        setError(false);
+      setError(false);
       // enviamos el objeto a la base de datos
       const datos = {
         nombre,
@@ -45,18 +51,71 @@ const Sub = () => {
             "Pronto verificaremos tu usuario",
             "success"
           );
-          // limpiamos el formulario
-          setNombre("");
-          setPass("");
-          setEmail("");
+          codigoUsuario();
         }
       } catch (error) {
         console.log(error);
       }
     } else {
-        setError(true);
+      setError(true);
     }
   };
+  // funcione para obtener el codigo del usuario recien creado
+  const codigoUsuario = async () => {
+    try {
+      const consulta = await fetch(URL3);
+      const respuesta = await consulta.json();
+      const usuarioFiltrado = respuesta.filter((user) => user.email === email);
+      setCode(usuarioFiltrado[0].id);
+      
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  // Funcion para verificar el usuario
+  const sendEmail = () => {
+    emailjs
+      .send("service_p22wlsn", "template_jaxj4sg", {
+        to_name: `${nombre}`,
+        from_name: "Rollingnews",
+        message: `Este es tu codigo unico ;)`,
+        id: `${code}`,
+        message2: `Completa la verificacion ingresando el codigo en el siguiente link`,
+        link: `http://localhost:3000/ingresar`,
+        email: `${email}`,
+      })
+      .then(
+        function (response) {
+          console.log(response);
+          setSent(true)
+          alert("se envió");
+        },
+        function (error) {
+          console.log(error);
+        }
+      );
+  };
+  
+  //   use Effect que solo actua en la actualizacion
+  const isInitialMount = useRef(true);
+  useEffect(() => {
+    if (isInitialMount.current) {
+      isInitialMount.current = false;
+    } else {
+      console.log('codigo recibido')
+      sendEmail()
+    }
+  },[code]);
+  useEffect(() => {
+    if (isInitialMount.current) {
+      isInitialMount.current = false;
+    } else {
+        setNombre("");
+        setPass("");
+        setEmail("");
+    }
+  },[sent]);
   return (
     <div className="container my-5">
       <h2 className="my-4 text-center font-weight-light">

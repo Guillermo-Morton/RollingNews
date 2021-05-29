@@ -425,18 +425,25 @@
       "id": "gY3P3sF"
     },
     {
-      "nombre": "rocio",
-      "pass": "goyi",
-      "verified": false,
-      "email": "rociopereyrax@gmail.com",
-      "id": "aL6ZOiy"
-    },
-    {
       "nombre": "Benja",
       "pass": "hola",
       "verified": true,
       "email": "benja@gmail.com",
       "id": "Si38-iO"
+    },
+    {
+      "nombre": "Pepe",
+      "pass": "12345",
+      "verified": false,
+      "email": "therex4444@gmail.com",
+      "id": "O6P2TUD"
+    },
+    {
+      "nombre": "Royi",
+      "pass": "12345",
+      "verified": false,
+      "email": "rociopereyrax@gmail.com",
+      "id": "mmW_6mc"
     }
   ]
 }
