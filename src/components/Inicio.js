@@ -6,16 +6,30 @@ const Inicio = (props) => {
   // state
 
   // consigue 2 categorias aleatorias para mostrar como recomendadas
-  const[recomendadas, setRecomendadas]=useState([])
+  const [recomendadas, setRecomendadas] = useState([]);
   // contiene 6 noticias aleatorias para mostrar en la seccion de 'mas noticias'
   const [masNoticias, setMasNoticias] = useState([]);
   // consigue la ultima noticia agregada
   const destacada = props.noticias[0];
+  // contador de noticias vistas
+  let noticiasVistas = 0;
 
-  useEffect(()=>{
-    props.noticiasRandom(props.noticias.length-1,2,10,props.noticias,setRecomendadas)
-    props.noticiasRandom(props.noticias.length-1,6,20,props.noticias,setMasNoticias)
-  },[props.noticias])
+  useEffect(() => {
+    props.noticiasRandom(
+      props.noticias.length - 1,
+      2,
+      10,
+      props.noticias,
+      setRecomendadas
+    );
+    props.noticiasRandom(
+      props.noticias.length - 1,
+      6,
+      20,
+      props.noticias,
+      setMasNoticias
+    );
+  }, [props.noticias]);
 
   return (
     <div className="container">
@@ -23,6 +37,7 @@ const Inicio = (props) => {
         <h2 className="mt-5">LO MÁS BUSCADO</h2>
         <div className="row">
           <Link
+            onClick={props.limiteNoticias}
             key={destacada && destacada.id}
             exact={true}
             to={`/detalle/${destacada && destacada.id}`}
@@ -36,21 +51,22 @@ const Inicio = (props) => {
             <p>{destacada && destacada.subtitulo}</p>
           </Link>
           <div className="col-lg-3">
-              {recomendadas.map((noticia) => (
-                <Link
-                  key={noticia && noticia.id}
-                  exact="true"
-                  to={`/detalle/${noticia && noticia.id}`}
-                  className="noticias-chicas  text-decoration-none text-dark"
-                >
-                  <img
-                    className="w-100 mb-2 div-imagen-chica"
-                    src={noticia && noticia.imagen1}
-                    alt=""
-                  />
-                  <h6>{noticia && noticia.titulo}</h6>
-                </Link>
-              ))}
+            {recomendadas.map((noticia) => (
+              <Link
+                onClick={props.limiteNoticias}
+                key={noticia && noticia.id}
+                exact="true"
+                to={`/detalle/${noticia && noticia.id}`}
+                className="noticias-chicas  text-decoration-none text-dark"
+              >
+                <img
+                  className="w-100 mb-2 div-imagen-chica"
+                  src={noticia && noticia.imagen1}
+                  alt=""
+                />
+                <h6>{noticia && noticia.titulo}</h6>
+              </Link>
+            ))}
           </div>
           <div className="col-lg-3">
             <div className="bg-secondary w-75 div-anuncio ml-auto"></div>
@@ -61,9 +77,14 @@ const Inicio = (props) => {
       <section className="my-3">
         <h2 className="mt-5">COVID</h2>
         <div className="d-flex flex-wrap">
-          <img className='w-100 mb-4' src="https://www.redcross.org/content/dam/redcross/cruz-roja/news-articles/coronavirus_spanish.png.transform/1288/q70/feature/image.png" alt="" />
+          <img
+            className="w-100 mb-4"
+            src="https://www.redcross.org/content/dam/redcross/cruz-roja/news-articles/coronavirus_spanish.png.transform/1288/q70/feature/image.png"
+            alt=""
+          />
           {props.covid.map((noticia) => (
             <Link
+              onClick={props.limiteNoticias}
               key={noticia && noticia.id}
               exact="true"
               to={`/detalle/${noticia && noticia.id}`}
@@ -87,6 +108,7 @@ const Inicio = (props) => {
             <div className="d-flex flex-wrap">
               {masNoticias.map((noticia) => (
                 <Link
+                  onClick={props.limiteNoticias}
                   key={noticia && noticia.id}
                   exact="true"
                   to={`/detalle/${noticia && noticia.id}`}
@@ -101,10 +123,7 @@ const Inicio = (props) => {
                 </Link>
               ))}
             </div>
-            <ElTiempo>
-              
-            </ElTiempo>
-        
+            <ElTiempo></ElTiempo>
           </div>
           <div className="col-lg-3">
             <div className="bg-secondary w-75 div-anuncio ml-auto"></div>

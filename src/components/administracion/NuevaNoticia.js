@@ -89,7 +89,7 @@ const NuevaNoticia = (props) => {
   //   renderiza los componentes segun el usuario
   const permitirAdministracion =
     usuarioLog.nombre === "Admin" ? (
-      <Fragment>
+      <Fragment >
         <h2 className="font-weight-light my-3 text-center">
           AGREGAR UNA NUEVA NOTICIA
         </h2>
@@ -183,15 +183,16 @@ const NuevaNoticia = (props) => {
       </Fragment>
     ) : (
       <Fragment>
+        <div className='text-center'>
         <h1 className="display-2">Acceso restringido</h1>
         <p className="lead">Seccion para uso exclusivo del administrador</p>
+        </div>
       </Fragment>
     );
   //   funcion para redirigir al inicio si no es el administrador
   const volverInicio = () => {
     setTimeout(() => {
       if (usuarioLog.nombre === "Admin") {
-        console.log("Adminxd");
         return;
       } else {
         props.history.push("/");
@@ -201,7 +202,6 @@ const NuevaNoticia = (props) => {
   // useEffect que actua cuando cambia la URL
   const location = useLocation();
   useEffect(() => {
-    console.log("route has been changed");
     props.extraerLocal("usuarioLogueadoKey", setUsuarioLog);
   }, [location.pathname]);
 
@@ -216,9 +216,9 @@ const NuevaNoticia = (props) => {
   });
 
   return (
-    <div className="container text-center">
+    <div className="container">
       {permitirAdministracion}
-      <p className="my-5">Información del sistema v0.1</p>
+      <p className="my-5  text-center">Información del sistema v0.1</p>
     </div>
   );
 };

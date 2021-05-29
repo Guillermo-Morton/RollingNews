@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { useParams} from "react-router";
+import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 
-const SeccionCategoria = () => {
+const SeccionCategoria = (props) => {
   const URL = process.env.REACT_APP_API_URL;
   const URL2 = process.env.REACT_APP_API_URL2;
   // obtengo el parametro de la URL
@@ -11,13 +11,16 @@ const SeccionCategoria = () => {
   // declaramos los states
   const [noticias, setNoticias] = useState([]);
   const [categoria, setCategoria] = useState("");
-  
+
   // states de secciones
   const [destacada, setDestacada] = useState({});
   const [noticiaSm, setNoticiaSm] = useState([]);
   const [noticiaMd, setNoticiaMd] = useState([]);
   const [masNoticias, setMasNoticias] = useState([]);
-  const [noticiasOtrasCategorias, setNoticiasOtrasCategorias]= useState([])
+  const [noticiasOtrasCategorias, setNoticiasOtrasCategorias] = useState([]);
+
+  // contador de noticias vistas
+  let noticiasVistas = 0;
 
   // consultamos la categoria
   const consultarCategoria = async () => {
@@ -56,23 +59,22 @@ const SeccionCategoria = () => {
   const secciones = () => {
     // Destacada
     setDestacada(noticias[0]);
-    
+
     // Noticias chicas
     const _noticiaSm = [];
     for (let i = 1; i < 7; i++) {
       _noticiaSm.push(noticias[i]);
     }
     setNoticiaSm(_noticiaSm);
-    
+
     // Noticias Medianas
     const _noticiaMd = [];
     for (let i = 7; i < 9; i++) {
       _noticiaMd.push(noticias[i]);
     }
     setNoticiaMd(_noticiaMd);
-    
-    // Otras noticias
 
+    // Otras noticias
   };
   // funcion para obtener 6 noticias al azar de otras categorias
   const otrasNoticias = () => {
@@ -93,7 +95,7 @@ const SeccionCategoria = () => {
     }
     setMasNoticias(_masNoticias);
   };
-  // Traer los datos del objeto
+ 
   useEffect(() => {
     consultarCategoria();
   }, [id]);
@@ -114,6 +116,7 @@ const SeccionCategoria = () => {
           <div className="col-lg-9">
             <div className="my-2 px-2">
               <Link
+                onClick={props.limiteNoticias}
                 key={destacada && destacada.id}
                 exact="true"
                 to={`/detalle/${destacada && destacada.id}`}
@@ -130,6 +133,7 @@ const SeccionCategoria = () => {
             <div className="d-flex flex-wrap">
               {noticiaSm.map((noticia) => (
                 <Link
+                  onClick={props.limiteNoticias}
                   key={noticia && noticia.id}
                   exact="true"
                   to={`/detalle/${noticia && noticia.id}`}
@@ -155,6 +159,7 @@ const SeccionCategoria = () => {
         <div className="d-flex flex-wrap my-5">
           {noticiaMd.map((noticia) => (
             <Link
+              onClick={props.limiteNoticias}
               key={noticia && noticia.id}
               exact="true"
               to={`/detalle/${noticia && noticia.id}`}
@@ -173,7 +178,7 @@ const SeccionCategoria = () => {
       </section>
 
       <section>
-          <h2>OTRAS NOTICIAS</h2>
+        <h2>OTRAS NOTICIAS</h2>
         <div className="row mt-5">
           <div className="col-lg-9">
             <div className="d-flex flex-wrap">

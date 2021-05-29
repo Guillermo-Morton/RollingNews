@@ -14,6 +14,7 @@ import ListarCategorias from "./components/administracion/tablaCategoria/ListarC
 import ListarNoticias from "./components/administracion/tablaNoticias/ListarNoticias";
 import EditarNoticia from "./components/administracion/EditarNoticia";
 import Sub from "./components/cuentas/Sub";
+import { Button } from "react-bootstrap";
 
 function App() {
   const URL = process.env.REACT_APP_API_URL;
@@ -33,7 +34,6 @@ function App() {
   const [covid, setCovid] = useState([]);
   // contiene una lista de noticias excluyendo a las de la categoria covid
   const [noticiasInicio, setNoticiasInicio] = useState([]);
-
 
   // aqui van nuestros useEffect
   useEffect(() => {
@@ -111,7 +111,7 @@ function App() {
     }
   };
 
-  const extraerLocal = (key,state) => {
+  const extraerLocal = (key, state) => {
     let arr = [];
     if (localStorage.getItem(key) === null) {
       // no existe la key alertar sobre usuario incorrecto
@@ -123,28 +123,55 @@ function App() {
       state(arr);
     }
   };
-
+  let noticiasVistas = 0;
+  const limiteNoticias = () => {
+    if (localStorage.getItem("noticiasVistasKey") === null) {
+      // no existe la key
+      noticiasVistas = 0;
+      localStorage.setItem("noticiasVistasKey", JSON.stringify(noticiasVistas));
+      console.log("no existe key");
+    } else {
+      // si existe la key
+      // esta variable recibe los datos del usuario logueado
+      noticiasVistas = JSON.parse(localStorage.getItem("noticiasVistasKey"));
+    }
+    noticiasVistas++;
+    localStorage.setItem("noticiasVistasKey", JSON.stringify(noticiasVistas));
+    console.log(noticiasVistas);
+  };
 
   return (
     <div className="text-dark">
       <Router>
-        <NavB dropdown={dropdown} navegacion={navegacion} noticias={noticias} extraerLocal={extraerLocal}></NavB>
+        <NavB
+          dropdown={dropdown}
+          navegacion={navegacion}
+          noticias={noticias}
+          extraerLocal={extraerLocal}
+        ></NavB>
         <Switch>
           <Route exact path="/">
             <Inicio
+              limiteNoticias={limiteNoticias}
               noticiasRandom={noticiasRandom}
               noticias={noticiasInicio}
               covid={covid}
             ></Inicio>
           </Route>
           <Route exact path="/categoria/:id">
-            <SeccionCategoria></SeccionCategoria>
+            <SeccionCategoria
+              limiteNoticias={limiteNoticias}
+            ></SeccionCategoria>
           </Route>
           <Route exact path="/detalle/:id">
-            <DetalleNoticia noticiasRandom={noticiasRandom}></DetalleNoticia>
+            <DetalleNoticia
+              noticiasRandom={noticiasRandom}
+              limiteNoticias={limiteNoticias}
+              extraerLocal={extraerLocal}
+            ></DetalleNoticia>
           </Route>
           <Route exact path="/ingresar">
-            <Ingreso ></Ingreso>
+            <Ingreso></Ingreso>
           </Route>
           <Route exact path="/suscribirse">
             <Sub></Sub>
@@ -161,18 +188,21 @@ function App() {
           </Route>
           <Route exact path="/administracion/editar/:id">
             <EditarNoticia
+              extraerLocal={extraerLocal}
               categorias={categorias}
               consultarAPI={consultarAPI}
             ></EditarNoticia>
           </Route>
           <Route exact path="/administracion/categorias">
             <ListarCategorias
+              extraerLocal={extraerLocal}
               consultarCategoria={consultarCategoria}
               categorias={categorias}
             ></ListarCategorias>
           </Route>
           <Route exact path="/administracion/noticias">
             <ListarNoticias
+              extraerLocal={extraerLocal}
               consultarAPI={consultarAPI}
               noticias={noticias}
             ></ListarNoticias>

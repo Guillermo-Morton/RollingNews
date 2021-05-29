@@ -17,7 +17,6 @@ const ElTiempo = () => {
         // actualizo el state
         setDatosMain(resultado.main);
         setDatosTiempo(resultado.weather[0].description.toUpperCase());
-        console.log(resultado);
       }
     } catch (error) {
       console.log(error);
