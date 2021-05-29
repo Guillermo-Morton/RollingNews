@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Form, Button, Alert } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import Swal from "sweetalert2";
 import { campoRequerido } from "../helpers/validaciones";
 
@@ -8,7 +8,7 @@ import emailjs from "emailjs-com";
 import { init } from "emailjs-com";
 init("user_iyqHcH4ERBxkxOuuTmb3T");
 
-const Sub = () => {
+const Sub = (props) => {
   // URL
   const URL3 = process.env.REACT_APP_API_URL3;
   // states
@@ -48,7 +48,7 @@ const Sub = () => {
         if ((await respuesta.status) === 201) {
           Swal.fire(
             "Te registraste con exito",
-            "Pronto verificaremos tu usuario",
+            "Te enviamos un email con los siguientes pasos",
             "success"
           );
           codigoUsuario();
@@ -79,17 +79,17 @@ const Sub = () => {
       .send("service_p22wlsn", "template_jaxj4sg", {
         to_name: `${nombre}`,
         from_name: "Rollingnews",
-        message: `Este es tu codigo unico ;)`,
+        message: `Este es tu código único ;)`,
         id: `${code}`,
-        message2: `Completa la verificacion ingresando el codigo en el siguiente link`,
-        link: `http://localhost:3000/ingresar`,
+        message2: `Completá la verificación ingresando el código en el siguiente link`,
+        link: `http://localhost:3000/suscribirse/verificar`,
         email: `${email}`,
       })
       .then(
         function (response) {
           console.log(response);
           setSent(true)
-          alert("se envió");
+          props.history.push("/suscribirse/verificar");
         },
         function (error) {
           console.log(error);
@@ -103,7 +103,6 @@ const Sub = () => {
     if (isInitialMount.current) {
       isInitialMount.current = false;
     } else {
-      console.log('codigo recibido')
       sendEmail()
     }
   },[code]);
@@ -170,4 +169,4 @@ const Sub = () => {
   );
 };
 
-export default Sub;
+export default withRouter(Sub);

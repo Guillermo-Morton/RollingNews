@@ -204,7 +204,7 @@ const EditarNoticia = (props) => {
       <Fragment>
         <div className="text-center">
           <h1 className="display-2">Acceso restringido</h1>
-          <p className="lead">Seccion para uso exclusivo del administrador</p>
+          <p className="lead">Sección para uso exclusivo del administrador</p>
         </div>
       </Fragment>
     );

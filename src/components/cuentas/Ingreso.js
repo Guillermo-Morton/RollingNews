@@ -92,7 +92,7 @@ const Ingreso = (props) => {
         </div>
         <div className="d-flex justify-content-center">
           <Button variant="primary" type="submit">
-            Inicia sesíon
+            Inicia sesion
           </Button>
           <Link
             exact={true}

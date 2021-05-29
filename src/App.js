@@ -15,6 +15,7 @@ import ListarNoticias from "./components/administracion/tablaNoticias/ListarNoti
 import EditarNoticia from "./components/administracion/EditarNoticia";
 import Sub from "./components/cuentas/Sub";
 import { Button } from "react-bootstrap";
+import Verificar from "./components/cuentas/Verificar";
 
 function App() {
   const URL = process.env.REACT_APP_API_URL;
@@ -175,6 +176,9 @@ function App() {
           </Route>
           <Route exact path="/suscribirse">
             <Sub></Sub>
+          </Route>
+          <Route exact path="/suscribirse/verificar">
+            <Verificar></Verificar>
           </Route>
           <Route exact path="/administracion">
             <Administración extraerLocal={extraerLocal}></Administración>
