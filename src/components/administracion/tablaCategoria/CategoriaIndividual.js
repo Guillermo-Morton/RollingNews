@@ -49,10 +49,10 @@ const CategoriaIndividual = (props) => {
   };
   return (
     <tr>
-      <td>{props.categoria.id}</td>
+      <td>{props.categoria._id}</td>
       <td className="w-100">{props.categoria.categoriaDisponible}</td>
       <td>
-        <button onClick={() => eliminarCategoria(props.categoria.id)} className="mx-auto d-block btn btn-danger py-1">
+        <button onClick={() => eliminarCategoria(props.categoria._id)} className="mx-auto d-block btn btn-danger py-1">
           <FontAwesomeIcon icon={faTrashAlt}></FontAwesomeIcon>
         </button>
       </td>

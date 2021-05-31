@@ -75,7 +75,7 @@ const NavB = (props) => {
       </Button>
     );
   const mostrarAdministracion =
-    usuarioLog.nombre === "Admin" && usuarioLog.id === '0' ? (
+    usuarioLog.nombre === "Admin" && usuarioLog._id === '60b459c2c51ad300211df3fe' ? (
       <NavLink
         exact={true}
         to="/administracion"
@@ -125,10 +125,10 @@ const NavB = (props) => {
           <Nav>
             {props.navegacion.map((categoria) => (
               <NavLink
-                key={categoria && categoria.id}
+                key={categoria && categoria._id}
                 className="nav-link"
                 exact={true}
-                to={`/categoria/${categoria && categoria.id}`}
+                to={`/categoria/${categoria && categoria._id}`}
               >
                 {categoria && categoria.categoriaDisponible}
               </NavLink>
@@ -140,10 +140,10 @@ const NavB = (props) => {
               <Dropdown.Menu as={CustomMenu}>
                 {props.dropdown.map((categoria) => (
                   <NavLink
-                    key={categoria && categoria.id}
+                    key={categoria && categoria._id}
                     className="nav-link"
                     exact={true}
-                    to={`/categoria/${categoria && categoria.id}`}
+                    to={`/categoria/${categoria && categoria._id}`}
                   >
                     {categoria && categoria.categoriaDisponible}
                   </NavLink>

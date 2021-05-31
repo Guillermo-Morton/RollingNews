@@ -38,7 +38,7 @@ const ListarNoticias = (props) => {
               <NoticiaIndividual
                 consultarAPI={props.consultarAPI}
                 noticia={noticia}
-                key={noticia.id}
+                key={noticia._id}
               ></NoticiaIndividual>
             ))}
           </tbody>

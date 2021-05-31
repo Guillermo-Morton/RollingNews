@@ -13,6 +13,8 @@ const NuevaNoticia = (props) => {
   const [parrafo3, setParrafo3] = useState("");
   const [imagen1, setImagen1] = useState("");
   const [imagen2, setImagen2] = useState("");
+  const [autor, setAutor] = useState("");
+  const [fecha, setFecha] = useState("");
   const [categoria, setCategoria] = useState("Actualidad");
   const [error, setError] = useState(false);
   // usuario logueado
@@ -30,6 +32,8 @@ const NuevaNoticia = (props) => {
       parrafo3.trim() === "" ||
       imagen1.trim() === "" ||
       imagen2.trim() === "" ||
+      autor.trim() === "" ||
+      fecha.trim() === "" ||
       categoria === ""
     ) {
       // mostramos un error si falla la validacion
@@ -48,6 +52,8 @@ const NuevaNoticia = (props) => {
         categoria: categoria,
         imagen1: imagen1,
         imagen2: imagen2,
+        autor: autor,
+        fecha: fecha
       };
       try {
         const parametros = {
@@ -142,7 +148,7 @@ const NuevaNoticia = (props) => {
               as="textarea"
               rows={3}
               value={parrafo1}
-              placeholder="Ingrese hasta 200 caracteres"
+              placeholder="Ingrese hasta 400 caracteres"
             />
           </Form.Group>
           <Form.Group>
@@ -152,7 +158,7 @@ const NuevaNoticia = (props) => {
               as="textarea"
               rows={3}
               value={parrafo2}
-              placeholder="Ingrese hasta 200 caracteres"
+              placeholder="Ingrese hasta 400 caracteres"
             />
           </Form.Group>
           <Form.Group>
@@ -162,7 +168,25 @@ const NuevaNoticia = (props) => {
               as="textarea"
               rows={3}
               value={parrafo3}
-              placeholder="Ingrese hasta 200 caracteres"
+              placeholder="Ingrese hasta 400 caracteres"
+            />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>Autor</Form.Label>
+            <Form.Control
+              onChange={(e) => setAutor(e.target.value)}
+              type='text'
+              value={autor}
+              placeholder="Ingrese el autor de la noticia"
+            />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>Fecha</Form.Label>
+            <Form.Control
+              onChange={(e) => setFecha(e.target.value)}
+              type='text'
+              value={fecha}
+              placeholder="Ingrese la fecha"
             />
           </Form.Group>
           <Form.Group>

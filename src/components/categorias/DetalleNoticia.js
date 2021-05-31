@@ -115,9 +115,9 @@ const DetalleNoticia = (props) => {
                   {masSobre.map((noticia) => (
                     <Link
                       onClick={props.limiteNoticias}
-                      key={noticia && noticia.id}
+                      key={noticia && noticia._id}
                       exact="true"
-                      to={`/detalle/${noticia && noticia.id}`}
+                      to={`/detalle/${noticia && noticia._id}`}
                       className="noticias-chicas px-2 text-decoration-none text-dark"
                     >
                       <img
@@ -136,9 +136,9 @@ const DetalleNoticia = (props) => {
             {recomendadas.map((noticia) => (
               <Link
                 onClick={props.limiteNoticias}
-                key={noticia && noticia.id}
+                key={noticia && noticia._id}
                 exact="true"
-                to={`/detalle/${noticia && noticia.id}`}
+                to={`/detalle/${noticia && noticia._id}`}
                 className="noticias-chicas  text-decoration-none text-dark"
               >
                 <img

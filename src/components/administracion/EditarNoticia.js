@@ -22,6 +22,8 @@ const EditarNoticia = (props) => {
   const parrafo3Ref = useRef("");
   const imagen1Ref = useRef("");
   const imagen2Ref = useRef("");
+  const autorRef = useRef("");
+  const fechaRef = useRef("");
   //   Traer los datos del objeto a editar
   useEffect(() => {
     consultarNoticia();
@@ -52,6 +54,8 @@ const EditarNoticia = (props) => {
       campoRequerido(parrafo3Ref.current.value) &&
       campoRequerido(imagen1Ref.current.value) &&
       campoRequerido(imagen2Ref.current.value) &&
+      campoRequerido(autorRef.current.value) &&
+      campoRequerido(fechaRef.current.value) &&
       campoRequerido(categoriaRef.current.value)
     ) {
       // enviamos el objeto a la api
@@ -65,6 +69,8 @@ const EditarNoticia = (props) => {
         categoria: categoriaRef.current.value,
         imagen1: imagen1Ref.current.value,
         imagen2: imagen2Ref.current.value,
+        autor: autorRef.current.value,
+        fecha: fechaRef.current.value,
       };
       try {
         const respuesta = await fetch(URL + "/" + id, {
@@ -184,6 +190,24 @@ const EditarNoticia = (props) => {
               placeholder="Ingrese hasta 200 caracteres"
               defaultValue={noticia.parrafo3}
               ref={parrafo3Ref}
+            />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>Autor</Form.Label>
+            <Form.Control
+              defaultValue={noticia.autor}
+              ref={autorRef}
+              type="text"
+              placeholder="Ingrese el autor de la noticia"
+            />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>Fecha</Form.Label>
+            <Form.Control
+              defaultValue={noticia.fecha}
+              ref={fechaRef}
+              type="text"
+              placeholder="Ingrese la fecha"
             />
           </Form.Group>
           <Form.Group>

@@ -66,7 +66,7 @@ const Sub = (props) => {
       const consulta = await fetch(URL3);
       const respuesta = await consulta.json();
       const usuarioFiltrado = respuesta.filter((user) => user.email === email);
-      setCode(usuarioFiltrado[0].id);
+      setCode(usuarioFiltrado[0]._id);
       
     } catch (error) {
       console.log(error);

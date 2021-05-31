@@ -38,9 +38,9 @@ const Inicio = (props) => {
         <div className="row">
           <Link
             onClick={props.limiteNoticias}
-            key={destacada && destacada.id}
+            key={destacada && destacada._id}
             exact={true}
-            to={`/detalle/${destacada && destacada.id}`}
+            to={`/detalle/${destacada && destacada._id}`}
             className="col-lg-6 text-decoration-none text-dark"
           >
             <img
@@ -54,9 +54,9 @@ const Inicio = (props) => {
             {recomendadas.map((noticia) => (
               <Link
                 onClick={props.limiteNoticias}
-                key={noticia && noticia.id}
+                key={noticia && noticia._id}
                 exact="true"
-                to={`/detalle/${noticia && noticia.id}`}
+                to={`/detalle/${noticia && noticia._id}`}
                 className="noticias-chicas  text-decoration-none text-dark"
               >
                 <img
@@ -85,9 +85,9 @@ const Inicio = (props) => {
           {props.covid.map((noticia) => (
             <Link
               onClick={props.limiteNoticias}
-              key={noticia && noticia.id}
+              key={noticia && noticia._id}
               exact="true"
-              to={`/detalle/${noticia && noticia.id}`}
+              to={`/detalle/${noticia && noticia._id}`}
               className="px-2 noticias-medianas text-dark text-decoration-none"
             >
               <img
@@ -109,9 +109,9 @@ const Inicio = (props) => {
               {masNoticias.map((noticia) => (
                 <Link
                   onClick={props.limiteNoticias}
-                  key={noticia && noticia.id}
+                  key={noticia && noticia._id}
                   exact="true"
-                  to={`/detalle/${noticia && noticia.id}`}
+                  to={`/detalle/${noticia && noticia._id}`}
                   className="noticias-chicas px-2 text-decoration-none text-dark"
                 >
                   <img

@@ -40,7 +40,7 @@ const ListarCategorias = (props) => {
               <CategoriaIndividual
                 consultarCategoria={props.consultarCategoria}
                 categoria={categoria}
-                key={categoria.id}
+                key={categoria._id}
               ></CategoriaIndividual>
             ))}
           </tbody>

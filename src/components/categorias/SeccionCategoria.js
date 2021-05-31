@@ -117,9 +117,9 @@ const SeccionCategoria = (props) => {
             <div className="my-2 px-2">
               <Link
                 onClick={props.limiteNoticias}
-                key={destacada && destacada.id}
+                key={destacada && destacada._id}
                 exact="true"
-                to={`/detalle/${destacada && destacada.id}`}
+                to={`/detalle/${destacada && destacada._id}`}
                 className="w-100 mb-5  text-dark text-decoration-none"
               >
                 <img
@@ -134,9 +134,9 @@ const SeccionCategoria = (props) => {
               {noticiaSm.map((noticia) => (
                 <Link
                   onClick={props.limiteNoticias}
-                  key={noticia && noticia.id}
+                  key={noticia && noticia._id}
                   exact="true"
-                  to={`/detalle/${noticia && noticia.id}`}
+                  to={`/detalle/${noticia && noticia._id}`}
                   className="noticias-chicas px-2 text-decoration-none text-dark"
                 >
                   <img
@@ -160,9 +160,9 @@ const SeccionCategoria = (props) => {
           {noticiaMd.map((noticia) => (
             <Link
               onClick={props.limiteNoticias}
-              key={noticia && noticia.id}
+              key={noticia && noticia._id}
               exact="true"
-              to={`/detalle/${noticia && noticia.id}`}
+              to={`/detalle/${noticia && noticia._id}`}
               className="px-2 noticias-medianas text-dark text-decoration-none"
             >
               {/* <div className="bg-secondary w-100 div-imagen-grande mb-2"></div> */}
@@ -184,9 +184,9 @@ const SeccionCategoria = (props) => {
             <div className="d-flex flex-wrap">
               {masNoticias.map((noticia) => (
                 <Link
-                  key={noticia && noticia.id}
+                  key={noticia && noticia._id}
                   exact={true}
-                  to={`/detalle/${noticia && noticia.id}`}
+                  to={`/detalle/${noticia && noticia._id}`}
                   className="noticias-chicas px-2 text-decoration-none text-dark"
                 >
                   <img

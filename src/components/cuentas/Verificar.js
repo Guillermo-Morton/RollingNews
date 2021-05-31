@@ -20,10 +20,10 @@ const Verificar = (props) => {
       const consulta = await fetch(URL3);
       const respuesta = await consulta.json();
       const usuarioFiltrado = respuesta.filter(
-        (user) => user.id === code && user.nombre === userName
+        (user) => user._id === code && user.nombre === userName
       );
       setUser(usuarioFiltrado[0]);
-      if(usuarioFiltrado[0].id === code){
+      if(usuarioFiltrado[0]._id === code){
         setVerified(true)
       }
     } catch (error) {
