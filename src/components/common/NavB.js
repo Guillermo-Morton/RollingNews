@@ -61,14 +61,13 @@ const NavB = (props) => {
       <NavLink
         exact={true}
         to="/ingresar"
-        className="btn btn-outline-primary px-3 py-1"
+        className="boton-outline d-flex align-items-center"
       >
         Ingresar
       </NavLink>
     ) : (
       <Button
-        className="px-3 py-1"
-        variant="outline-primary"
+        className=" boton-outline"
         onClick={cerrarSesion}
       >
         Cerrar Sesion
@@ -79,7 +78,7 @@ const NavB = (props) => {
       <NavLink
         exact={true}
         to="/administracion"
-        className="btn btn-outline-primary px-3 py-1"
+        className="boton d-flex align-items-center"
       >
         Administración
       </NavLink>
@@ -115,9 +114,9 @@ const NavB = (props) => {
           to="/"
           className="text-primary text-decoration-none"
         >
-          <h2 className="font-weight-light text-center">
+          <h1 className="font-weight-light text-center azul ">
             Rolling<span className="font-weight-bold">news.</span>
-          </h2>
+          </h1>
         </NavLink>
 
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />

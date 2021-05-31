@@ -80,27 +80,27 @@ const DetalleNoticia = (props) => {
     console.log("route has been changed");
     props.extraerLocal("noticiasVistasKey", setContador);
     props.extraerLocal("usuarioLogueadoKey", setUsuarioLog);
-    if(usuarioLog.nombre!=undefined){
+    if (usuarioLog.nombre != undefined) {
       localStorage.setItem("noticiasVistasKey", JSON.stringify(noticiasVistas));
     }
   }, [location.pathname]);
   //   renderiza los componentes segun la cantidad de noticias leidas
   const permitirVisualizacion =
-  usuarioLog.nombre!=undefined || contador<20 ? (
+    usuarioLog.nombre != undefined || contador < 20 ? (
       <Fragment>
         <h2 className="mt-5">{noticia.titulo}</h2>
         <div className="row">
-          <div className="col-lg-9">
+          <div className="col-lg-9 col-md-12">
             <div className="row">
               <div className="col-lg-12">
                 <section>
+                  <h4 className='my-4'>{noticia.subtitulo}</h4>
                   <img
                     src={noticia.imagen1}
-                    className="bg-secondary w-100  mb-2"
+                    className="bg-secondary w-100 mb-2 noticia-imagen"
                   ></img>
-                  <h5>{noticia.subtitulo}</h5>
-                  <p>{noticia.parrafo1}</p>
-                  <p>{noticia.parrafo2}</p>
+                  <p className='my-4'>{noticia.parrafo1}</p>
+                  <p className='my-4'>{noticia.parrafo2}</p>
                 </section>
 
                 <section>
@@ -108,68 +108,71 @@ const DetalleNoticia = (props) => {
                     src={noticia.imagen2}
                     className="bg-secondary w-100  mb-2"
                   ></img>
-                  <p>{noticia.parrafo3}</p>
+                  <p className='my-4'>{noticia.parrafo3}</p>
                 </section>
+                <hr></hr>
                 <h2 className="mt-5">MÁS SOBRE {categoria}</h2>
-                <section className="d-flex flex-wrap">
+                <section className="contenedor-noticias-chicas">
                   {masSobre.map((noticia) => (
                     <Link
                       onClick={props.limiteNoticias}
                       key={noticia && noticia._id}
                       exact="true"
                       to={`/detalle/${noticia && noticia._id}`}
-                      className="noticias-chicas px-2 text-decoration-none text-dark"
+                      className="noticias-chicas px-2 my-2 text-decoration-none text-dark d-flex flex-column"
                     >
                       <img
-                        className="w-100 mb-2 div-imagen-chica"
+                        className="w-100 h-50 noticia-imagen"
                         src={noticia && noticia.imagen1}
                         alt=""
                       />
-                      <h6>{noticia && noticia.titulo}</h6>
+                      <div className="noticia-titulo px-3 py-2 d-flex flex-column justify-content-between">
+                        <h6>{noticia && noticia.titulo}</h6>
+                        <p>{noticia && noticia.categoria}</p>
+                      </div>
                     </Link>
                   ))}
                 </section>
               </div>
             </div>
           </div>
-          <div className="col-lg-3">
+          <div className="col-lg-3 col-md-12 mt-5">
             {recomendadas.map((noticia) => (
               <Link
                 onClick={props.limiteNoticias}
                 key={noticia && noticia._id}
                 exact="true"
                 to={`/detalle/${noticia && noticia._id}`}
-                className="noticias-chicas  text-decoration-none text-dark"
+                className="noticias-chicas text-decoration-none mb-4 text-dark d"
               >
                 <img
-                  className="w-100 mb-2 div-imagen-chica"
+                  className="w-100 mb-2 div-imagen-chica noticia-imagen"
                   src={noticia && noticia.imagen1}
                   alt=""
                 />
-                <h6>{noticia && noticia.titulo}</h6>
+                <div className=" px-3 py-2 d-flex flex-column justify-content-between recomendada-titulo mb-4">
+                  <h6>{noticia && noticia.titulo}</h6>
+                  <p>{noticia && noticia.categoria}</p>
+                </div>
               </Link>
             ))}
-            <div className="bg-secondary w-75 div-anuncio2 ml-auto mt-4"></div>
           </div>
         </div>
       </Fragment>
     ) : (
       <Fragment>
-        <div className='text-center'>
-        <h1 className="display-2">Alcanzaste el limite de noticias por leer</h1>
-        <p className="lead">
-          Ingresa a tu cuenta, o crea una de forma gratuita
-        </p>
+        <div className="text-center">
+          <h1 className="display-2">
+            Alcanzaste el limite de noticias por leer
+          </h1>
+          <p className="lead">
+            Ingresa a tu cuenta, o crea una de forma gratuita
+          </p>
         </div>
-     
       </Fragment>
     );
 
-  return (
-    <div className="container text-muted">
-      {permitirVisualizacion}
-    </div>
-  );
+  return <div className="container">{permitirVisualizacion}</div>;
 };
 
 export default DetalleNoticia;

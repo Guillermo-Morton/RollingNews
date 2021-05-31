@@ -91,14 +91,13 @@ const Ingreso = (props) => {
           <a className="text-muted">¿Olvidaste tu contraseña?</a>
         </div>
         <div className="d-flex justify-content-center">
-          <Button variant="primary" type="submit">
+          <Button className='boton px-5 btn' type="submit">
             Inicia sesion
           </Button>
           <Link
             exact={true}
             to="/suscribirse"
-            className="mx-2 btn btn-outline-primary"
-            type="submit"
+            className="mx-2 px-5  boton-outline d-flex align-items-center"
           >
             Suscríbete
           </Link>

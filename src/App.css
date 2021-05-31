@@ -1,44 +1,141 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+
+body {
+  min-height: 100% !important;
+  font-family: "Montserrat", sans-serif !important;
+  color: #454347;
+}
+/* card noticia */
+.noticia-imagen {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+.noticia-titulo {
+  /* background-color: rgb(245, 245, 245); */
+  box-shadow: 1px 2px 3px 0px rgba(0, 0, 0, 0.2);
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  height: 50%;
+}
+.recomendada-titulo {
+  /* background-color: rgb(245, 245, 245); */
+  box-shadow: 1px 2px 3px 0px rgba(0, 0, 0, 0.2);
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+.destacada-titulo{
+  box-shadow: 1px 2px 3px 0px rgba(0, 0, 0, 0.2);
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.noticias-chicas {
+  width: 33.33%;
+}
+.noticias-recomendadas {
+  width: 50%;
+}
+
+.contenedor-noticias-chicas {
+  display: flex;
+  flex-wrap: wrap;
+}
 /* Divs ilustrativos */
-.div-imagen-grande{
-    height: 300px;
+.div-imagen-grande {
+  height: 300px;
 }
-.div-imagen-chica{
-    height: 150px;
- 
+.div-imagen-chica {
+  height: 150px;
 }
-.noticias-chicas{
-    width: 33.33%;
+
+.noticias-medianas {
+  width: 50%;
 }
-.noticias-medianas{
-    width: 50%;
+.div-anuncio {
+  height: 100%;
 }
-.div-anuncio{
-    height: 100%;
+.div-anuncio2 {
+  height: 1050px;
 }
-.div-anuncio2{
-    height: 1050px;
+.div-clima {
+  height: 500px;
 }
-.div-clima{
-    height: 500px;
+/* Colores */
+.azul {
+  color: #1d428d !important;
 }
-/* Color de fuente */
-/* .fuente{
-    color:rgb(68, 68, 68);
-} */
+/* Botones */
+.boton-outline {
+  color: #071738 !important;
+  background-color: white !important;
+  border: 1px solid #071738 !important;
+  border-radius: 10px !important;
+  text-decoration: none !important;
+  padding: 5px 60px !important;
+}
+.boton-outline:hover {
+  color: white !important;
+  background-color: #1d428d !important;
+  border: 1px solid #050e20 !important;
+}
+.boton {
+  color: white !important;
+  background-color: #1d428d !important;
+  border: 1px solid #1d428d !important;
+  border-radius: 10px !important;
+  text-decoration: none !important;
+  padding: 5px 60px !important;
+}
+.boton:hover {
+  color: white !important;
+  background-color: #0c327c !important;
+  border: 1px solid #0c327c !important;
+}
 /* media queries /
 / @media mediatype /
 / device lg-grande */
-@media all and (min-width: 992px) and (max-width:1100px){
+@media all and (min-width: 1025px) and (max-width: 1100px) {
 
 }
 /* device md-medio */
-@media all and (min-width: 768px) and (max-width: 991px){
-
-
-
-/* device sm-pequeño */
-@media all and (min-width: 322px) and (max-width: 767px){
-  
+@media all and (min-width: 768px) and (max-width: 1024px) {
+    /* codigo responsive para noticias chicas */
+  .noticias-chicas {
+    width: 50%;
+  }
+  .noticia-titulo {
+    height: 45%;
+  }
+  .contenedor-noticias-chicas {
+    display: flex;
+    flex-wrap: wrap;
+  }
 }
 
+/* device sm-pequeño */
+@media all and (min-width: 322px) and (max-width: 767px) {
+    /* codigo responsive para noticias chicas */
+  .noticias-chicas {
+    width: 100%;
+  }
+  .noticia-titulo {
+    height: 35%;
+  }
+  .contenedor-noticias-chicas {
+    display: block;
+  }
+  /* codigo responsive para noticias medianas */
+  .noticias-medianas {
+    width: 100%;
+  }
+  /* codigo responsive noticias recomendadas */
+  .noticias-recomendadas {
+    width: 100%;
+  }
+
+  /* botones */
+  .boton, .boton-outline{
+    font-size: 15px!important;
+    padding: 10px 10px !important;
+  }
 }

@@ -36,44 +36,56 @@ const Inicio = (props) => {
       <section className="my-3">
         <h2 className="mt-5">LO MÁS BUSCADO</h2>
         <div className="row">
-          <Link
-            onClick={props.limiteNoticias}
-            key={destacada && destacada._id}
-            exact={true}
-            to={`/detalle/${destacada && destacada._id}`}
-            className="col-lg-6 text-decoration-none text-dark"
-          >
-            <img
-              src={destacada && destacada.imagen1}
-              className="bg-secondary w-100 div-imagen-grande mb-2"
-            ></img>
-            <h4>{destacada && destacada.titulo}</h4>
-            <p>{destacada && destacada.subtitulo}</p>
-          </Link>
-          <div className="col-lg-3">
-            {recomendadas.map((noticia) => (
+          <div className="col-lg-6 col-md-12">
+            <div className="d-flex">
               <Link
                 onClick={props.limiteNoticias}
-                key={noticia && noticia._id}
-                exact="true"
-                to={`/detalle/${noticia && noticia._id}`}
-                className="noticias-chicas  text-decoration-none text-dark"
+                key={destacada && destacada._id}
+                exact={true}
+                to={`/detalle/${destacada && destacada._id}`}
+                className="text-decoration-none text-dark mb-4 px-2"
               >
                 <img
-                  className="w-100 mb-2 div-imagen-chica"
-                  src={noticia && noticia.imagen1}
-                  alt=""
-                />
-                <h6>{noticia && noticia.titulo}</h6>
+                  src={destacada && destacada.imagen1}
+                  className="bg-secondary w-100 noticia-imagen "
+                ></img>
+                <div className="destacada-titulo  p-3">
+                  <div>
+                    <h4>{destacada && destacada.titulo}</h4>
+                    <p>{destacada && destacada.subtitulo}</p>
+                  </div>
+                  <p>{destacada && destacada.categoria}</p>
+                </div>
               </Link>
-            ))}
+            </div>
           </div>
-          <div className="col-lg-3">
-            <div className="bg-secondary w-75 div-anuncio ml-auto"></div>
+          <div className="col-lg-6 col-md-12 col-sm-12">
+            <div className="d-flex flex-wrap">
+              {recomendadas.map((noticia) => (
+                <Link
+                  onClick={props.limiteNoticias}
+                  key={noticia && noticia._id}
+                  exact="true"
+                  to={`/detalle/${noticia && noticia._id}`}
+                  className="text-decoration-none text-dark mb-4 noticias-recomendadas px-2"
+                >
+                  <img
+                    className="w-100 h-50 noticia-imagen"
+                    src={noticia && noticia.imagen1}
+                    alt=""
+                  />
+                  <div className="recomendada-titulo h-50 px-3 py-2">
+                    <h6>{noticia && noticia.titulo}</h6>
+                    <p>{noticia && noticia.categoria}</p>
+                  </div>
+                </Link>
+              ))}
+            </div>
+            <div className="bg-secondary w-100 h-25 ml-auto"></div>
           </div>
         </div>
       </section>
-
+      <hr></hr>
       <section className="my-3">
         <h2 className="mt-5">COVID</h2>
         <div className="d-flex flex-wrap">
@@ -88,49 +100,54 @@ const Inicio = (props) => {
               key={noticia && noticia._id}
               exact="true"
               to={`/detalle/${noticia && noticia._id}`}
-              className="px-2 noticias-medianas text-dark text-decoration-none"
+              className="noticias-medianas text-dark px-2 mb-4 text-decoration-none"
             >
               <img
-                className="w-100 mb-2 div-imagen-grande"
+                className="w-100 noticia-imagen div-imagen-grande"
                 src={noticia && noticia.imagen1}
                 alt=""
               />
-              <h6>{noticia && noticia.titulo}</h6>
+              <h6 className="destacada-titulo h-25 p-3">
+                {noticia && noticia.titulo}
+              </h6>
             </Link>
           ))}
         </div>
       </section>
-
+      <hr></hr>
       <section className="my-3">
         <h2 className="mt-5">MÁS NOTICIAS</h2>
         <div className="row">
-          <div className="col-lg-9">
-            <div className="d-flex flex-wrap">
+          <div className="col-lg-10 col-sm-12 col-md-10">
+            <div className="contenedor-noticias-chicas">
               {masNoticias.map((noticia) => (
                 <Link
                   onClick={props.limiteNoticias}
                   key={noticia && noticia._id}
                   exact="true"
                   to={`/detalle/${noticia && noticia._id}`}
-                  className="noticias-chicas px-2 text-decoration-none text-dark"
+                  className="noticias-chicas px-2 my-2 text-decoration-none text-dark d-flex flex-column"
                 >
                   <img
-                    className="w-100 mb-2 div-imagen-chica"
+                    className="w-100 h-50 noticia-imagen"
                     src={noticia && noticia.imagen1}
                     alt=""
                   />
-                  <h6>{noticia && noticia.titulo}</h6>
+                  <div className="noticia-titulo px-3 py-2 d-flex flex-column justify-content-between">
+                    <h6>{noticia && noticia.titulo}</h6>
+                    <p>{noticia && noticia.categoria}</p>
+                  </div>
                 </Link>
               ))}
             </div>
             <ElTiempo></ElTiempo>
           </div>
-          <div className="col-lg-3">
+          {/* <div className="col-lg-3">
             <div className="bg-secondary w-75 div-anuncio ml-auto"></div>
-          </div>
+          </div> */}
         </div>
       </section>
-
+      <hr></hr>
       <section>
         <h2 className="mt-5">CRIPTOMONEDAS</h2>
         <div className="bg-secondary w-100 div-clima mb-2"></div>
