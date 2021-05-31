@@ -1,7 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { Fragment } from "react";
-import { Navbar, Nav, Dropdown, FormControl, Button } from "react-bootstrap";
-import { Link, NavLink, useLocation, withRouter } from "react-router-dom";
+import { Navbar, Dropdown, FormControl, Button } from "react-bootstrap";
+import { Link, useLocation, withRouter } from "react-router-dom";
+import Sidebar from "./sidebar/Sidebar";
+import { BiLogOut } from "react-icons/bi";
+
+import {
+  Nav,
+  NavLink,
+  Bars,
+  NavMenu,
+  NavBtn,
+  NavBtnLink,
+} from "./navbar/NavbarElements";
 
 const NavB = (props) => {
   // contiene el usuario logueado actualmente
@@ -16,7 +27,7 @@ const NavB = (props) => {
 
   const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
     <Link
-      className="nav-link"
+      className=""
       ref={ref}
       to=""
       onClick={(e) => {
@@ -76,9 +87,12 @@ const NavB = (props) => {
         </NavLink>
       </Fragment>
     ) : (
-      <Button className=" boton-outline" onClick={cerrarSesion}>
-        Cerrar Sesion
-      </Button>
+      <Fragment>
+        <Button className="boton-outline responsive-boton1" onClick={cerrarSesion}>
+          <BiLogOut></BiLogOut> Cerrar Sesion
+          
+        </Button>
+      </Fragment>
     );
   const mostrarAdministracion =
     usuarioLog.nombre === "Admin" &&
@@ -102,62 +116,63 @@ const NavB = (props) => {
     localStorage.setItem("usuarioLogueadoKey", JSON.stringify(usuarioLog));
   }, [usuarioLog]);
 
+  // responsive navbar
+
+
+  const [isOpen, setIsOpen]=useState(false);
+
+  const toggle=()=>{
+    setIsOpen(!isOpen)
+  }
+
   return (
     <div className="bg-light">
-      <div className="container-fluid py-2 px-3 d-flex justify-content-between">
+      <Sidebar cerrarSesion={cerrarSesion} usuarioLog={usuarioLog} categorias={props.categorias} isOpen={isOpen} toggle={toggle} mostrarIngresar={mostrarIngresar} mostrarAdministracion={mostrarAdministracion}></Sidebar>
+      <div className="container-fluid py-2 px-3 justify-content-between topbar ">
         {mostrarIngresar}
         {mostrarAdministracion}
       </div>
-      <Navbar
-        className="d-md-flex flex-md-column"
-        collapseOnSelect
-        expand="md"
-        bg="light"
-        variant="light"
-      >
+      <Nav>
         <NavLink
           exact={true}
           to="/"
-          className="text-primary text-decoration-none"
+          className="text-primary text-decoration-none "
         >
           <h1 className="font-weight-light text-center azul ">
             Rolling<span className="font-weight-bold">news.</span>
           </h1>
         </NavLink>
-
-        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-        <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav>
-            {props.navegacion.map((categoria) => (
-              <NavLink
-                key={categoria && categoria._id}
-                className="nav-link"
-                exact={true}
-                to={`/categoria/${categoria && categoria._id}`}
-              >
-                {categoria && categoria.categoriaDisponible}
-              </NavLink>
-            ))}
-            <Dropdown>
-              <Dropdown.Toggle as={CustomToggle} id="dropdown-basic">
-                Categorías
-              </Dropdown.Toggle>
-              <Dropdown.Menu as={CustomMenu}>
-                {props.dropdown.map((categoria) => (
-                  <NavLink
-                    key={categoria && categoria._id}
-                    className="nav-link"
-                    exact={true}
-                    to={`/categoria/${categoria && categoria._id}`}
-                  >
-                    {categoria && categoria.categoriaDisponible}
-                  </NavLink>
-                ))}
-              </Dropdown.Menu>
-            </Dropdown>
-          </Nav>
-        </Navbar.Collapse>
-      </Navbar>
+        <Bars onClick={toggle} />
+        <NavMenu className="align-self-center">
+          {props.navegacion.map((categoria) => (
+            <NavLink
+              key={categoria && categoria._id}
+              className="text-decoration-none"
+              exact={true}
+              to={`/categoria/${categoria && categoria._id}`}
+            >
+              {categoria && categoria.categoriaDisponible}
+            </NavLink>
+          ))}
+          <Dropdown>
+            <Dropdown.Toggle as={CustomToggle} id="dropdown-basic">
+              Categorías
+            </Dropdown.Toggle>
+            <Dropdown.Menu as={CustomMenu}>
+              {props.dropdown.map((categoria) => (
+                <NavLink
+                  key={categoria && categoria._id}
+                  className=""
+                  exact={true}
+                  to={`/categoria/${categoria && categoria._id}`}
+                >
+                  {categoria && categoria.categoriaDisponible}
+                </NavLink>
+              ))}
+            </Dropdown.Menu>
+          </Dropdown>
+        </NavMenu>
+      </Nav>
     </div>
   );
 };

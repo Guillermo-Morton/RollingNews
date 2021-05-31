@@ -16,6 +16,7 @@ import EditarNoticia from "./components/administracion/EditarNoticia";
 import Sub from "./components/cuentas/Sub";
 import { Button } from "react-bootstrap";
 import Verificar from "./components/cuentas/Verificar";
+import Sidebar from "./components/common/sidebar/Sidebar";
 
 function App() {
   const URL = process.env.REACT_APP_API_URL;
@@ -149,6 +150,7 @@ function App() {
           navegacion={navegacion}
           noticias={noticias}
           extraerLocal={extraerLocal}
+          categorias={categorias}
         ></NavB>
         <Switch>
           <Route exact path="/">
