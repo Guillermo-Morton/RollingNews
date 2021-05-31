@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Fragment } from "react";
 import { Navbar, Nav, Dropdown, FormControl, Button } from "react-bootstrap";
 import { Link, NavLink, useLocation, withRouter } from "react-router-dom";
 
@@ -9,9 +10,9 @@ const NavB = (props) => {
   const cerrarSesion = () => {
     setUsuarioLog({});
     setTimeout(() => {
-    props.history.push('/')},300)
+      props.history.push("/");
+    }, 300);
   };
-
 
   const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
     <Link
@@ -58,23 +59,30 @@ const NavB = (props) => {
   );
   const mostrarIngresar =
     usuarioLog.nombre === undefined ? (
-      <NavLink
-        exact={true}
-        to="/ingresar"
-        className="boton-outline d-flex align-items-center"
-      >
-        Ingresar
-      </NavLink>
+      <Fragment>
+        <NavLink
+          exact={true}
+          to="/ingresar"
+          className="boton-outline d-flex align-items-center"
+        >
+          Ingresar
+        </NavLink>
+        <NavLink
+          exact={true}
+          to="/suscribirse"
+          className="boton d-flex align-items-center"
+        >
+          Suscribirse
+        </NavLink>
+      </Fragment>
     ) : (
-      <Button
-        className=" boton-outline"
-        onClick={cerrarSesion}
-      >
+      <Button className=" boton-outline" onClick={cerrarSesion}>
         Cerrar Sesion
       </Button>
     );
   const mostrarAdministracion =
-    usuarioLog.nombre === "Admin" && usuarioLog._id === '60b459c2c51ad300211df3fe' ? (
+    usuarioLog.nombre === "Admin" &&
+    usuarioLog._id === "60b459c2c51ad300211df3fe" ? (
       <NavLink
         exact={true}
         to="/administracion"
@@ -82,14 +90,12 @@ const NavB = (props) => {
       >
         Administración
       </NavLink>
-    ) : (
-     null
-    );
+    ) : null;
 
   const location = useLocation();
 
   useEffect(() => {
-    props.extraerLocal('usuarioLogueadoKey',setUsuarioLog);
+    props.extraerLocal("usuarioLogueadoKey", setUsuarioLog);
   }, [location.pathname]);
 
   useEffect(() => {
