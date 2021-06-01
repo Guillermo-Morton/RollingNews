@@ -17,7 +17,7 @@ import Sub from "./components/cuentas/Sub";
 import Verificar from "./components/cuentas/Verificar";
 import { animateScroll as scroll } from "react-scroll";
 import Error404 from "./components/Error404";
-import PantallaCarga from "./components/helpers/PantallaCarga";
+import PantallaCarga from "./components/helpers/pantallas/PantallaCarga";
 
 // , scrollSpy, scroller
 
@@ -171,7 +171,7 @@ function App() {
       <div className={ocultarCarga}>
       <PantallaCarga></PantallaCarga>
       </div>
-      <div  className={mostrarCarga}>
+      <div className={mostrarCarga}>
         <Router>
           <NavB
             toggleScroll={toggleScroll}

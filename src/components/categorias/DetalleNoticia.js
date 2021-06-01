@@ -1,6 +1,7 @@
 import React, { useState, useEffect, Fragment } from "react";
 import { useParams, useLocation } from "react-router";
 import { Link } from "react-router-dom";
+import PantallaDetalle from "../helpers/pantallas/PantallaDetalle"
 const DetalleNoticia = (props) => {
   const URL = process.env.REACT_APP_API_URL;
   // obtengo el parametro de la URL
@@ -174,7 +175,30 @@ const DetalleNoticia = (props) => {
       </Fragment>
     );
 
-  return <div className="container">{permitirVisualizacion}</div>;
+    // pantalla de carga
+    const [cargado, setCargado] = useState(false);
+
+    useEffect(()=>{
+      setCargado(false)
+      setTimeout(() => {
+        setCargado(true);
+        console.log("cargada");
+      }, 1200);
+    },[noticia])
+  
+    const mostrarCarga = cargado === true ? "" : "d-none";
+    const ocultarCarga = cargado === false ? "" : "d-none";
+
+  return (
+  <div className="container">
+    <div className={ocultarCarga}>
+    <PantallaDetalle></PantallaDetalle>
+    </div>
+    <div className={mostrarCarga}>
+    {permitirVisualizacion}
+    </div>
+  </div>
+  );
 };
 
 export default DetalleNoticia;
