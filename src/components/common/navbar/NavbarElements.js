@@ -10,6 +10,10 @@ export const Nav = styled.nav`
   z-index: 10;
   flex-direction: column;
 
+  @media screen and (max-width: 768px) {
+    height: 70px;
+  }
+
   /* Third Nav */
   /* justify-content: flex-start; */
 `;
@@ -29,6 +33,9 @@ export const NavLink = styled(Link)`
   }
 
   &.active {
+    color: #000000;
+  }
+  &:hover {
     color: #000000;
   }
 `;
@@ -59,7 +66,7 @@ export const Bars = styled(FaBars)`
   @media screen and (max-width: 768px) {
     display: block;
     position: absolute;
-    top: 13px;
+    top: -3px;
     right: 0;
     transform: translate(-100%, 75%);
     font-size: 1.8rem;

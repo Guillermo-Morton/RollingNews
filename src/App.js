@@ -14,9 +14,9 @@ import ListarCategorias from "./components/administracion/tablaCategoria/ListarC
 import ListarNoticias from "./components/administracion/tablaNoticias/ListarNoticias";
 import EditarNoticia from "./components/administracion/EditarNoticia";
 import Sub from "./components/cuentas/Sub";
-import { Button } from "react-bootstrap";
 import Verificar from "./components/cuentas/Verificar";
-import Sidebar from "./components/common/sidebar/Sidebar";
+import { animateScroll as scroll } from "react-scroll";
+// , scrollSpy, scroller
 
 function App() {
   const URL = process.env.REACT_APP_API_URL;
@@ -142,10 +142,16 @@ function App() {
     console.log(noticiasVistas);
   };
 
+  // funcion para scrollear hasta arriba
+  const toggleScroll = () => {
+    scroll.scrollToTop();
+  };
+
   return (
     <div className="text-dark">
       <Router>
         <NavB
+          toggleScroll={toggleScroll}
           dropdown={dropdown}
           navegacion={navegacion}
           noticias={noticias}
@@ -155,6 +161,7 @@ function App() {
         <Switch>
           <Route exact path="/">
             <Inicio
+              toggleScroll={toggleScroll}
               limiteNoticias={limiteNoticias}
               noticiasRandom={noticiasRandom}
               noticias={noticiasInicio}
@@ -163,11 +170,13 @@ function App() {
           </Route>
           <Route exact path="/categoria/:id">
             <SeccionCategoria
+              toggleScroll={toggleScroll}
               limiteNoticias={limiteNoticias}
             ></SeccionCategoria>
           </Route>
           <Route exact path="/detalle/:id">
             <DetalleNoticia
+              toggleScroll={toggleScroll}
               noticiasRandom={noticiasRandom}
               limiteNoticias={limiteNoticias}
               extraerLocal={extraerLocal}

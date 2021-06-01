@@ -40,6 +40,7 @@ const Inicio = (props) => {
             <div className="d-flex">
               <Link
                 onClick={props.limiteNoticias}
+                onClick={props.toggleScroll}
                 key={destacada && destacada._id}
                 exact={true}
                 to={`/detalle/${destacada && destacada._id}`}
@@ -64,6 +65,7 @@ const Inicio = (props) => {
               {recomendadas.map((noticia) => (
                 <Link
                   onClick={props.limiteNoticias}
+                  onClick={props.toggleScroll}
                   key={noticia && noticia._id}
                   exact="true"
                   to={`/detalle/${noticia && noticia._id}`}
@@ -81,7 +83,6 @@ const Inicio = (props) => {
                 </Link>
               ))}
             </div>
-            <div className="bg-secondary w-100 h-25 ml-auto"></div>
           </div>
         </div>
       </section>
@@ -97,6 +98,7 @@ const Inicio = (props) => {
           {props.covid.map((noticia) => (
             <Link
               onClick={props.limiteNoticias}
+              onClick={props.toggleScroll}
               key={noticia && noticia._id}
               exact="true"
               to={`/detalle/${noticia && noticia._id}`}
@@ -123,6 +125,7 @@ const Inicio = (props) => {
               {masNoticias.map((noticia) => (
                 <Link
                   onClick={props.limiteNoticias}
+                  onClick={props.toggleScroll}
                   key={noticia && noticia._id}
                   exact="true"
                   to={`/detalle/${noticia && noticia._id}`}
@@ -142,9 +145,6 @@ const Inicio = (props) => {
             </div>
             <ElTiempo></ElTiempo>
           </div>
-          {/* <div className="col-lg-3">
-            <div className="bg-secondary w-75 div-anuncio ml-auto"></div>
-          </div> */}
         </div>
       </section>
       <hr></hr>

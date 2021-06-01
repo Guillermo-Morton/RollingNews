@@ -154,14 +154,14 @@ const Sub = (props) => {
         <div className="d-flex justify-content-center mb-3">
           <a className="text-muted text-decoration-none">
             ¿Ya tenés una cuenta?{" "}
-            <Link exact={true} to="/ingresar" className="text-decoration-none">
+            <Link exact={true} to="/ingresar" className="text-decoration-none azul">
               Inicia sesion
             </Link>
           </a>
         </div>
         <div className="d-flex justify-content-center">
-          <Button className="mx-2" variant="primary" type="submit">
-            Suscríbete
+          <Button className="boton" type="submit">
+            Registrate
           </Button>
         </div>
       </Form>

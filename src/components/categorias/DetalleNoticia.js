@@ -116,6 +116,7 @@ const DetalleNoticia = (props) => {
                   {masSobre.map((noticia) => (
                     <Link
                       onClick={props.limiteNoticias}
+                      onClick={props.toggleScroll}
                       key={noticia && noticia._id}
                       exact="true"
                       to={`/detalle/${noticia && noticia._id}`}
@@ -140,6 +141,7 @@ const DetalleNoticia = (props) => {
             {recomendadas.map((noticia) => (
               <Link
                 onClick={props.limiteNoticias}
+                onClick={props.toggleScroll}
                 key={noticia && noticia._id}
                 exact="true"
                 to={`/detalle/${noticia && noticia._id}`}

@@ -8,11 +8,11 @@ const Footer = () => {
         Rolling<span className="font-weight-bold">news.</span>
       </Link>
         <div className="d-md-flex text-center my-2">
-          <NavLink to='' className="text-muted">Políticas de privacidad</NavLink>
-          <NavLink to='' className="text-muted">Contacto</NavLink>
-          <NavLink to='' className="text-muted">Contrato de suscripción</NavLink>
+          <NavLink to='' className="text-dark px-2">Políticas de privacidad</NavLink>
+          <NavLink to='' className="text-dark px-2">Contacto</NavLink>
+          <NavLink to='' className="text-dark px-2">Contrato de suscripción</NavLink>
         </div>
-        <p className='text-muted text-center'>&copy; Rollingnews 2021 todos los derechos reservados</p>
+        <p className='text-dark text-center px-2'>&copy; Rollingnews 2021 todos los derechos reservados</p>
     </div>
   );
 };

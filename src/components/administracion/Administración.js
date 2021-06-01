@@ -24,27 +24,29 @@ const Administración = (props) => {
         <h2 className="text-center my-5">
           BIENVENIDO <br /> ADMINISTRADOR
         </h2>
-        <Link
-          exact={true}
-          to="administracion/noticias"
-          className="btn btn-outline-primary w-25 py-5 mx-2"
-        >
-          Noticias
-        </Link>
-        <Link
-          exact={true}
-          to="administracion/categorias"
-          className="btn btn-outline-primary w-25 py-5 mx-2"
-        >
-          Categorias
-        </Link>
-        <Link
-          exact={true}
-          to="administracion/nueva"
-          className="btn btn-outline-primary w-25 py-5 mx-2"
-        >
-          Nueva noticia
-        </Link>
+        <div className="links-admin justify-content-center">
+          <Link
+            exact={true}
+            to="administracion/noticias"
+            className="boton-outline link-admin py-5 mx-2 d-flex align-items-center justify-content-center"
+          >
+            Noticias
+          </Link>
+          <Link
+            exact={true}
+            to="administracion/categorias"
+            className="boton-outline link-admin py-5 mx-2 d-flex align-items-center justify-content-center"
+          >
+            Categorias
+          </Link>
+          <Link
+            exact={true}
+            to="administracion/nueva"
+            className="boton link-admin py-5 mx-2 d-flex align-items-center justify-content-center"
+          >
+            Nueva noticia
+          </Link>
+        </div>
       </Fragment>
     ) : (
       <Fragment>

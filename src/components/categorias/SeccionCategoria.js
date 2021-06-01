@@ -117,6 +117,7 @@ const SeccionCategoria = (props) => {
           <div className="px-2 ">
             <Link
               onClick={props.limiteNoticias}
+              onClick={props.toggleScroll}
               key={destacada && destacada._id}
               exact="true"
               to={`/detalle/${destacada && destacada._id}`}
@@ -136,39 +137,41 @@ const SeccionCategoria = (props) => {
       </section>
       <hr></hr>
       <section className="mb-5 mt-4">
-      <div className="row">
-        <div className="col-lg-10 col-sm-12">
-          <div className="contenedor-noticias-chicas">
-            {noticiaSm.map((noticia) => (
-              <Link
-                key={noticia && noticia._id}
-                exact={true}
-                to={`/detalle/${noticia && noticia._id}`}
-                className="noticias-chicas px-2 mt-4  text-decoration-none text-dark d-flex flex-column"
-              >
-                <img
-                  className="w-100 h-50 noticia-imagen"
-                  src={noticia && noticia.imagen1}
-                  alt=""
-                />
-                <div className="noticia-titulo px-3 py-2  d-flex flex-column">
-                  <h6>{noticia && noticia.titulo}</h6>
-                </div>
-              </Link>
-            ))}
+        <div className="row">
+          <div className="col-lg-10 col-sm-12">
+            <div className="contenedor-noticias-chicas">
+              {noticiaSm.map((noticia) => (
+                <Link
+                  key={noticia && noticia._id}
+                  onClick={props.toggleScroll}
+                  exact={true}
+                  to={`/detalle/${noticia && noticia._id}`}
+                  className="noticias-chicas px-2 mt-4  text-decoration-none text-dark d-flex flex-column"
+                >
+                  <img
+                    className="w-100 h-50 noticia-imagen"
+                    src={noticia && noticia.imagen1}
+                    alt=""
+                  />
+                  <div className="noticia-titulo px-3 py-2  d-flex flex-column">
+                    <h6>{noticia && noticia.titulo}</h6>
+                  </div>
+                </Link>
+              ))}
+            </div>
           </div>
-        </div>
-        <div className="col-lg-2">
+          <div className="col-lg-2">
             <div className="bg-secondary w-100 div-anuncio ml-auto"></div>
           </div>
-          </div>
+        </div>
       </section>
       <hr></hr>
-      <section className='my-5'>
+      <section className="my-5">
         <div className="d-flex flex-wrap">
           {noticiaMd.map((noticia) => (
             <Link
               onClick={props.limiteNoticias}
+              onClick={props.toggleScroll}
               key={noticia && noticia._id}
               exact="true"
               to={`/detalle/${noticia && noticia._id}`}
@@ -194,6 +197,8 @@ const SeccionCategoria = (props) => {
             <div className="contenedor-noticias-chicas">
               {masNoticias.map((noticia) => (
                 <Link
+                  onClick={props.limiteNoticias}
+                  onClick={props.toggleScroll}
                   key={noticia && noticia._id}
                   exact={true}
                   to={`/detalle/${noticia && noticia._id}`}

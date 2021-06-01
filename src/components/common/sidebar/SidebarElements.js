@@ -60,7 +60,7 @@ export const SidebarLink = styled(Link)`
   }
 `;
 export const SidebarMenu = styled.ul`
-  display: grid;
+  display: ${({ isOpen }) => (isOpen ? "grid" : "none")};
   grid-template-columns: 1fr;
   grid-template-rows: repeat(10, 60px);
   text-align: center;
@@ -69,6 +69,6 @@ export const SidebarMenu = styled.ul`
    @media screen and
     (max-width: 480px) {
     grid-template-rows: repeat(10, 55px);
-    display: ${({ isOpen }) => (isOpen ? "grid" : "none")};
+    
   }
 `;

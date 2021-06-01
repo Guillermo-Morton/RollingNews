@@ -99,7 +99,7 @@ const Ingreso = (props) => {
             to="/suscribirse"
             className="mx-2 px-5  boton-outline d-flex align-items-center"
           >
-            Suscríbete
+            Registrate
           </Link>
         </div>
       </Form>
