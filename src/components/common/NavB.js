@@ -138,11 +138,11 @@ const NavB = (props) => {
           to="/"
           className="text-primary text-decoration-none "
         >
-          <h1 className="font-weight-light text-center azul ">
+          <h1 className="font-weight-light text-center azul brand ">
             Rolling<span className="font-weight-bold">news.</span>
           </h1>
         </NavLink>
-        <Bars onClick={toggle} />
+        <Bars  onClick={toggle} />
         <NavMenu className="align-self-center">
           {props.navegacion.map((categoria) => (
             <NavLink

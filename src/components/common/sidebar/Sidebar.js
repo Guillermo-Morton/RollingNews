@@ -54,7 +54,7 @@ const Sidebar = (props) => {
         <div className='mx-1'> {mostrarIngresar}</div>
         <div className='mx-1'> {mostrarAdministracion}</div>
       </div>
-        <SidebarMenu>
+        <SidebarMenu isOpen={props.isOpen}>
           {props.categorias.map((categoria) => (
             <SidebarLink
               key={categoria && categoria._id}

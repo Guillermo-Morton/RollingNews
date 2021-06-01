@@ -3,18 +3,18 @@ import { FaTimes } from "react-icons/fa";
 import { NavLink as Link } from "react-router-dom";
 
 export const SidebarContainer = styled.aside`
-position: fixed;
-z-index: 999;
-width: 100%;
-height:100%;
-background: #fff;
-display: grid;
-align-items: center;
-top: 0;
-left: 0;
-transition: 0.3s ease-in-out;
-opacity: ${({ isOpen }) => (isOpen ? "98%" : "0")};
-top: ${({ isOpen }) => (isOpen ? "0" : "-100%")}
+  position: fixed;
+  z-index: 999;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  display: grid;
+  align-items: center;
+  top: 0;
+  left: 0;
+  transition: 0.3s ease-in-out;
+  opacity: ${({ isOpen }) => (isOpen ? "98%" : "0")};
+  top: ${({ isOpen }) => (isOpen ? "0" : "-100%")};
 `;
 
 export const CloseIcon = styled(FaTimes)`
@@ -39,7 +39,6 @@ export const Icon = styled.div`
 
 export const SidebarWrapper = styled.div`
   color: #fff;
- 
 `;
 export const SidebarLink = styled(Link)`
   display: flex;
@@ -67,7 +66,9 @@ export const SidebarMenu = styled.ul`
   text-align: center;
   padding: 0;
   margin: 0;
-  @media screen and (max-width: 480px) {
-    grid-template-rows: repeat(10, 60px);
+   @media screen and
+    (max-width: 480px) {
+    grid-template-rows: repeat(10, 55px);
+    display: ${({ isOpen }) => (isOpen ? "grid" : "none")};
   }
 `;

@@ -118,7 +118,7 @@ body {
 }
 
 /* device sm-pequeño */
-@media all and (min-width: 272px) and (max-width: 767px) {
+@media all and (min-width: 272px) and (max-width: 768px) {
     /* codigo responsive para noticias chicas */
   .noticias-chicas {
     width: 100%;
@@ -148,5 +148,11 @@ body {
   /* ocultar topbar */
   .topbar{
       display: none!important;
+  }
+}
+@media all and (min-width: 272px) and (max-width: 400px) {
+   
+  .brand{
+    font-size: 40px;
   }
 }
