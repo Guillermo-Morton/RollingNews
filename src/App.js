@@ -16,6 +16,8 @@ import EditarNoticia from "./components/administracion/EditarNoticia";
 import Sub from "./components/cuentas/Sub";
 import Verificar from "./components/cuentas/Verificar";
 import { animateScroll as scroll } from "react-scroll";
+import Error404 from "./components/Error404";
+
 // , scrollSpy, scroller
 
 function App() {
@@ -222,8 +224,11 @@ function App() {
               noticias={noticias}
             ></ListarNoticias>
           </Route>
+          <Route exact path="/error404">
+            <Error404 toggleScroll={toggleScroll}></Error404>
+          </Route>
         </Switch>
-        <Footer></Footer>
+        <Footer toggleScroll={toggleScroll}></Footer>
       </Router>
     </div>
   );

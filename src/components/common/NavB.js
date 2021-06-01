@@ -81,6 +81,20 @@ const NavB = (props) => {
   const toggle = () => {
     setIsOpen(!isOpen);
   };
+  
+  // scroll lock cuando abrimos el boton hamburguesa
+  let body=document.getElementById('scrollLock')
+
+  const scrollLock =()=>{
+    if(isOpen){
+      body.style.overflow='hidden'
+    }else{
+      body.style.overflow='visible'
+    }
+  }
+  useEffect(()=>{
+    scrollLock();
+  },[isOpen])
 
   return (
     <div className='margen'>

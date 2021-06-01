@@ -109,6 +109,10 @@ body {
   background-color: #0c327c !important;
   border: 1px solid #0c327c !important;
 }
+
+.error{
+  width: 35%;
+}
 /* media queries /
 / @media mediatype /
 / device lg-grande */
@@ -188,6 +192,9 @@ body {
   .mostrar-botones{
     display: flex;
   }
+  .error{
+    width: 100%;
+  }
   
 }
 @media all and (min-width: 272px) and (max-width: 400px) {
@@ -209,5 +216,8 @@ body {
   }
   .mostrar-botones{
     display: flex;
+  }
+  .error{
+    width: 100%;
   }
 }
