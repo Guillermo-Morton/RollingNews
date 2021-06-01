@@ -17,6 +17,7 @@ import Sub from "./components/cuentas/Sub";
 import Verificar from "./components/cuentas/Verificar";
 import { animateScroll as scroll } from "react-scroll";
 import Error404 from "./components/Error404";
+import PantallaCarga from "./components/helpers/PantallaCarga";
 
 // , scrollSpy, scroller
 
@@ -148,88 +149,110 @@ function App() {
   const toggleScroll = () => {
     scroll.scrollToTop();
   };
+  // pantallas de carga
+  const [cargado, setCargado] = useState(false);
+
+  useEffect(() => {
+    fetch("https://rollingnews5a.herokuapp.com/api/rollingnews/noticias").then(
+      (response) =>
+        response.json().then(() => {
+          setTimeout(() => {
+            setCargado(true);
+            console.log("cargada");
+          }, 1000);
+        })
+    );
+  }, []);
+  const mostrarCarga = cargado === true ? (""):("d-none");
+  const ocultarCarga = cargado === false ? (""):("d-none");
 
   return (
     <div className="text-dark">
-      <Router>
-        <NavB
-          toggleScroll={toggleScroll}
-          dropdown={dropdown}
-          navegacion={navegacion}
-          noticias={noticias}
-          extraerLocal={extraerLocal}
-          categorias={categorias}
-        ></NavB>
-        <Switch>
-          <Route exact path="/">
-            <Inicio
-              toggleScroll={toggleScroll}
-              limiteNoticias={limiteNoticias}
-              noticiasRandom={noticiasRandom}
-              noticias={noticiasInicio}
-              covid={covid}
-            ></Inicio>
-          </Route>
-          <Route exact path="/categoria/:id">
-            <SeccionCategoria
-              toggleScroll={toggleScroll}
-              limiteNoticias={limiteNoticias}
-            ></SeccionCategoria>
-          </Route>
-          <Route exact path="/detalle/:id">
-            <DetalleNoticia
-              toggleScroll={toggleScroll}
-              noticiasRandom={noticiasRandom}
-              limiteNoticias={limiteNoticias}
-              extraerLocal={extraerLocal}
-            ></DetalleNoticia>
-          </Route>
-          <Route exact path="/ingresar">
-            <Ingreso></Ingreso>
-          </Route>
-          <Route exact path="/suscribirse">
-            <Sub></Sub>
-          </Route>
-          <Route exact path="/suscribirse/verificar">
-            <Verificar></Verificar>
-          </Route>
-          <Route exact path="/administracion">
-            <Administración extraerLocal={extraerLocal}></Administración>
-          </Route>
-          <Route exact path="/administracion/nueva">
-            <NuevaNoticia
-              extraerLocal={extraerLocal}
-              categorias={categorias}
-              consultarAPI={consultarAPI}
-            ></NuevaNoticia>
-          </Route>
-          <Route exact path="/administracion/editar/:id">
-            <EditarNoticia
-              extraerLocal={extraerLocal}
-              categorias={categorias}
-              consultarAPI={consultarAPI}
-            ></EditarNoticia>
-          </Route>
-          <Route exact path="/administracion/categorias">
-            <ListarCategorias
-              extraerLocal={extraerLocal}
-              consultarCategoria={consultarCategoria}
-              categorias={categorias}
-            ></ListarCategorias>
-          </Route>
-          <Route exact path="/administracion/noticias">
-            <ListarNoticias
-              extraerLocal={extraerLocal}
-              consultarAPI={consultarAPI}
-              noticias={noticias}
-            ></ListarNoticias>
-          </Route>
-          <Route exact path="/error404">
-            <Error404 toggleScroll={toggleScroll}></Error404>
-          </Route>
-        </Switch>
-        <Footer toggleScroll={toggleScroll}></Footer>
-      </Router>
+      <div className={ocultarCarga}>
+      <PantallaCarga></PantallaCarga>
+      </div>
+      <div  className={mostrarCarga}>
+        <Router>
+          <NavB
+            toggleScroll={toggleScroll}
+            dropdown={dropdown}
+            navegacion={navegacion}
+            noticias={noticias}
+            extraerLocal={extraerLocal}
+            categorias={categorias}
+          ></NavB>
+          
+          <Switch>
+            <Route exact path="/">
+              <Inicio
+                toggleScroll={toggleScroll}
+                limiteNoticias={limiteNoticias}
+                noticiasRandom={noticiasRandom}
+                noticias={noticiasInicio}
+                covid={covid}
+              ></Inicio>
+            </Route>
+            <Route exact path="/categoria/:id">
+              <SeccionCategoria
+                toggleScroll={toggleScroll}
+                limiteNoticias={limiteNoticias}
+              ></SeccionCategoria>
+            </Route>
+            <Route exact path="/detalle/:id">
+              <DetalleNoticia
+                toggleScroll={toggleScroll}
+                noticiasRandom={noticiasRandom}
+                limiteNoticias={limiteNoticias}
+                extraerLocal={extraerLocal}
+              ></DetalleNoticia>
+            </Route>
+            <Route exact path="/ingresar">
+              <Ingreso></Ingreso>
+            </Route>
+            <Route exact path="/suscribirse">
+              <Sub></Sub>
+            </Route>
+            <Route exact path="/suscribirse/verificar">
+              <Verificar></Verificar>
+            </Route>
+            <Route exact path="/administracion">
+              <Administración extraerLocal={extraerLocal}></Administración>
+            </Route>
+            <Route exact path="/administracion/nueva">
+              <NuevaNoticia
+                extraerLocal={extraerLocal}
+                categorias={categorias}
+                consultarAPI={consultarAPI}
+              ></NuevaNoticia>
+            </Route>
+            <Route exact path="/administracion/editar/:id">
+              <EditarNoticia
+                extraerLocal={extraerLocal}
+                categorias={categorias}
+                consultarAPI={consultarAPI}
+              ></EditarNoticia>
+            </Route>
+            <Route exact path="/administracion/categorias">
+              <ListarCategorias
+                extraerLocal={extraerLocal}
+                consultarCategoria={consultarCategoria}
+                categorias={categorias}
+              ></ListarCategorias>
+            </Route>
+            <Route exact path="/administracion/noticias">
+              <ListarNoticias
+                extraerLocal={extraerLocal}
+                consultarAPI={consultarAPI}
+                noticias={noticias}
+              ></ListarNoticias>
+            </Route>
+            <Route exact path="/error404">
+              <Error404 toggleScroll={toggleScroll}></Error404>
+            </Route>
+          </Switch>
+          <Footer toggleScroll={toggleScroll}></Footer>
+        </Router>
+      </div>
     </div>
   );
 }

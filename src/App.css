@@ -113,6 +113,12 @@ body {
 .error{
   width: 35%;
 }
+.carga{
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 /* media queries /
 / @media mediatype /
 / device lg-grande */
