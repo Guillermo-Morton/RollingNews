@@ -17,7 +17,7 @@ const Sidebar = (props) => {
     props.usuarioLog.nombre === undefined ? (
       <Fragment className='mostrar-botones'>
         <SidebarLink
-          onClick={props.toggleScroll}
+          onClick={props.toggleScrollBottom}
           exact={true}
           to="/ingresar"
           className="boton-outline d-flex align-items-center"

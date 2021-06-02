@@ -116,7 +116,7 @@ const Sub = (props) => {
     }
   },[sent]);
   return (
-    <div className="container my-5">
+    <div className="container my-5 bajar-footer d-flex flex-column justify-content-center">
       <h2 className="my-4 text-center font-weight-light">
         Empezá creando tu cuenta
       </h2>
@@ -154,7 +154,7 @@ const Sub = (props) => {
         <div className="d-flex justify-content-center mb-3">
           <a className="text-muted text-decoration-none">
             ¿Ya tenés una cuenta?{" "}
-            <Link exact={true} to="/ingresar" className="text-decoration-none azul">
+            <Link exact={true} to="/ingresar" onClick={props.toggleScrollBottom} className="text-decoration-none azul">
               Inicia sesion
             </Link>
           </a>

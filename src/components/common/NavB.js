@@ -28,6 +28,7 @@ const NavB = (props) => {
     usuarioLog.nombre === undefined ? (
       <Fragment>
         <NavLink
+          onClick={props.toggleScrollBottom}
           exact={true}
           to="/ingresar"
           className="boton-outline d-flex align-items-center"
@@ -35,11 +36,12 @@ const NavB = (props) => {
           Ingresar
         </NavLink>
         <NavLink
+          onClick={props.toggleScrollBottom}
           exact={true}
           to="/suscribirse"
           className="boton d-flex align-items-center"
         >
-          Suscribirse
+          Registrate
         </NavLink>
       </Fragment>
     ) : (
@@ -81,25 +83,62 @@ const NavB = (props) => {
   const toggle = () => {
     setIsOpen(!isOpen);
   };
-  
-  // scroll lock cuando abrimos el boton hamburguesa
-  let body=document.getElementById('scrollLock')
 
-  const scrollLock =()=>{
-    if(isOpen){
-      body.style.overflow='hidden'
-    }else{
-      body.style.overflow='visible'
+  // scroll lock cuando abrimos el boton hamburguesa
+  let body = document.getElementById("scrollLock");
+
+  const scrollLock = () => {
+    if (isOpen) {
+      body.style.overflow = "hidden";
+    } else {
+      body.style.overflow = "visible";
+      body.style =
+        "display:flex; flex-direction: column; min-height: 100vh; align-content: around";
     }
-  }
-  useEffect(()=>{
+  };
+  useEffect(() => {
     scrollLock();
-  },[isOpen])
+  }, [isOpen]);
+
+  // When the user scrolls the page, execute myFunction
+  // Get the offset position of the navbar
+  setTimeout(() => {
+    window.onscroll = ()=> {
+      animacionesNav();
+    };
+    var sticky = document.getElementById("navbar").offsetTop;
+    var prevScrollpos = window.pageYOffset;
+    function animacionesNav() {
+      var currentScrollPos = window.pageYOffset;
+      if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
+        document.getElementById("navbar").classList.add("sticky");
+      } else {
+        document.getElementById("navbar").classList.remove("sticky");
+      }
+      if (prevScrollpos > currentScrollPos) {
+        document.getElementById("navbar").classList.add("mostrarnav");
+        document.getElementById("navbar").classList.remove("ocultarnav");
+      } else {
+        document.getElementById("navbar").classList.add("ocultarnav");
+        document.getElementById("navbar").classList.remove("mostrarnav");
+      }
+      if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
+        document.getElementById("navbar").classList.add("shrink");
+        document.getElementById("brand").classList.add("brandshrink");
+      } else {
+        document.getElementById("navbar").classList.remove("shrink");
+        document.getElementById("brand").classList.remove("brandshrink");
+      }
+  
+      prevScrollpos = currentScrollPos;
+    }
+  }, 1000);
 
   return (
-    <div className='margen'>
-      <div className="bg-light fixed-top">
+    <div className="margen">
+      <div className="bg-light">
         <Sidebar
+          toggleScrollBottom={props.toggleScrollBottom}
           toggleScroll={props.toggleScroll}
           cerrarSesion={cerrarSesion}
           usuarioLog={usuarioLog}
@@ -113,14 +152,14 @@ const NavB = (props) => {
           {mostrarIngresar}
           {mostrarAdministracion}
         </div>
-        <Nav>
+        <Nav id="navbar">
           <NavLink
             onClick={props.toggleScroll}
             exact={true}
             to="/"
-            className="text-primary text-decoration-none "
+            className="text-decoration-none "
           >
-            <h1 className="font-weight-light text-center azul brand ">
+            <h1 id='brand' className="font-weight-light text-center azul brand">
               Rolling<span className="font-weight-bold">news.</span>
             </h1>
           </NavLink>
@@ -130,14 +169,16 @@ const NavB = (props) => {
               <NavLink
                 onClick={props.toggleScroll}
                 key={categoria && categoria._id}
-                className="text-decoration-none"
+                className="text-decoration-none links"
                 exact={true}
                 to={`/categoria/${categoria && categoria._id}`}
               >
                 {categoria && categoria.categoriaDisponible}
               </NavLink>
             ))}
-            <NavLink onClick={toggle} to='#' className='text-decoration-none'>Categorías</NavLink>
+            <NavLink onClick={toggle} to="#" className="text-decoration-none">
+              Categorías
+            </NavLink>
           </NavMenu>
         </Nav>
       </div>

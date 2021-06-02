@@ -72,7 +72,7 @@ const ListarCategorias = (props) => {
     }
   });
   return (
-    <div className="container">
+    <div className="container bajar-footer">
       {permitirAdministracion}
       <p className="my-5  text-center">Información del sistema v0.1</p>
     </div>

@@ -111,13 +111,18 @@ const SeccionCategoria = (props) => {
   // pantalla de carga
   const [cargado, setCargado] = useState(false);
 
-  useEffect(()=>{
+  useEffect(() => {
     setCargado(false)
-    setTimeout(() => {
-      setCargado(true);
-      console.log("cargada");
-    }, 1200);
-  },[categoria])
+    fetch("https://rollingnews5a.herokuapp.com/api/rollingnews/noticias").then(
+      (response) =>
+        response.json().then(() => {
+          setTimeout(() => {
+            setCargado(true);
+            console.log("cargada");
+          }, 500);
+        })
+    );
+  }, [categoria]);
 
   const mostrarCarga = cargado === true ? "" : "d-none";
   const ocultarCarga = cargado === false ? "" : "d-none";

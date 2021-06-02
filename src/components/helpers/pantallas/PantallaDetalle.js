@@ -3,7 +3,7 @@ import ReactLoading from "react-loading";
 
 const PantallaDetalle = () => {
   return (
-    <div className='carga'>
+    <div className='carga bajar-footer2'>
       <p className="small text-center my-3 fade-in-text">Cargando..</p>
       <ReactLoading
         className="mx-auto fade-in-text"

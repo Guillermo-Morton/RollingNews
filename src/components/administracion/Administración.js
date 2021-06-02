@@ -72,7 +72,7 @@ const Administración = (props) => {
     }
   });
   return (
-    <div className="text-center">
+    <div className="text-center bajar-footer d-flex flex-column justify-content-center">
       {permitirAdministracion}
       <p className="my-5">Información del sistema v0.1</p>
     </div>

@@ -149,6 +149,9 @@ function App() {
   const toggleScroll = () => {
     scroll.scrollToTop();
   };
+  const toggleScrollBottom = () => {
+    scroll.scrollToBottom();
+  };
   // pantallas de carga
   const [cargado, setCargado] = useState(false);
 
@@ -159,21 +162,22 @@ function App() {
           setTimeout(() => {
             setCargado(true);
             console.log("cargada");
-          }, 1000);
+          }, 100);
         })
     );
   }, []);
-  const mostrarCarga = cargado === true ? (""):("d-none");
-  const ocultarCarga = cargado === false ? (""):("d-none");
+  const mostrarCarga = cargado === true ? "" : "d-none";
+  const ocultarCarga = cargado === false ? "" : "d-none";
 
   return (
-    <div className="text-dark">
+    <div className="text-dark min-height">
       <div className={ocultarCarga}>
-      <PantallaCarga></PantallaCarga>
+        <PantallaCarga></PantallaCarga>
       </div>
-      <div className={mostrarCarga}>
+      <div className={mostrarCarga + " min-height"}>
         <Router>
           <NavB
+            toggleScrollBottom={toggleScrollBottom}
             toggleScroll={toggleScroll}
             dropdown={dropdown}
             navegacion={navegacion}
@@ -181,7 +185,7 @@ function App() {
             extraerLocal={extraerLocal}
             categorias={categorias}
           ></NavB>
-          
+
           <Switch>
             <Route exact path="/">
               <Inicio
@@ -207,10 +211,10 @@ function App() {
               ></DetalleNoticia>
             </Route>
             <Route exact path="/ingresar">
-              <Ingreso></Ingreso>
+              <Ingreso toggleScrollBottom={toggleScrollBottom}></Ingreso>
             </Route>
             <Route exact path="/suscribirse">
-              <Sub></Sub>
+              <Sub toggleScrollBottom={toggleScrollBottom}></Sub>
             </Route>
             <Route exact path="/suscribirse/verificar">
               <Verificar></Verificar>

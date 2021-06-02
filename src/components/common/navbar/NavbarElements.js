@@ -4,18 +4,17 @@ import styled from "styled-components";
 
 export const Nav = styled.nav`
   background: #f8f9fa;
-  height: 100px;
+  height: 120px;
   display: flex;
-  padding: 0.5rem calc((100vw - 1000px) / 2);
   z-index: 10;
   flex-direction: column;
+  transition: top 0.3s;
+  
+  width: 100%;
 
   @media screen and (max-width: 768px) {
     height: 70px;
   }
-
-  /* Third Nav */
-  /* justify-content: flex-start; */
 `;
 
 export const NavLink = styled(Link)`
@@ -25,11 +24,11 @@ export const NavLink = styled(Link)`
   align-self:center;
   text-decoration: none;
   padding: 0 1rem;
-  height: 100%;
   cursor: pointer;
 
   @media screen and (max-width: 768px) {
     align-self:flex-start;
+    padding: 0 1rem;
   }
 
   &.active {

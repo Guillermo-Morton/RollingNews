@@ -178,13 +178,18 @@ const DetalleNoticia = (props) => {
     // pantalla de carga
     const [cargado, setCargado] = useState(false);
 
-    useEffect(()=>{
+    useEffect(() => {
       setCargado(false)
-      setTimeout(() => {
-        setCargado(true);
-        console.log("cargada");
-      }, 1200);
-    },[noticia])
+      fetch("https://rollingnews5a.herokuapp.com/api/rollingnews/noticias").then(
+        (response) =>
+          response.json().then(() => {
+            setTimeout(() => {
+              setCargado(true);
+              console.log("cargada");
+            }, 200);
+          })
+      );
+    }, [noticia]);
   
     const mostrarCarga = cargado === true ? "" : "d-none";
     const ocultarCarga = cargado === false ? "" : "d-none";

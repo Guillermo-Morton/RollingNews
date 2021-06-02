@@ -61,7 +61,7 @@ const Ingreso = (props) => {
   }, [usuarioLog]);
 
   return (
-    <div className="container my-5">
+    <div className="container my-2 bajar-footer d-flex flex-column justify-content-center">
       <h2 className="my-4 text-center font-weight-light">
         Ingresá con tu cuenta
       </h2>
@@ -91,13 +91,14 @@ const Ingreso = (props) => {
           <a className="text-muted">¿Olvidaste tu contraseña?</a>
         </div>
         <div className="d-flex justify-content-center">
-          <Button className='boton px-5 btn' type="submit">
+          <Button className="boton btn" type="submit">
             Inicia sesion
           </Button>
           <Link
+            onClick={props.toggleScrollBottom}
             exact={true}
             to="/suscribirse"
-            className="mx-2 px-5  boton-outline d-flex align-items-center"
+            className="mx-2 boton-outline d-flex align-items-center"
           >
             Registrate
           </Link>
