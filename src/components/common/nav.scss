@@ -1,0 +1,24 @@
+@import '~@material/animation/functions';
+
+.site-header {
+  // header styling:
+  background: #f8f9fa;
+  z-index: 99;
+  position: fixed;
+  top: 0px;
+  left: 0;
+  right: 0;
+  height: 100px;
+  transition: 0.5s;
+
+  // our animation-related styles:
+  &.hidden {
+    top: -182px!important;
+  }
+  @media screen and (max-width: 768px) {
+    height: 70px;
+    &.hidden {
+      top: -70px!important;
+    }
+  }
+}

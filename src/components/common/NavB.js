@@ -1,17 +1,34 @@
 import React, { useEffect, useState } from "react";
 import { Fragment } from "react";
-import { Navbar, Dropdown, FormControl, Button } from "react-bootstrap";
-import { Link, useLocation, withRouter } from "react-router-dom";
+import { Button } from "react-bootstrap";
+import { useLocation, withRouter } from "react-router-dom";
 import Sidebar from "./sidebar/Sidebar";
-
+import "./nav.scss";
+import ReactDOM from "react-dom";
+import { of, fromEvent, animationFrameScheduler } from "rxjs";
 import {
-  Nav,
-  NavLink,
-  Bars,
-  NavMenu,
-  NavBtn,
-  NavBtnLink,
-} from "./navbar/NavbarElements";
+  distinctUntilChanged,
+  filter,
+  map,
+  pairwise,
+  switchMap,
+  throttleTime,
+} from "rxjs/operators";
+
+import { useObservable } from "rxjs-hooks";
+
+import { Nav, NavLink, Bars, NavMenu } from "./navbar/NavbarElements";
+
+const watchScroll = () =>
+  of(typeof window === "undefined").pipe(
+    filter((bool) => !bool),
+    switchMap(() => fromEvent(window, "scroll", { passive: true })),
+    throttleTime(0, animationFrameScheduler),
+    map(() => window.pageYOffset),
+    pairwise(),
+    map(([previous, current]) => (current < previous ? "Up" : "Down")),
+    distinctUntilChanged()
+  );
 
 const NavB = (props) => {
   // contiene el usuario logueado actualmente
@@ -56,7 +73,7 @@ const NavB = (props) => {
     );
   const mostrarAdministracion =
     usuarioLog.nombre === "Admin" &&
-    usuarioLog._id === "60b459c2c51ad300211df3fe" ? (
+      usuarioLog._id === "60b459c2c51ad300211df3fe" ? (
       <NavLink
         exact={true}
         to="/administracion"
@@ -100,40 +117,8 @@ const NavB = (props) => {
     scrollLock();
   }, [isOpen]);
 
-  // When the user scrolls the page, execute myFunction
-  // Get the offset position of the navbar
-  setTimeout(() => {
-    window.onscroll = ()=> {
-      animacionesNav();
-    };
-    var sticky = document.getElementById("navbar").offsetTop;
-    var prevScrollpos = window.pageYOffset;
-    function animacionesNav() {
-      var currentScrollPos = window.pageYOffset;
-      if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
-        document.getElementById("navbar").classList.add("sticky");
-      } else {
-        document.getElementById("navbar").classList.remove("sticky");
-      }
-      if (prevScrollpos > currentScrollPos) {
-        document.getElementById("navbar").classList.add("mostrarnav");
-        document.getElementById("navbar").classList.remove("ocultarnav");
-      } else {
-        document.getElementById("navbar").classList.add("ocultarnav");
-        document.getElementById("navbar").classList.remove("mostrarnav");
-      }
-      if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
-        document.getElementById("navbar").classList.add("shrink");
-        document.getElementById("brand").classList.add("brandshrink");
-      } else {
-        document.getElementById("navbar").classList.remove("shrink");
-        document.getElementById("brand").classList.remove("brandshrink");
-      }
-  
-      prevScrollpos = currentScrollPos;
-    }
-  }, 1000);
-
+  const scrollDirection = useObservable(watchScroll, "Up");
+  const esconderNav = scrollDirection === "Down" ? "hidden" : "null";
   return (
     <div className="margen">
       <div className="bg-light">
@@ -148,39 +133,42 @@ const NavB = (props) => {
           mostrarIngresar={mostrarIngresar}
           mostrarAdministracion={mostrarAdministracion}
         ></Sidebar>
-        <div className="container-fluid py-2 px-3 justify-content-between topbar ">
-          {mostrarIngresar}
-          {mostrarAdministracion}
-        </div>
-        <Nav id="navbar">
-          <NavLink
-            onClick={props.toggleScroll}
-            exact={true}
-            to="/"
-            className="text-decoration-none "
-          >
-            <h1 id='brand' className="font-weight-light text-center azul brand">
-              Rolling<span className="font-weight-bold">news.</span>
-            </h1>
-          </NavLink>
-          <Bars onClick={toggle} />
-          <NavMenu className="align-self-center">
-            {props.navegacion.map((categoria) => (
-              <NavLink
-                onClick={props.toggleScroll}
-                key={categoria && categoria._id}
-                className="text-decoration-none links"
-                exact={true}
-                to={`/categoria/${categoria && categoria._id}`}
-              >
-                {categoria && categoria.categoriaDisponible}
-              </NavLink>
-            ))}
-            <NavLink onClick={toggle} to="#" className="text-decoration-none">
-              Categorías
+        <div id='nav' className={`site-header ${esconderNav}`}>
+          <div className={"container-fluid py-2 px-3 justify-content-between topbar"}>
+            {mostrarIngresar}
+            {mostrarAdministracion}
+          </div>
+          <Nav>
+            <NavLink
+            
+              onClick={props.toggleScroll}
+              exact={true}
+              to="/"
+              className="text-decoration-none "
+            >
+              <h1 className="font-weight-light text-center azul brand">
+                Rolling<span className="font-weight-bold">news.</span>
+              </h1>
             </NavLink>
-          </NavMenu>
-        </Nav>
+            <Bars onClick={toggle} />
+            <NavMenu className="align-self-center">
+              {props.navegacion.map((categoria) => (
+                <NavLink
+                  onClick={props.toggleScroll}
+                  key={categoria && categoria._id}
+                  className="text-decoration-none links"
+                  exact={true}
+                  to={`/categoria/${categoria && categoria._id}`}
+                >
+                  {categoria && categoria.categoriaDisponible}
+                </NavLink>
+              ))}
+              <NavLink onClick={toggle} to="#" className="text-decoration-none">
+                Categorías
+              </NavLink>
+            </NavMenu>
+          </Nav>
+        </div>
       </div>
     </div>
   );

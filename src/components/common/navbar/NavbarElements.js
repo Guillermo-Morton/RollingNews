@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 export const Nav = styled.nav`
   background: #f8f9fa;
-  height: 120px;
+  height: 100px;
   display: flex;
   z-index: 10;
   flex-direction: column;

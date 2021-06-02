@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
 
+
 body {
   font-family: "Montserrat", sans-serif !important;
   color: #454347;
@@ -173,34 +174,6 @@ body {
   0% {opacity:0;}
   100% {opacity:1;}
 }
-
-/* Style the navbar */
-#navbar {
-  overflow: hidden;
-  transition: 0.4s;
-}
-.sticky {
-  top: 0px;
-  position: fixed;
-}
-.mostrarnav{
-  top: 0px;
-}
-.ocultarnav{
-  top: 0px;
-}
-/* classe para animar el navbar */
-.shrink{
-  height: 115px!important;
-  padding: 30px 10px 30px!important;
-}
-.brandshrink{
-  font-size: 30px!important;
-  height: 38px!important;
-}
-#brand{
-  height: 50px;
-}
 /* media queries /
 / @media mediatype /
 / device lg-grande */
@@ -284,21 +257,11 @@ body {
   .error{
     width: 100%;
   }
-  .mostrarnav{
-    position: fixed;
-    top: 0px;
-  }
-  .ocultarnav{
-    position: fixed;
-    top: -70px;
-  }
-  .shrink{
-    height: 70px!important;
-    padding: 30px 10px 30px!important;
-  }
-  #brand{
-    position: absolute;
-    top: 15px;
+  .brand{
+    font-size: 30px!important;
+    transition: 0.4s;
+    position: absolute!important;
+    top: 15px!important;
   }
   
 }
@@ -307,6 +270,8 @@ body {
   .brand{
     font-size: 30px!important;
     transition: 0.4s;
+    position: absolute!important;
+    top: 15px!important;
   }
   .link-admin{
     width: 47%;
