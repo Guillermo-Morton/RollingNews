@@ -211,7 +211,7 @@ function App() {
               ></DetalleNoticia>
             </Route>
             <Route exact path="/ingresar">
-              <Ingreso toggleScrollBottom={toggleScrollBottom}></Ingreso>
+              <Ingreso toggleScroll={toggleScroll} toggleScrollBottom={toggleScrollBottom}></Ingreso>
             </Route>
             <Route exact path="/suscribirse">
               <Sub toggleScrollBottom={toggleScrollBottom}></Sub>

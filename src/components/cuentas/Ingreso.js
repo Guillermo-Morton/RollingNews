@@ -41,6 +41,7 @@ const Ingreso = (props) => {
           setUsuarioLog(respuesta[i]);
           // redireccionamos a otra ruta
           props.history.push("/");
+          props.toggleScroll();
         }
       }
     } catch (error) {
