@@ -1,7 +1,9 @@
 import React, { useState, useEffect, Fragment } from "react";
 import { useParams, useLocation } from "react-router";
 import { Link } from "react-router-dom";
-import PantallaDetalle from "../helpers/pantallas/PantallaDetalle"
+import PantallaDetalle from "../helpers/pantallas/PantallaDetalle";
+import adds2 from "../../img/adds2.jpg";
+import adds3 from "../../img/adds3.jpg";
 const DetalleNoticia = (props) => {
   const URL = process.env.REACT_APP_API_URL;
   // obtengo el parametro de la URL
@@ -90,18 +92,22 @@ const DetalleNoticia = (props) => {
     usuarioLog.nombre != undefined || contador < 20 ? (
       <Fragment>
         <h2 className="mt-5">{noticia.titulo}</h2>
+        <div className='d-flex'>
+        <p className='small mx-2'>{noticia.fecha}</p>
+        <p className='small mx-2'>Por {noticia.autor}</p>
+        </div>
         <div className="row">
           <div className="col-lg-9 col-md-12">
             <div className="row">
               <div className="col-lg-12">
                 <section>
-                  <h4 className='my-4'>{noticia.subtitulo}</h4>
+                  <h4 className="my-4">{noticia.subtitulo}</h4>
                   <img
                     src={noticia.imagen1}
                     className="bg-secondary w-100 mb-2 noticia-imagen"
                   ></img>
-                  <p className='my-4'>{noticia.parrafo1}</p>
-                  <p className='my-4'>{noticia.parrafo2}</p>
+                  <p className="my-4">{noticia.parrafo1}</p>
+                  <p className="my-4">{noticia.parrafo2}</p>
                 </section>
 
                 <section>
@@ -109,7 +115,7 @@ const DetalleNoticia = (props) => {
                     src={noticia.imagen2}
                     className="bg-secondary w-100  mb-2"
                   ></img>
-                  <p className='my-4'>{noticia.parrafo3}</p>
+                  <p className="my-4">{noticia.parrafo3}</p>
                 </section>
                 <hr></hr>
                 <h2 className="mt-5">MÁS SOBRE {categoria}</h2>
@@ -159,6 +165,16 @@ const DetalleNoticia = (props) => {
                 </div>
               </Link>
             ))}
+            <img
+              className="w-100 my-2 anuncios"
+              src={adds2}
+              alt="anuncio de panaderia cocu"
+            />
+            <img
+              className="w-100 my-2 anuncios"
+              src={adds3}
+              alt="anuncio de panaderia cocu"
+            />
           </div>
         </div>
       </Fragment>
@@ -175,34 +191,32 @@ const DetalleNoticia = (props) => {
       </Fragment>
     );
 
-    // pantalla de carga
-    const [cargado, setCargado] = useState(false);
+  // pantalla de carga
+  const [cargado, setCargado] = useState(false);
 
-    useEffect(() => {
-      setCargado(false)
-      fetch("https://rollingnews5a.herokuapp.com/api/rollingnews/noticias").then(
-        (response) =>
-          response.json().then(() => {
-            setTimeout(() => {
-              setCargado(true);
-              console.log("cargada");
-            }, 200);
-          })
-      );
-    }, [noticia]);
-  
-    const mostrarCarga = cargado === true ? "" : "d-none";
-    const ocultarCarga = cargado === false ? "" : "d-none";
+  useEffect(() => {
+    setCargado(false);
+    fetch("https://rollingnews5a.herokuapp.com/api/rollingnews/noticias").then(
+      (response) =>
+        response.json().then(() => {
+          setTimeout(() => {
+            setCargado(true);
+            console.log("cargada");
+          }, 200);
+        })
+    );
+  }, [noticia]);
+
+  const mostrarCarga = cargado === true ? "" : "d-none";
+  const ocultarCarga = cargado === false ? "" : "d-none";
 
   return (
-  <div className="container">
-    <div className={ocultarCarga}>
-    <PantallaDetalle></PantallaDetalle>
+    <div className="container">
+      <div className={ocultarCarga}>
+        <PantallaDetalle></PantallaDetalle>
+      </div>
+      <div className={mostrarCarga}>{permitirVisualizacion}</div>
     </div>
-    <div className={mostrarCarga}>
-    {permitirVisualizacion}
-    </div>
-  </div>
   );
 };
 

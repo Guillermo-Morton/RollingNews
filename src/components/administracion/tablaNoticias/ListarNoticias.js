@@ -23,6 +23,7 @@ const ListarNoticias = (props) => {
     usuarioLog.nombre === "Admin" ? (
       <Fragment>
         <h2 className="font-weight-light my-2">Lista de noticias</h2>
+        <div className='wrapper'>
         <Table className="my-4" striped bordered hover size="sm">
           <thead>
             <tr>
@@ -43,6 +44,7 @@ const ListarNoticias = (props) => {
             ))}
           </tbody>
         </Table>
+        </div>
       </Fragment>
     ) : (
       <Fragment>
@@ -70,9 +72,9 @@ const ListarNoticias = (props) => {
     }
   });
   return (
-    <div className="container  bajar-footer">
+    <div className="container bajar-footer">
       {permitirAdministracion}
-      <p className="my-5  text-center">Información del sistema v0.1</p>
+      <p className="my-5 text-center">Información del sistema v0.1</p>
     </div>
   );
 };

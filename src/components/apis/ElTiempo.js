@@ -27,7 +27,7 @@ const ElTiempo = () => {
     consultarTiempo();
   }, []);
   return (
-    <div>
+    <div className='container'>
       <h2 className="mt-5">EL TIEMPO</h2>
       <div className="row my-2">
         <div className="col-lg-12">

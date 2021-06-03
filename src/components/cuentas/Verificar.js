@@ -1,8 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
-import { Form } from "react-bootstrap";
+import { Form, Button } from "react-bootstrap";
 import { withRouter} from "react-router";
 import Swal from "sweetalert2";
-
 const Verificar = (props) => {
   // URL
   const URL3 = process.env.REACT_APP_API_URL3;
@@ -105,6 +104,9 @@ const Verificar = (props) => {
           />
         </Form.Group>
       </Form>
+        <Button onClick={codigoUsuario()} className="boton btn" >
+            Verificar
+          </Button>
     </div>
   );
 };

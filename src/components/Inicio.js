@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import ElTiempo from "./apis/ElTiempo";
+import adds1 from "../img/adds1.jpg";
+import adds2 from "../img/adds2.jpg";
+import adds3 from "../img/adds3.jpg";
+import adds4 from "../img/adscocu.jpg";
 
 const Inicio = (props) => {
   // state
@@ -82,6 +86,7 @@ const Inicio = (props) => {
                   </div>
                 </Link>
               ))}
+              <img className="w-100 h-100 anuncios" src={adds4} alt="" />
             </div>
           </div>
         </div>
@@ -105,7 +110,7 @@ const Inicio = (props) => {
               className="noticias-medianas text-dark px-2 mb-4 text-decoration-none"
             >
               <img
-                className="w-100 noticia-imagen div-imagen-grande"
+                className="w-100 h-75 noticia-imagen div-imagen-grande"
                 src={noticia && noticia.imagen1}
                 alt=""
               />
@@ -120,7 +125,7 @@ const Inicio = (props) => {
       <section className="my-3">
         <h2 className="mt-5">MÁS NOTICIAS</h2>
         <div className="row">
-          <div className="col-lg-10 col-sm-12 col-md-10">
+          <div className="col-lg-10 col-sm-12 col-md-12">
             <div className="contenedor-noticias-chicas">
               {masNoticias.map((noticia) => (
                 <Link
@@ -143,14 +148,16 @@ const Inicio = (props) => {
                 </Link>
               ))}
             </div>
-            <ElTiempo></ElTiempo>
+          </div>
+          <div className="col-lg-2 col-md-3">
+            <img
+              className="w-100 h-100 my-2 anuncios"
+              src={adds3}
+              alt="anuncio de panaderia cocu"
+            />
           </div>
         </div>
-      </section>
-      <hr></hr>
-      <section>
-        <h2 className="mt-5">CRIPTOMONEDAS</h2>
-        <div className="bg-secondary w-100 div-clima mb-2"></div>
+        <ElTiempo></ElTiempo>
       </section>
     </div>
   );

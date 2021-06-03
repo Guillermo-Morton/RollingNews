@@ -77,8 +77,6 @@ const Ingreso = (props) => {
   const validarGeneral = () => {
     let nombreReturn = validarNombre();
     let passReturn = validarPass();
-    let verificadoReturn = verificado();
-    console.log(verificadoReturn);
     console.log(nombreReturn);
     console.log(passReturn);
   };
@@ -105,23 +103,6 @@ const Ingreso = (props) => {
       } else {
         setErrorPass(true);
         setPass("");
-        return false;
-      }
-    }
-  };
-  const verificado = () => {
-    for (let i in usuarios) {
-      if (
-        usuarios[i].nombre === nombre.trim() &&
-        usuarios[i].verified === true
-      ) {
-        setNotVerified(false);
-        return true;
-      } else {
-        setNotVerified(true);
-        setTimeout(() => {
-          props.history.push("/suscribirse/verificar");
-        }, 1500);
         return false;
       }
     }

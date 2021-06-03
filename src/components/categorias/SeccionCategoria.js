@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 import PantallaCategorias from "../helpers/pantallas/PantallaCategorias";
+import adds1 from "../../img/adds1.jpg";
+import adds2 from "../../img/adds2.jpg";
+import adds3 from "../../img/adds3.jpg";
 
 const SeccionCategoria = (props) => {
   const URL = process.env.REACT_APP_API_URL;
@@ -112,7 +115,7 @@ const SeccionCategoria = (props) => {
   const [cargado, setCargado] = useState(false);
 
   useEffect(() => {
-    setCargado(false)
+    setCargado(false);
     fetch("https://rollingnews5a.herokuapp.com/api/rollingnews/noticias").then(
       (response) =>
         response.json().then(() => {
@@ -135,25 +138,33 @@ const SeccionCategoria = (props) => {
         <section className="my-5">
           <h2 className="mb-3 px-2">{categoria.toUpperCase()}</h2>
           <div className="row">
-            <div className="col-lg-10 col-sm-12"></div>
-            <div className="px-2 ">
-              <Link
-                onClick={props.limiteNoticias}
-                onClick={props.toggleScroll}
-                key={destacada && destacada._id}
-                exact="true"
-                to={`/detalle/${destacada && destacada._id}`}
-                className="w-100  text-dark text-decoration-none"
-              >
-                <img
-                  className="w-100 noticia-imagen"
-                  src={destacada && destacada.imagen1}
-                  alt=""
-                />
-                <h4 className="destacada-titulo p-3">
-                  {destacada && destacada.titulo}
-                </h4>
-              </Link>
+            <div className="col-lg-10 col-sm-12">
+              <div className="px-2">
+                <Link
+                  onClick={props.limiteNoticias}
+                  onClick={props.toggleScroll}
+                  key={destacada && destacada._id}
+                  exact="true"
+                  to={`/detalle/${destacada && destacada._id}`}
+                  className="w-100 text-dark text-decoration-none"
+                >
+                  <img
+                    className="w-100 noticia-imagen"
+                    src={destacada && destacada.imagen1}
+                    alt=""
+                  />
+                  <h4 className="destacada-titulo p-3">
+                    {destacada && destacada.titulo}
+                  </h4>
+                </Link>
+              </div>
+            </div>
+            <div className="col-lg-2">
+              <img
+                className="w-100 h-100 anuncios"
+                src={adds2}
+                alt="anuncio de panaderia cocu"
+              />
             </div>
           </div>
         </section>
@@ -183,7 +194,11 @@ const SeccionCategoria = (props) => {
               </div>
             </div>
             <div className="col-lg-2">
-              <div className="bg-secondary w-100 div-anuncio ml-auto"></div>
+              <img
+                className="w-100 h-100 anuncios"
+                src={adds3}
+                alt="anuncio de bartenders"
+              />
             </div>
           </div>
         </section>
@@ -240,7 +255,11 @@ const SeccionCategoria = (props) => {
               </div>
             </div>
             <div className="col-lg-2">
-              <div className="bg-secondary w-100 div-anuncio ml-auto"></div>
+              <img
+                className="w-100 h-100 anuncios"
+                src={adds1}
+                alt="anuncio de rollingbank"
+              />
             </div>
           </div>
         </section>

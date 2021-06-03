@@ -27,6 +27,7 @@ const ListarCategorias = (props) => {
         <NuevaCategoria
           consultarCategoria={props.consultarCategoria}
         ></NuevaCategoria>
+        <div className='wrapper'>
         <Table className="my-4 mx-auto" striped bordered hover size="sm">
           <thead>
             <tr>
@@ -45,6 +46,7 @@ const ListarCategorias = (props) => {
             ))}
           </tbody>
         </Table>
+        </div>
       </Fragment>
     ) : (
       <Fragment>
