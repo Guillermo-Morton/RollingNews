@@ -106,7 +106,6 @@ const EditarNoticia = (props) => {
   const volverInicio = () => {
     setTimeout(() => {
       if (usuarioLog.nombre === "Admin") {
-        console.log("Adminxd");
         return;
       } else {
         props.history.push("/");
@@ -165,10 +164,7 @@ const EditarNoticia = (props) => {
           <Form.Group>
             <Form.Label>Párrafo 1</Form.Label>
             <Form.Control
-              as="textarea"
-              rows={3}
               placeholder="Ingrese hasta 800 caracteres"
-              maxLength='800'
               defaultValue={noticia.parrafo1}
               ref={parrafo1Ref}
             />
@@ -176,10 +172,7 @@ const EditarNoticia = (props) => {
           <Form.Group>
             <Form.Label>Párrafo 2</Form.Label>
             <Form.Control
-              as="textarea"
-              rows={3}
               placeholder="Ingrese hasta 800 caracteres"
-              maxLength='800'
               defaultValue={noticia.parrafo2}
               ref={parrafo2Ref}
             />
@@ -187,10 +180,7 @@ const EditarNoticia = (props) => {
           <Form.Group>
             <Form.Label>Párrafo 3</Form.Label>
             <Form.Control
-              as="textarea"
-              rows={3}
               placeholder="Ingrese hasta 800 caracteres"
-              maxLength='800'
               defaultValue={noticia.parrafo3}
               ref={parrafo3Ref}
             />
@@ -239,7 +229,6 @@ const EditarNoticia = (props) => {
   // useEffect que actua cuando cambia la URL
   const location = useLocation();
   useEffect(() => {
-    console.log("route has been changed");
     props.extraerLocal("usuarioLogueadoKey", setUsuarioLog);
   }, [location.pathname]);
 

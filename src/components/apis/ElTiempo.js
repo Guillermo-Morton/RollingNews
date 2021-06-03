@@ -31,19 +31,19 @@ const ElTiempo = () => {
       <h2 className="mt-5 text-center">EL TIEMPO</h2>
       <div className="row my-2">
         <div className="d-flex flex-wrap justify-content-center">
-          <h3 className='mx-4 my-3'>{ciudad}</h3>
-          <h3 className="font-weight-light mx-4 my-3">
+          <h3 className='mx-4 my-3 text-center'>{ciudad}</h3>
+          <h3 className="font-weight-light mx-4 my-3 text-center">
             {datosTiempo}
           </h3>
-          <h3 className='mx-4 my-3'>
+          <h3 className='mx-4 my-3 text-center'>
             <span className="font-weight-light">La temperatura es de </span>
             {datosMain.temp}°c
           </h3>
-          <h3 className='mx-4 my-3'>
+          <h3 className='mx-4 my-3 text-center'>
             <span className="font-weight-light">Sensacion termica de </span>
             {datosMain.feels_like}°c
           </h3>
-          <h3 className='mx-4 my-3'>
+          <h3 className='mx-4 my-3 text-center'>
             <span className="font-weight-light">Humedad: </span>
             {datosMain.humidity}%
           </h3>
