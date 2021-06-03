@@ -17,6 +17,7 @@ import Sub from "./components/cuentas/Sub";
 import Verificar from "./components/cuentas/Verificar";
 import { animateScroll as scroll } from "react-scroll";
 import Error404 from "./components/Error404";
+import Contacto from "./components/Contacto";
 import PantallaCarga from "./components/helpers/pantallas/PantallaCarga";
 
 // , scrollSpy, scroller
@@ -252,6 +253,9 @@ function App() {
             </Route>
             <Route exact path="/error404">
               <Error404 toggleScroll={toggleScroll}></Error404>
+            </Route>
+            <Route exact path="/contacto">
+              <Contacto toggleScroll={toggleScroll}></Contacto>
             </Route>
           </Switch>
           <Footer toggleScroll={toggleScroll}></Footer>

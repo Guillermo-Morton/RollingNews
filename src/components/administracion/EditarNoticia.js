@@ -167,7 +167,8 @@ const EditarNoticia = (props) => {
             <Form.Control
               as="textarea"
               rows={3}
-              placeholder="Ingrese hasta 200 caracteres"
+              placeholder="Ingrese hasta 800 caracteres"
+              maxLength='800'
               defaultValue={noticia.parrafo1}
               ref={parrafo1Ref}
             />
@@ -177,7 +178,8 @@ const EditarNoticia = (props) => {
             <Form.Control
               as="textarea"
               rows={3}
-              placeholder="Ingrese hasta 200 caracteres"
+              placeholder="Ingrese hasta 800 caracteres"
+              maxLength='800'
               defaultValue={noticia.parrafo2}
               ref={parrafo2Ref}
             />
@@ -187,7 +189,8 @@ const EditarNoticia = (props) => {
             <Form.Control
               as="textarea"
               rows={3}
-              placeholder="Ingrese hasta 200 caracteres"
+              placeholder="Ingrese hasta 800 caracteres"
+              maxLength='800'
               defaultValue={noticia.parrafo3}
               ref={parrafo3Ref}
             />
@@ -219,7 +222,7 @@ const EditarNoticia = (props) => {
               ))}
             </Form.Control>
           </Form.Group>
-          <Button variant="primary" type="submit">
+          <Button className='boton' type="submit">
             Agregar
           </Button>
         </Form>

@@ -7,12 +7,12 @@ const Footer = (props) => {
       <Link onClick={props.toggleScroll} className="font-weight-light text-decoration-none lead azul">
         Rolling<span className="font-weight-bold">news.</span>
       </Link>
-        <div className="d-md-flex text-center my-2">
-          <NavLink onClick={props.toggleScroll} to='/error404' className="text-dark px-2">Políticas de privacidad</NavLink>
-          <NavLink to='' className="text-dark px-2">Contacto</NavLink>
-          <NavLink onClick={props.toggleScroll} to='/error404' className="text-dark px-2">Contrato de suscripción</NavLink>
+        <div className="d-flex footer text-center my-2">
+          <NavLink onClick={props.toggleScroll} to='/error404' className="text-dark px-2 my-2 fuentesFooter">Políticas de privacidad</NavLink>
+          <NavLink onClick={props.toggleScroll} to='/contacto' className="text-dark px-2 my-2 fuentesFooter">Contacto</NavLink>
+          <NavLink onClick={props.toggleScroll} to='/error404' className="text-dark px-2 my-2 fuentesFooter">Contrato de suscripción</NavLink>
         </div>
-        <p className='text-dark text-center px-2'>&copy; Rollingnews 2021 todos los derechos reservados</p>
+        <p className='text-dark text-center px-2 fuentesFooter'>&copy; Rollingnews 2021 todos los derechos reservados</p>
     </div>
   );
 };

@@ -123,6 +123,7 @@ const Inicio = (props) => {
       </section>
       <hr></hr>
       <section className="my-3">
+              <ElTiempo></ElTiempo>
         <h2 className="mt-5">MÁS NOTICIAS</h2>
         <div className="row">
           <div className="col-lg-10 col-sm-12 col-md-12">
@@ -157,7 +158,6 @@ const Inicio = (props) => {
             />
           </div>
         </div>
-        <ElTiempo></ElTiempo>
       </section>
     </div>
   );

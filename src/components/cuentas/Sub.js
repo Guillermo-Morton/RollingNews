@@ -97,7 +97,7 @@ const Sub = (props) => {
         message: `Este es tu código único ;)`,
         id: `${code}`,
         message2: `Completá la verificación ingresando el código en el siguiente link`,
-        link: `http://localhost:3000/suscribirse/verificar`,
+        link: `https://rollingnewsproject.netlify.app//suscribirse/verificar`,
         email: `${email}`,
       })
       .then(

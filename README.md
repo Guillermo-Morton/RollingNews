@@ -1,70 +1,64 @@
-# Getting Started with Create React App
+# RollingNews
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+_Sitio de noticias, creado como muestra de conocimiento para finalizar el cursado en RollingCode School_
 
-## Available Scripts
+## Comenzando 🚀
 
-In the project directory, you can run:
+_Estas instrucciones te permitirán obtener una copia del proyecto en funcionamiento en tu máquina local para propósitos de desarrollo y pruebas._
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Pre-requisitos 📋
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+_Que cosas necesitas para instalar el software y como instalarlas_
 
-### `npm test`
+```
+Necesitaras algunas dependencias y programas NodeJS, React Router, Rxjs Hooks, Styled Components, entre otras.
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Instalación 🔧
 
-### `npm run build`
+_Procederemos a clonar el repositorio, e instalar las distintas dependencias_
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```
+Git clone https://github.com/Guillermo-Morton/RollingNews.git
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+_Instalar nuevamente npm con el comando: npm install._
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```
+npm install
+```
+_Ejecutar el proyecto con: npm run start._
 
-### `npm run eject`
+```
+npm start
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+_Y listo, ya puedes probar el sitio desde tu maquina local_
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Construido con 🛠️
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+_Menciona las herramientas que utilizaste para crear tu proyecto_
 
-## Learn More
+* [React](https://es.reactjs.org/) - El framework web usado
+* [NodeJS](https://nodejs.org/es/) - Manejador de dependencias
+* [Express](https://expressjs.com/es/) - Usado para generar el backend
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Versionado 📌
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Usamos [Git](https://git-scm.com/) para el sistema de ramas y versiones.
 
-### Code Splitting
+## Autores ✒️
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
+* **Guillermo Morton** - *Fullstack Developer* - [Github](https://github.com/Guillermo-Morton)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-### Making a Progressive Web App
+## Licencia 📄
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Este proyecto no tiene licencia
 
-### Advanced Configuration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+---
+⌨️ con ❤️ a la programacion por [Guillermo Morton](https://github.com/Guillermo-Morton) 😊

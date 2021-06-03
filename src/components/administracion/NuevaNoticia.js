@@ -148,7 +148,8 @@ const NuevaNoticia = (props) => {
               as="textarea"
               rows={3}
               value={parrafo1}
-              placeholder="Ingrese hasta 400 caracteres"
+              placeholder="Ingrese hasta 800 caracteres"
+              maxLength='800'
             />
           </Form.Group>
           <Form.Group>
@@ -158,7 +159,8 @@ const NuevaNoticia = (props) => {
               as="textarea"
               rows={3}
               value={parrafo2}
-              placeholder="Ingrese hasta 400 caracteres"
+              placeholder="Ingrese hasta 800 caracteres"
+              maxLength='800'
             />
           </Form.Group>
           <Form.Group>
@@ -168,7 +170,8 @@ const NuevaNoticia = (props) => {
               as="textarea"
               rows={3}
               value={parrafo3}
-              placeholder="Ingrese hasta 400 caracteres"
+              placeholder="Ingrese hasta 800 caracteres"
+              maxLength='800'
             />
           </Form.Group>
           <Form.Group>
@@ -200,7 +203,7 @@ const NuevaNoticia = (props) => {
               ))}
             </Form.Control>
           </Form.Group>
-          <Button variant="primary" type="submit">
+          <Button className='boton' type="submit">
             Agregar
           </Button>
         </Form>
