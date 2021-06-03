@@ -164,33 +164,24 @@ const EditarNoticia = (props) => {
           <Form.Group>
             <Form.Label>Párrafo 1</Form.Label>
             <Form.Control
-              as="textarea"
-              rows={5}
               placeholder="Ingrese hasta 800 caracteres"
               defaultValue={noticia.parrafo1}
-              value={noticia.parrafo1}
               ref={parrafo1Ref}
             />
           </Form.Group>
           <Form.Group>
             <Form.Label>Párrafo 2</Form.Label>
             <Form.Control
-              as="textarea"
-              rows={5}
               placeholder="Ingrese hasta 800 caracteres"
               defaultValue={noticia.parrafo2}
-              value={noticia.parrafo2}
               ref={parrafo2Ref}
             />
           </Form.Group>
           <Form.Group>
             <Form.Label>Párrafo 3</Form.Label>
             <Form.Control
-              as="textarea"
-              rows={5}
               placeholder="Ingrese hasta 800 caracteres"
               defaultValue={noticia.parrafo3}
-              value={noticia.parrafo3}
               ref={parrafo3Ref}
             />
           </Form.Group>
