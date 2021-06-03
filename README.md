@@ -39,7 +39,7 @@ _Y listo, ya puedes probar el sitio desde tu maquina local_
 
 ## Construido con 🛠️
 
-_Menciona las herramientas que utilizaste para crear tu proyecto_
+_Se utilizo React para crear este proyecto_
 
 * [React](https://es.reactjs.org/) - El framework web usado
 * [NodeJS](https://nodejs.org/es/) - Manejador de dependencias
