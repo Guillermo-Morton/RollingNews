@@ -1,19 +1,31 @@
 import React, { useState, useEffect } from "react";
-import { useParams, withRouter } from "react-router";
+import { useParams } from "react-router";
+import { Link } from "react-router-dom";
+import PantallaCategorias from "../helpers/pantallas/PantallaCategorias";
+import adds1 from "../../img/adds1.jpg";
+import adds2 from "../../img/adds2.jpg";
+import adds3 from "../../img/adds3.jpg";
 
-const SeccionCategoria = () => {
+const SeccionCategoria = (props) => {
   const URL = process.env.REACT_APP_API_URL;
   const URL2 = process.env.REACT_APP_API_URL2;
   // obtengo el parametro de la URL
   const { id } = useParams();
+
   // declaramos los states
   const [noticias, setNoticias] = useState([]);
   const [categoria, setCategoria] = useState("");
+
   // states de secciones
   const [destacada, setDestacada] = useState({});
   const [noticiaSm, setNoticiaSm] = useState([]);
   const [noticiaMd, setNoticiaMd] = useState([]);
   const [masNoticias, setMasNoticias] = useState([]);
+  const [noticiasOtrasCategorias, setNoticiasOtrasCategorias] = useState([]);
+
+  // contador de noticias vistas
+  let noticiasVistas = 0;
+
   // consultamos la categoria
   const consultarCategoria = async () => {
     try {
@@ -28,8 +40,8 @@ const SeccionCategoria = () => {
       console.log(error);
     }
   };
-  // Filtrar las noticias segun su categoría
 
+  // Filtrar las noticias segun su categoría
   const consultarAPI = async () => {
     try {
       const consulta = await fetch(URL);
@@ -38,30 +50,55 @@ const SeccionCategoria = () => {
       const noticiasFiltradas = respuesta.filter(
         (noticia) => noticia.categoria === categoria
       );
-      setNoticias(noticiasFiltradas);
+      const noticiasOtraCategoria = respuesta.filter(
+        (noticia) => noticia.categoria != categoria
+      );
+      setNoticias(noticiasFiltradas.reverse());
+      setNoticiasOtrasCategorias(noticiasOtraCategoria.reverse());
     } catch (error) {
       console.log(error);
     }
   };
   const secciones = () => {
     // Destacada
-    setDestacada(noticias[noticias.length - 1]);
+    setDestacada(noticias[0]);
+
     // Noticias chicas
     const _noticiaSm = [];
-    for (let i = 0; i < 6; i++) {
+    for (let i = 1; i < 7; i++) {
       _noticiaSm.push(noticias[i]);
-      _noticiaSm.reverse();
     }
     setNoticiaSm(_noticiaSm);
+
     // Noticias Medianas
     const _noticiaMd = [];
-    for (let i = 6; i < 8; i++) {
+    for (let i = 7; i < 9; i++) {
       _noticiaMd.push(noticias[i]);
-      _noticiaMd.reverse();
     }
     setNoticiaMd(_noticiaMd);
+
+    // Otras noticias
   };
-  // Traer los datos del objeto
+  // funcion para obtener 6 noticias al azar de otras categorias
+  const otrasNoticias = () => {
+    const max = noticiasOtrasCategorias.length - 1;
+    const _indexNoticias = [];
+    const _masNoticias = [];
+    let result = [];
+    for (let i = 0; i < 12; i++) {
+      const resultado = Math.floor(Math.random() * (max - 1)) + 1;
+      _indexNoticias.push(resultado);
+      result = _indexNoticias.filter((item, index) => {
+        return _indexNoticias.indexOf(item) === index;
+      });
+    }
+    result.splice(6, result.length - 6);
+    for (let i in result) {
+      _masNoticias.push(noticiasOtrasCategorias[result[i]]);
+    }
+    setMasNoticias(_masNoticias);
+  };
+
   useEffect(() => {
     consultarCategoria();
   }, [id]);
@@ -71,63 +108,162 @@ const SeccionCategoria = () => {
   useEffect(() => {
     secciones();
   }, [noticias]);
+  useEffect(() => {
+    otrasNoticias();
+  }, [noticiasOtrasCategorias]);
+  // pantalla de carga
+  const [cargado, setCargado] = useState(false);
+
+  useEffect(() => {
+    setCargado(false);
+    fetch("https://rollingnews5a.herokuapp.com/api/rollingnews/noticias").then(
+      (response) =>
+        response.json().then(() => {
+          setTimeout(() => {
+            setCargado(true);
+            console.log("cargada");
+          }, 500);
+        })
+    );
+  }, [categoria]);
+
+  const mostrarCarga = cargado === true ? "" : "d-none";
+  const ocultarCarga = cargado === false ? "" : "d-none";
   return (
     <div className="container">
-      <h2 className="mt-5">{categoria}</h2>
-      <section>
-        <div className="row">
-          <div className="col-lg-9">
-            <div className="row my-2">
-              <div className="col-lg-12 mb-5">
-                <div className="bg-secondary w-100 div-imagen-grande mb-2"></div>
-                <h4>{destacada && destacada.titulo}</h4>
+      <div className={ocultarCarga}>
+        <PantallaCategorias categoria={categoria}></PantallaCategorias>
+      </div>
+      <div className={mostrarCarga}>
+        <section className="my-5">
+          <h2 className="mb-3 px-2">{categoria.toUpperCase()}</h2>
+          <div className="row">
+            <div className="col-lg-10 col-sm-12">
+              <div className="px-2">
+                <Link
+                  onClick={props.limiteNoticias}
+                  onClick={props.toggleScroll}
+                  key={destacada && destacada._id}
+                  exact="true"
+                  to={`/detalle/${destacada && destacada._id}`}
+                  className="w-100 text-dark text-decoration-none"
+                >
+                  <img
+                    className="w-100 noticia-imagen"
+                    src={destacada && destacada.imagen1}
+                    alt=""
+                  />
+                  <h4 className="destacada-titulo p-3">
+                    {destacada && destacada.titulo}
+                  </h4>
+                </Link>
               </div>
             </div>
-            <div className="d-flex flex-wrap">
-              {noticiaSm.map((noticia) => (
-                <div className="noticias-chicas px-2">
-                  <div className="bg-secondary w-100 div-imagen-chica mb-2"></div>
-                  <h6>{noticia && noticia.titulo}</h6>
-                </div>
-              ))}
+            <div className="col-lg-2">
+              <img
+                className="w-100 h-100 anuncios"
+                src={adds2}
+                alt="anuncio de panaderia cocu"
+              />
             </div>
           </div>
-          <div className="col-lg-3">
-            <div className="bg-secondary w-75 div-anuncio ml-auto"></div>
-          </div>
-        </div>
-      </section>
-
-      <section>
-        <div className="d-flex flex-wrap my-5">
-          {noticiaMd.map((noticia) => (
-            <div className="px-2 noticias-medianas">
-              <div className="bg-secondary w-100 div-imagen-grande mb-2"></div>
-              <h6>
-              {noticia && noticia.titulo}
-              </h6>
+        </section>
+        <hr></hr>
+        <section className="mb-5 mt-4">
+          <div className="row">
+            <div className="col-lg-10 col-sm-12">
+              <div className="contenedor-noticias-chicas">
+                {noticiaSm.map((noticia) => (
+                  <Link
+                    key={noticia && noticia._id}
+                    onClick={props.toggleScroll}
+                    exact={true}
+                    to={`/detalle/${noticia && noticia._id}`}
+                    className="noticias-chicas px-2 mt-4  text-decoration-none text-dark d-flex flex-column"
+                  >
+                    <img
+                      className="w-100 h-50 noticia-imagen"
+                      src={noticia && noticia.imagen1}
+                      alt=""
+                    />
+                    <div className="noticia-titulo px-3 py-2  d-flex flex-column">
+                      <h6>{noticia && noticia.titulo}</h6>
+                    </div>
+                  </Link>
+                ))}
+              </div>
             </div>
-          ))}
-        </div>
-      </section>
-
-      <section>
-        <div className="row mt-5">
-          <div className="col-lg-9">
+            <div className="col-lg-2">
+              <img
+                className="w-100 h-100 anuncios"
+                src={adds3}
+                alt="anuncio de bartenders"
+              />
+            </div>
+          </div>
+        </section>
+        <hr></hr>
+        <section className="my-5">
           <div className="d-flex flex-wrap">
-              {noticiaSm.map((noticia) => (
-                <div className="noticias-chicas px-2">
-                  <div className="bg-secondary w-100 div-imagen-chica mb-2"></div>
-                  <h6>{noticia && noticia.titulo}</h6>
-                </div>
-              ))}
+            {noticiaMd.map((noticia) => (
+              <Link
+                onClick={props.limiteNoticias}
+                onClick={props.toggleScroll}
+                key={noticia && noticia._id}
+                exact="true"
+                to={`/detalle/${noticia && noticia._id}`}
+                className="px-2 noticias-medianas text-dark text-decoration-none"
+              >
+                <img
+                  className="w-100 mb-2 noticia-imagen div-imagen-grande"
+                  src={noticia && noticia.imagen1}
+                  alt=""
+                />
+                <h6 className="destacada-titulo h-25 p-3">
+                  {noticia && noticia.titulo}
+                </h6>
+              </Link>
+            ))}
+          </div>
+        </section>
+
+        <section>
+          <h2>OTRAS NOTICIAS</h2>
+          <div className="row mt-5">
+            <div className="col-lg-10">
+              <div className="contenedor-noticias-chicas">
+                {masNoticias.map((noticia) => (
+                  <Link
+                    onClick={props.limiteNoticias}
+                    onClick={props.toggleScroll}
+                    key={noticia && noticia._id}
+                    exact={true}
+                    to={`/detalle/${noticia && noticia._id}`}
+                    className="noticias-chicas px-2 my-2 text-decoration-none text-dark d-flex flex-column"
+                  >
+                    <img
+                      className="w-100 h-50 noticia-imagen"
+                      src={noticia && noticia.imagen1}
+                      alt=""
+                    />
+                    <div className="noticia-titulo px-3 py-2  d-flex flex-column justify-content-between">
+                      <h6>{noticia && noticia.titulo}</h6>
+                      <p>{noticia && noticia.categoria}</p>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </div>
+            <div className="col-lg-2">
+              <img
+                className="w-100 h-100 anuncios"
+                src={adds1}
+                alt="anuncio de rollingbank"
+              />
             </div>
           </div>
-          <div className="col-lg-3">
-            <div className="bg-secondary w-75 div-anuncio ml-auto"></div>
-          </div>
-        </div>
-      </section>
+        </section>
+      </div>
     </div>
   );
 };

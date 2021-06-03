@@ -1,4 +1,4 @@
-import { faEdit, faTrashAlt } from "@fortawesome/free-regular-svg-icons";
+import { faTrashAlt } from "@fortawesome/free-regular-svg-icons";
 import { faPen } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
@@ -55,14 +55,14 @@ const NoticiaIndividual = (props) => {
 
   return (
     <tr>
-      <td>{props.noticia.id}</td>
+      <td>{props.noticia._id}</td>
       <td>{props.noticia.titulo}</td>
       <td>{props.noticia.subtitulo}</td>
       <td>{props.noticia.categoria}</td>
       <td className="d-flex justify-content-center">
         <Link
           className="btn btn-warning mx-1"
-          to={`/administracion/editar/${props.noticia.id}`}
+          to={`/administracion/editar/${props.noticia._id}`}
         >
           <FontAwesomeIcon
             className="text-light"
@@ -71,7 +71,7 @@ const NoticiaIndividual = (props) => {
         </Link>
         <button
           className=" mx-1 btn btn-danger"
-          onClick={() => eliminarNoticia(props.noticia.id)}
+          onClick={() => eliminarNoticia(props.noticia._id)}
         >
           <FontAwesomeIcon icon={faTrashAlt}></FontAwesomeIcon>
         </button>

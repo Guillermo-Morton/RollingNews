@@ -1,18 +1,18 @@
 import React from "react";
-import {Nav } from "react-bootstrap";
+import { Link, NavLink } from "react-router-dom";
 
-const Footer = () => {
+const Footer = (props) => {
   return (
-    <div className="d-flex align-items-center flex-column bg-light mt-5 py-3">
-      <a className="font-weight-lighttext-primary lead">
+    <div className="d-flex align-items-center flex-column bg-light py-3 mt-4">
+      <Link onClick={props.toggleScroll} className="font-weight-light text-decoration-none lead azul">
         Rolling<span className="font-weight-bold">news.</span>
-      </a>
-        <div className="d-md-flex text-center my-2">
-          <Nav.Link className="text-muted">Políticas de privacidad</Nav.Link>
-          <Nav.Link className="text-muted">Contacto</Nav.Link>
-          <Nav.Link className="text-muted">Contrato de suscripción</Nav.Link>
+      </Link>
+        <div className="d-flex footer text-center my-2">
+          <NavLink onClick={props.toggleScroll} to='/error404' className="text-dark px-2 my-2 fuentesFooter">Políticas de privacidad</NavLink>
+          <NavLink onClick={props.toggleScroll} to='/contacto' className="text-dark px-2 my-2 fuentesFooter">Contacto</NavLink>
+          <NavLink onClick={props.toggleScroll} to='/error404' className="text-dark px-2 my-2 fuentesFooter">Contrato de suscripción</NavLink>
         </div>
-        <p className='text-muted text-center'>&copy; Rollingnews 2021 todos los derechos reservados</p>
+        <p className='text-dark text-center px-2 fuentesFooter'>&copy; Rollingnews 2021 todos los derechos reservados</p>
     </div>
   );
 };

@@ -1,121 +1,177 @@
 import React, { useEffect, useState } from "react";
-import { Navbar, Nav, Dropdown, FormControl } from "react-bootstrap";
-import { NavLink } from "react-router-dom";
+import { Fragment } from "react";
+import { Button } from "react-bootstrap";
+import { useLocation, withRouter } from "react-router-dom";
+import Sidebar from "./sidebar/Sidebar";
+import "./nav.scss";
+import ReactDOM from "react-dom";
+import { of, fromEvent, animationFrameScheduler } from "rxjs";
+import {
+  distinctUntilChanged,
+  filter,
+  map,
+  pairwise,
+  switchMap,
+  throttleTime,
+} from "rxjs/operators";
 
-const NavB = (props) => {
-  const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
-    <a
-      className="nav-link"
-      ref={ref}
-      onClick={(e) => {
-        e.preventDefault();
-        onClick(e);
-      }}
-    >
-      {children}
-      &#x25bc;
-    </a>
-  ));
-  const CustomMenu = React.forwardRef(
-    ({ children, style, className, "aria-labelledby": labeledBy }, ref) => {
-      const [value, setValue] = useState("");
+import { useObservable } from "rxjs-hooks";
 
-      return (
-        <div
-          hrex=""
-          ref={ref}
-          style={style}
-          className={className}
-          aria-labelledby={labeledBy}
-        >
-          <FormControl
-            autoFocus
-            className="mx-1 w-auto"
-            placeholder="Filtrar..."
-            onChange={(e) => setValue(e.target.value)}
-            value={value}
-          />
-          <ul className="list-unstyled mx-2">
-            {React.Children.toArray(children).filter(
-              (child) =>
-                !value || child.props.children.toLowerCase().startsWith(value)
-            )}
-          </ul>
-        </div>
-      );
-    }
+import { Nav, NavLink, Bars, NavMenu } from "./navbar/NavbarElements";
+
+const watchScroll = () =>
+  of(typeof window === "undefined").pipe(
+    filter((bool) => !bool),
+    switchMap(() => fromEvent(window, "scroll", { passive: true })),
+    throttleTime(0, animationFrameScheduler),
+    map(() => window.pageYOffset),
+    pairwise(),
+    map(([previous, current]) => (current < previous ? "Up" : "Down")),
+    distinctUntilChanged()
   );
 
-  return (
-    <div className="bg-light">
-      <div className="container-fluid py-2 px-3 d-flex justify-content-between">
+const NavB = (props) => {
+  // contiene el usuario logueado actualmente
+  const [usuarioLog, setUsuarioLog] = useState({});
+
+  const cerrarSesion = () => {
+    setUsuarioLog({});
+    setTimeout(() => {
+      props.history.push("/");
+    }, 300);
+  };
+
+  const mostrarIngresar =
+    usuarioLog.nombre === undefined ? (
+      <Fragment>
         <NavLink
+          onClick={props.toggleScrollBottom}
           exact={true}
           to="/ingresar"
-          className="btn btn-outline-primary px-3 py-1"
+          className="boton-outline d-flex align-items-center"
         >
           Ingresar
         </NavLink>
         <NavLink
+          onClick={props.toggleScrollBottom}
           exact={true}
-          to="/administracion"
-          className="btn btn-outline-primary px-3 py-1"
+          to="/suscribirse"
+          className="boton d-flex align-items-center"
         >
-          Administración
+          Registrate
         </NavLink>
-      </div>
-      <Navbar
-        className="d-md-flex flex-md-column"
-        collapseOnSelect
-        expand="md"
-        bg="light"
-        variant="light"
+      </Fragment>
+    ) : (
+      <Fragment>
+        <Button
+          className="boton-outline responsive-boton1"
+          onClick={cerrarSesion}
+        >
+          Cerrar Sesion
+        </Button>
+      </Fragment>
+    );
+  const mostrarAdministracion =
+    usuarioLog.nombre === "Admin" &&
+      usuarioLog._id === "60b459c2c51ad300211df3fe" ? (
+      <NavLink
+        exact={true}
+        to="/administracion"
+        className="boton d-flex align-items-center"
       >
-        <NavLink
-          exact={true}
-          to="/"
-          className="text-primary text-decoration-none"
-        >
-          <h2 className="font-weight-light text-center">
-            Rolling<span className="font-weight-bold">news.</span>
-          </h2>
-        </NavLink>
+        Administración
+      </NavLink>
+    ) : null;
 
-        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-        <Navbar.Collapse id="responsive-navbar-nav">
+  const location = useLocation();
+
+  useEffect(() => {
+    props.extraerLocal("usuarioLogueadoKey", setUsuarioLog);
+  }, [location.pathname]);
+
+  useEffect(() => {
+    localStorage.setItem("usuarioLogueadoKey", JSON.stringify(usuarioLog));
+  }, [usuarioLog]);
+
+  // responsive navbar
+
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggle = () => {
+    setIsOpen(!isOpen);
+  };
+
+  // scroll lock cuando abrimos el boton hamburguesa
+  let body = document.getElementById("scrollLock");
+
+  const scrollLock = () => {
+    if (isOpen) {
+      body.style.overflow = "hidden";
+    } else {
+      body.style.overflow = "visible";
+      body.style =
+        "display:flex; flex-direction: column; min-height: 100vh; align-content: around";
+    }
+  };
+  useEffect(() => {
+    scrollLock();
+  }, [isOpen]);
+
+  const scrollDirection = useObservable(watchScroll, "Up");
+  const esconderNav = scrollDirection === "Down" ? "hidden" : "null";
+  return (
+    <div className="margen">
+      <div className="bg-light">
+        <Sidebar
+          toggleScrollBottom={props.toggleScrollBottom}
+          toggleScroll={props.toggleScroll}
+          cerrarSesion={cerrarSesion}
+          usuarioLog={usuarioLog}
+          categorias={props.categorias}
+          isOpen={isOpen}
+          toggle={toggle}
+          mostrarIngresar={mostrarIngresar}
+          mostrarAdministracion={mostrarAdministracion}
+        ></Sidebar>
+        <div id='nav' className={`site-header ${esconderNav}`}>
+          <div className={"container-fluid py-2 px-3 justify-content-between topbar"}>
+            {mostrarIngresar}
+            {mostrarAdministracion}
+          </div>
           <Nav>
-          {props && props.navegacion.map((categoria) => (
-                  <NavLink
-                    key={categoria && categoria.id}
-                    className="nav-link"
-                    exact={true}
-                    to={`/categoria/${categoria && categoria.id}`}
-                  >
-                    {categoria && categoria.categoriaDisponible}
-                  </NavLink>
-                ))}
-            <Dropdown>
-              <Dropdown.Toggle as={CustomToggle} id="dropdown-basic">
+            <NavLink
+            
+              onClick={props.toggleScroll}
+              exact={true}
+              to="/"
+              className="text-decoration-none "
+            >
+              <h1 className="font-weight-light text-center azul brand">
+                Rolling<span className="font-weight-bold">news.</span>
+              </h1>
+            </NavLink>
+            <Bars onClick={toggle} />
+            <NavMenu className="align-self-center">
+              {props.navegacion.map((categoria) => (
+                <NavLink
+                  onClick={props.toggleScroll}
+                  key={categoria && categoria._id}
+                  className="text-decoration-none links"
+                  exact={true}
+                  to={`/categoria/${categoria && categoria._id}`}
+                >
+                  {categoria && categoria.categoriaDisponible}
+                </NavLink>
+              ))}
+              <NavLink onClick={toggle} to="#" className="text-decoration-none">
                 Categorías
-              </Dropdown.Toggle>
-              <Dropdown.Menu as={CustomMenu}>
-                {props.dropdown.map((categoria) => (
-                  <NavLink
-                    key={categoria && categoria.id}
-                    className="nav-link"
-                    exact={true}
-                    to={`/categoria/${categoria && categoria.id}`}
-                  >
-                    {categoria && categoria.categoriaDisponible}
-                  </NavLink>
-                ))}
-              </Dropdown.Menu>
-            </Dropdown>
+              </NavLink>
+            </NavMenu>
           </Nav>
-        </Navbar.Collapse>
-      </Navbar>
+        </div>
+      </div>
     </div>
   );
 };
 
-export default NavB;
+export default withRouter(NavB);

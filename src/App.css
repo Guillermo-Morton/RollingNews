@@ -1,44 +1,335 @@
-/* Divs ilustrativos */
-.div-imagen-grande{
-    height: 300px;
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+
+
+body {
+  font-family: "Montserrat", sans-serif !important;
+  color: #454347;
+  transition: 0.4s;
 }
-.div-imagen-chica{
-    height: 150px;
- 
+.min-height{
+  min-height: 100vh;
 }
-.noticias-chicas{
-    width: 33.33%;
+.bajar-footer{
+  min-height:71vh;
 }
-.noticias-medianas{
-    width: 50%;
+.bajar-footer2{
+  min-height: 80vh;
 }
-.div-anuncio{
-    height: 100%;
+
+.margen{
+  height: 152px;
+   ;
 }
-.div-anuncio2{
-    height: 1050px;
+/* card noticia */
+.noticia-imagen {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
 }
-.div-clima{
-    height: 500px;
+.noticia-titulo {
+  /* background-color: rgb(245, 245, 245); */
+  box-shadow: 1px 2px 3px 0px rgba(0, 0, 0, 0.2);
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  height: 50%;
 }
-/* Color de fuente */
-.fuente{
-    color:rgb(97, 97, 97);
+.recomendada-titulo {
+  /* background-color: rgb(245, 245, 245); */
+  box-shadow: 1px 2px 3px 0px rgba(0, 0, 0, 0.2);
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+.destacada-titulo{
+  box-shadow: 1px 2px 3px 0px rgba(0, 0, 0, 0.2);
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.noticias-chicas {
+  width: 33.33%;
+}
+.noticias-recomendadas {
+  width: 50%;
+}
+
+.contenedor-noticias-chicas {
+  display: flex;
+  flex-wrap: wrap;
+}
+.link-admin{
+  width: 25%;
+  font-size: 25px;
+}
+.links-admin{
+  display: flex;
+}
+/* topbar */
+.topbar{
+    display: flex!important;
+    
+}
+.mostrar-botones{
+  display: none;
+}
+
+.anuncios{
+  border-radius: 5px;
+}
+.noticias-medianas {
+  width: 50%;
+}
+/* Colores */
+.azul {
+  color: #1d428d !important;
+}
+/* Botones */
+.boton-outline {
+  color: #071738 !important;
+  background-color: white !important;
+  border: 1px solid #071738 !important;
+  border-radius: 20px !important;
+  text-decoration: none !important;
+  padding: 5px 60px !important;
+}
+.boton-outline:hover {
+  color: white !important;
+  background-color: #1d428d !important;
+  border: 1px solid #050e20 !important;
+}
+.boton {
+  color: white !important;
+  background-color: #1d428d !important;
+  border: 1px solid #1d428d !important;
+  border-radius: 20px !important;
+  text-decoration: none !important;
+  padding: 5px 60px !important;
+}
+.boton:hover {
+  color: white !important;
+  background-color: #0c327c !important;
+  border: 1px solid #0c327c !important;
+}
+
+.error{
+  width: 30%;
+}
+/* pantallas de carga */
+.carga{
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  z-index:99
+}
+.carga-categoria{
+  height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.fade-in-text {
+  display: inline-block;
+  font-family: Arial, Helvetica, sans-serif;
+  color: black;
+  animation: fadeIn linear 0.8s;
+  -webkit-animation: fadeIn linear 0.8s;
+  -moz-animation: fadeIn linear 0.8s;
+  -o-animation: fadeIn linear 0.8s;
+  -ms-animation: fadeIn linear 0.8s;
+}
+
+@keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+}
+
+@-moz-keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+}
+
+@-webkit-keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+}
+
+@-o-keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+}
+
+@-ms-keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+}
+
+.wrapper{
+  display: flex;
+  overflow-x: scroll;
+
+
+}
+.wrapper::-webkit-scrollbar{
+  border-bottom-left-radius: 10px ;
+  border-bottom-right-radius: 10px ;
 }
 /* media queries /
 / @media mediatype /
 / device lg-grande */
-@media all and (min-width: 992px) and (max-width:1100px){
+@media all and (min-width: 1025px) and (max-width: 1100px) {
 
 }
 /* device md-medio */
-@media all and (min-width: 768px) and (max-width: 991px){
-
-
-
-/* device sm-pequeño */
-@media all and (min-width: 322px) and (max-width: 767px){
+@media all and (min-width: 768px) and (max-width: 1024px) {
+    /* codigo responsive para noticias chicas */
+  .noticias-chicas {
+    width: 50%;
+  }
+  .noticia-titulo {
+    height: 45%;
+  }
+  .contenedor-noticias-chicas {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .link-admin{
+    width: 25%;
+    font-size: 20px;
+  }
+  .margen{
+    height: 152px;
+  }
   
+  .anuncios{
+    display: none;
+   }
 }
 
+/* device sm-pequeño */
+@media all and (min-width: 272px) and (max-width: 768px) {
+    /* codigo responsive para noticias chicas */
+  .noticias-chicas {
+    width: 100%;
+  }
+  .noticia-titulo {
+    height: 35%;
+  }
+  .contenedor-noticias-chicas {
+    display: block;
+  }
+  /* codigo responsive para noticias medianas */
+  .noticias-medianas {
+    width: 100%;
+  }
+  /* codigo responsive noticias recomendadas */
+  .noticias-recomendadas {
+    width: 100%;
+  }
+
+  /* botones */
+  .boton, .boton-outline{
+    padding: 10px 10px !important;
+    font-size: 15px;
+  }
+  .admin{
+    color:white!important
+  }
+  /* ocultar topbar */
+  .topbar{
+      display: none!important;
+  }
+  .link-admin{
+    width: 25%;
+    font-size: 15px;
+  }
+  .link-admin{
+    width: 40%;
+    font-size: 20px;
+    margin: 10px 0px;
+  }
+  .links-admin{
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .margen{
+    height: 100px;
+  }
+  .mostrar-botones{
+    display: flex;
+  }
+  .error{
+    width: 100%;
+  }
+  .brand{
+    font-size: 30px!important;
+    transition: 0.4s;
+    position: absolute!important;
+    top: 15px!important;
+  }
+  .anuncios{
+   display: none;
+  }
+  h6{
+    font-size: 14px!important;
+  }
+  .fuentesFooter{
+    font-size: 14px!important;
+    margin: 10px 0;
+  }
+  .footer{
+    flex-direction: column;
+  }
+  
+}
+@media all and (min-width: 272px) and (max-width: 400px) {
+   
+  .brand{
+    font-size: 30px!important;
+    transition: 0.4s;
+    position: absolute!important;
+    top: 15px!important;
+  }
+  .link-admin{
+    width: 47%;
+    font-size: 15px;
+    margin: 10px 0px;
+  }
+  .links-admin{
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .margen{
+    height: 70px;
+  }
+  .mostrar-botones{
+    display: flex;
+  }
+  .error{
+    width: 100%;
+  }
+  .boton, .boton-outline{
+    padding: 10px 10px !important;
+    
+  }
+  .mostrarnav{
+    position: fixed;
+    top: 0px;
+  }
+  .ocultarnav{
+    position: fixed;
+    top: -70px;
+  }
+  .anuncios{
+    display: none;
+   }
+   h6{
+    font-size: 14px!important;
+  }
+  .fuentesFooter{
+    font-size: 14px!important;
+    margin: 10px 0;
+  }
+  .footer{
+    flex-direction: column;
+  }
 }
