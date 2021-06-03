@@ -13,11 +13,15 @@ const Ingreso = (props) => {
   const [usuarioLog, setUsuarioLog] = useState({});
   const [log, setLog] = useState(false);
   const [error, setError] = useState(false);
+  const [errorNombre, setErrorNombre] = useState(undefined);
+  const [errorPass, setErrorPass] = useState(undefined);
+  const [notVerified, setNotVerified] = useState(false);
+  const [usuarioEncontrado, setUsuarioEncontrado] = useState({});
   // funcion handle submit
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (campoRequerido(nombre) && campoRequerido(pass)) {
-      consultarUsuarios();
+      loguear();
       setError(false);
       setLog(true);
     } else {
@@ -31,8 +35,20 @@ const Ingreso = (props) => {
       const consulta = await fetch(URL3);
       const respuesta = await consulta.json();
       setUsuarios(respuesta);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const loguear = async () => {
+    try {
+      const consulta = await fetch(URL3);
+      const respuesta = await consulta.json();
       // confirmamos si los datos ingresados coinciden con los de algun usuario
+      validarGeneral();
       for (let i in respuesta) {
+        if (respuesta[i].nombre === nombre) {
+          setUsuarioEncontrado(respuesta[i]);
+        }
         if (
           respuesta[i].nombre === nombre &&
           respuesta[i].pass === pass &&
@@ -57,9 +73,70 @@ const Ingreso = (props) => {
       console.log(false);
     }
   };
+
+  const validarGeneral = () => {
+    let nombreReturn = validarNombre();
+    let passReturn = validarPass();
+    let verificadoReturn = verificado();
+    console.log(verificadoReturn);
+    console.log(nombreReturn);
+    console.log(passReturn);
+  };
+
+  const validarNombre = () => {
+    for (let i in usuarios) {
+      if (usuarios[i].nombre === nombre.trim()) {
+        setErrorNombre(false);
+        console.log("User found");
+        return true;
+      } else {
+        setErrorNombre(true);
+        setNombre("");
+        return false;
+      }
+    }
+  };
+  const validarPass = () => {
+    for (let i in usuarios) {
+      if (usuarios[i].pass === pass.trim()) {
+        setErrorPass(false);
+        console.log("Contraseña correcta");
+        return true;
+      } else {
+        setErrorPass(true);
+        setPass("");
+        return false;
+      }
+    }
+  };
+  const verificado = () => {
+    for (let i in usuarios) {
+      if (
+        usuarios[i].nombre === nombre.trim() &&
+        usuarios[i].verified === true
+      ) {
+        setNotVerified(false);
+        return true;
+      } else {
+        setNotVerified(true);
+        setTimeout(() => {
+          props.history.push("/suscribirse/verificar");
+        }, 1500);
+        return false;
+      }
+    }
+  };
+  const nombreInvalido = errorNombre === true ? "is-invalid" : "";
+  const nombreValido = errorNombre === false ? "is-valid" : "";
+  const passInvalido = errorPass === true ? "is-invalid" : "";
+  const passValido = errorPass === false ? "is-valid" : "";
+
   useEffect(() => {
     loginLocal();
   }, [usuarioLog]);
+  useEffect(() => {
+    consultarUsuarios();
+  }, []);
 
   return (
     <div className="container my-2 bajar-footer d-flex flex-column justify-content-center">
@@ -69,7 +146,14 @@ const Ingreso = (props) => {
       <Form onSubmit={handleSubmit} className="w-75 mx-auto">
         <Form.Group>
           {error === true ? (
-            <Alert variant={"danger"}>Todos los campos son obligatorios</Alert>
+            <Alert className="small text-center">
+              Todos los campos son obligatorios
+            </Alert>
+          ) : null}
+          {notVerified === true ? (
+            <Alert className="small text-center">
+              Completa la verificacion de tu usuario para poder ingresar
+            </Alert>
           ) : null}
           <Form.Label>Tu nombre de usuario</Form.Label>
           <Form.Control
@@ -77,6 +161,7 @@ const Ingreso = (props) => {
             type="text"
             placeholder="Jorgito"
             value={nombre}
+            className={`${nombreValido} ${nombreInvalido}`}
           />
         </Form.Group>
         <Form.Group>
@@ -86,7 +171,13 @@ const Ingreso = (props) => {
             type="password"
             placeholder="Contraseña"
             value={pass}
+            className={`${passInvalido} ${passValido}`}
           />
+          {errorPass === true || errorNombre === true ? (
+            <Alert className="small text-center">
+              Usuario o contraseña incorrectos
+            </Alert>
+          ) : null}
         </Form.Group>
         <div className="d-flex justify-content-center mb-3">
           <a className="text-muted">¿Olvidaste tu contraseña?</a>

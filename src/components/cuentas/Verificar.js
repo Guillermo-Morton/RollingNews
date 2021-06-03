@@ -83,7 +83,8 @@ const Verificar = (props) => {
   },[verified]);
 
   return (
-    <div className="container">
+    <div className="container my-2 bajar-footer d-flex flex-column justify-content-center">
+      <h2 className='font-weight-light text-center my-3'>Te enviamos un correo con tu código</h2>
       <Form>
         <Form.Group>
           <Form.Label className="mt-4">Ingresá tu nombre de usuario</Form.Label>
