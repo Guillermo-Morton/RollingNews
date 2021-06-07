@@ -10,7 +10,6 @@ const Administración = (props) => {
   const volverInicio = () => {
     setTimeout(() => {
       if (usuarioLog.nombre === "Admin") {
-        console.log("Adminxd");
         return;
       } else {
         props.history.push("/");

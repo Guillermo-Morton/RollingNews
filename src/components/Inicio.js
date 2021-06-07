@@ -43,8 +43,10 @@ const Inicio = (props) => {
           <div className="col-lg-6 col-md-12">
             <div className="d-flex">
               <Link
-                onClick={props.limiteNoticias}
-                onClick={props.toggleScroll}
+                onClick={() => {
+                  props.limiteNoticias();
+                  props.toggleScroll();
+                }}
                 key={destacada && destacada._id}
                 exact={true}
                 to={`/detalle/${destacada && destacada._id}`}
@@ -68,8 +70,10 @@ const Inicio = (props) => {
             <div className="d-flex flex-wrap">
               {recomendadas.map((noticia) => (
                 <Link
-                  onClick={props.limiteNoticias}
-                  onClick={props.toggleScroll}
+                  onClick={() => {
+                    props.limiteNoticias();
+                    props.toggleScroll();
+                  }}
                   key={noticia && noticia._id}
                   exact="true"
                   to={`/detalle/${noticia && noticia._id}`}
@@ -102,8 +106,10 @@ const Inicio = (props) => {
           />
           {props.covid.map((noticia) => (
             <Link
-              onClick={props.limiteNoticias}
-              onClick={props.toggleScroll}
+              onClick={() => {
+                props.limiteNoticias();
+                props.toggleScroll();
+              }}
               key={noticia && noticia._id}
               exact="true"
               to={`/detalle/${noticia && noticia._id}`}
@@ -123,15 +129,17 @@ const Inicio = (props) => {
       </section>
       <hr></hr>
       <section className="my-3">
-              <ElTiempo></ElTiempo>
+        <ElTiempo></ElTiempo>
         <h2 className="mt-5">MÁS NOTICIAS</h2>
         <div className="row">
           <div className="col-lg-10 col-sm-12 col-md-12">
             <div className="contenedor-noticias-chicas">
               {masNoticias.map((noticia) => (
                 <Link
-                  onClick={props.limiteNoticias}
-                  onClick={props.toggleScroll}
+                  onClick={() => {
+                    props.limiteNoticias();
+                    props.toggleScroll();
+                  }}
                   key={noticia && noticia._id}
                   exact="true"
                   to={`/detalle/${noticia && noticia._id}`}

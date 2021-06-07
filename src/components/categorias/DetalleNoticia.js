@@ -80,7 +80,6 @@ const DetalleNoticia = (props) => {
   // useEffect que actua cuando cambia la URL
   const location = useLocation();
   useEffect(() => {
-    console.log("route has been changed");
     props.extraerLocal("noticiasVistasKey", setContador);
     props.extraerLocal("usuarioLogueadoKey", setUsuarioLog);
     if (usuarioLog.nombre != undefined) {
@@ -92,9 +91,9 @@ const DetalleNoticia = (props) => {
     usuarioLog.nombre != undefined || contador < 20 ? (
       <Fragment>
         <h2 className="mt-5">{noticia.titulo}</h2>
-        <div className='d-flex'>
-        <p className='small mx-2'>{noticia.fecha}</p>
-        <p className='small mx-2'>Por {noticia.autor}</p>
+        <div className="d-flex">
+          <p className="small mx-2">{noticia.fecha}</p>
+          <p className="small mx-2">Por {noticia.autor}</p>
         </div>
         <div className="row">
           <div className="col-lg-9 col-md-12">
@@ -122,8 +121,10 @@ const DetalleNoticia = (props) => {
                 <section className="contenedor-noticias-chicas">
                   {masSobre.map((noticia) => (
                     <Link
-                      onClick={props.limiteNoticias}
-                      onClick={props.toggleScroll}
+                      onClick={() => {
+                        props.limiteNoticias();
+                        props.toggleScroll();
+                      }}
                       key={noticia && noticia._id}
                       exact="true"
                       to={`/detalle/${noticia && noticia._id}`}
@@ -147,8 +148,10 @@ const DetalleNoticia = (props) => {
           <div className="col-lg-3 col-md-12 mt-5">
             {recomendadas.map((noticia) => (
               <Link
-                onClick={props.limiteNoticias}
-                onClick={props.toggleScroll}
+                onClick={() => {
+                  props.limiteNoticias();
+                  props.toggleScroll();
+                }}
                 key={noticia && noticia._id}
                 exact="true"
                 to={`/detalle/${noticia && noticia._id}`}
@@ -201,7 +204,6 @@ const DetalleNoticia = (props) => {
         response.json().then(() => {
           setTimeout(() => {
             setCargado(true);
-            console.log("cargada");
           }, 200);
         })
     );

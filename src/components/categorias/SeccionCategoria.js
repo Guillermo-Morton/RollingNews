@@ -34,7 +34,6 @@ const SeccionCategoria = (props) => {
         const resultado = await respuesta.json();
         // actualizo el state
         setCategoria(resultado.categoriaDisponible);
-        console.log(resultado.categoriaDisponible);
       }
     } catch (error) {
       console.log(error);
@@ -121,7 +120,6 @@ const SeccionCategoria = (props) => {
         response.json().then(() => {
           setTimeout(() => {
             setCargado(true);
-            console.log("cargada");
           }, 500);
         })
     );
@@ -141,8 +139,10 @@ const SeccionCategoria = (props) => {
             <div className="col-lg-10 col-sm-12">
               <div className="px-2">
                 <Link
-                  onClick={props.limiteNoticias}
-                  onClick={props.toggleScroll}
+                  onClick={() => {
+                    props.limiteNoticias();
+                    props.toggleScroll();
+                  }}
                   key={destacada && destacada._id}
                   exact="true"
                   to={`/detalle/${destacada && destacada._id}`}
@@ -176,7 +176,10 @@ const SeccionCategoria = (props) => {
                 {noticiaSm.map((noticia) => (
                   <Link
                     key={noticia && noticia._id}
-                    onClick={props.toggleScroll}
+                    onClick={() => {
+                      props.limiteNoticias();
+                      props.toggleScroll();
+                    }}
                     exact={true}
                     to={`/detalle/${noticia && noticia._id}`}
                     className="noticias-chicas px-2 mt-4  text-decoration-none text-dark d-flex flex-column"
@@ -207,8 +210,10 @@ const SeccionCategoria = (props) => {
           <div className="d-flex flex-wrap">
             {noticiaMd.map((noticia) => (
               <Link
-                onClick={props.limiteNoticias}
-                onClick={props.toggleScroll}
+                onClick={() => {
+                  props.limiteNoticias();
+                  props.toggleScroll();
+                }}
                 key={noticia && noticia._id}
                 exact="true"
                 to={`/detalle/${noticia && noticia._id}`}
@@ -234,8 +239,10 @@ const SeccionCategoria = (props) => {
               <div className="contenedor-noticias-chicas">
                 {masNoticias.map((noticia) => (
                   <Link
-                    onClick={props.limiteNoticias}
-                    onClick={props.toggleScroll}
+                  onClick={() => {
+                    props.limiteNoticias();
+                    props.toggleScroll();
+                  }}
                     key={noticia && noticia._id}
                     exact={true}
                     to={`/detalle/${noticia && noticia._id}`}

@@ -2,6 +2,14 @@
 
 _Sitio de noticias, creado como muestra de conocimiento para finalizar el cursado en RollingCode School_
 
+## ¿Que se puede hacer en este proyecto?
+
+_Funciona como un sistema independiente, tiene su base de datos y su modelo administrativo_
+
+* Sistema de usuarios con verificacion por email
+* Agregar/editar/eliminar noticias en el diario web
+* Agregar/eliminar categorias
+
 ## Comenzando 🚀
 
 _Estas instrucciones te permitirán obtener una copia del proyecto en funcionamiento en tu máquina local para propósitos de desarrollo y pruebas._
