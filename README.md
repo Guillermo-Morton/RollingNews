@@ -6,9 +6,11 @@ _Sitio de noticias, creado como muestra de conocimiento para finalizar el cursad
 
 _Funciona como un sistema independiente, tiene su base de datos y su modelo administrativo_
 
-* Sistema de usuarios con verificacion por email
-* Agregar/editar/eliminar noticias en el diario web
-* Agregar/eliminar categorias
+* Sistema de usuarios con verificacion por email.
+* El sistema permite al usuario no registrado leer hasta 20 noticias, una vez superado el limite exije el registro y uso de una cuenta en la plataforma.
+* El sistema distingue al usuario Administrador del resto de usuarios, o usuarios no registrados. Impide el acceso a las paginas adminstrativas a todo aquel que no sea el administrador.
+* Sistema de categorías dinamicas. Agregar/eliminar categorias.
+* Agregar/editar/eliminar noticias en el diario web.
 
 ## Comenzando 🚀
 
