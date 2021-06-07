@@ -12,6 +12,8 @@ _Funciona como un sistema independiente, tiene su base de datos y su modelo admi
 * Sistema de categorías dinamicas. Agregar/eliminar categorias.
 * Agregar/editar/eliminar noticias en el diario web.
 
+_Para ingresar como administrador USUARIO: Admin CONTRASEÑA: 123456_
+
 ## Comenzando 🚀
 
 _Estas instrucciones te permitirán obtener una copia del proyecto en funcionamiento en tu máquina local para propósitos de desarrollo y pruebas._
