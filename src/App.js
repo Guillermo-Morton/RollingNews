@@ -135,7 +135,7 @@ function App() {
       // no existe la key
       noticiasVistas = 0;
       localStorage.setItem("noticiasVistasKey", JSON.stringify(noticiasVistas));
-      console.log('ejecute la funcion')
+      console.log("ejecute la funcion");
       console.log("no existe key");
     } else {
       // si existe la key
@@ -178,7 +178,6 @@ function App() {
       </div>
       <div className={mostrarCarga + " min-height"}>
         <Router>
-      <button onClick={limiteNoticias}>Ola</button>
           <NavB
             toggleScrollBottom={toggleScrollBottom}
             toggleScroll={toggleScroll}
@@ -188,7 +187,7 @@ function App() {
             extraerLocal={extraerLocal}
             categorias={categorias}
           ></NavB>
-
+        
           <Switch>
             <Route exact path="/">
               <Inicio
@@ -214,7 +213,10 @@ function App() {
               ></DetalleNoticia>
             </Route>
             <Route exact path="/ingresar">
-              <Ingreso toggleScroll={toggleScroll} toggleScrollBottom={toggleScrollBottom}></Ingreso>
+              <Ingreso
+                toggleScroll={toggleScroll}
+                toggleScrollBottom={toggleScrollBottom}
+              ></Ingreso>
             </Route>
             <Route exact path="/suscribirse">
               <Sub toggleScrollBottom={toggleScrollBottom}></Sub>

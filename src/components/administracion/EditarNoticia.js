@@ -61,16 +61,16 @@ const EditarNoticia = (props) => {
       // enviamos el objeto a la api
       // crear el objeto a enviar
       const noticiaEditada = {
-        titulo: tituloRef.current.value,
-        subtitulo: subtituloRef.current.value,
-        parrafo1: parrafo1Ref.current.value,
-        parrafo2: parrafo2Ref.current.value,
-        parrafo3: parrafo3Ref.current.value,
+        titulo: tituloRef.current.value.length > 150 ? tituloRef.current.value.slice(0, 150) : tituloRef.current.value,
+        subtitulo: subtituloRef.current.value.length > 150 ? subtituloRef.current.value.slice(0, 150) : subtituloRef.current.value,
+        parrafo1: parrafo1Ref.current.value.length > 1000 ? parrafo1Ref.current.value.slice(0, 1000) : parrafo1Ref.current.value,
+        parrafo2: parrafo2Ref.current.value.length > 1000 ? parrafo2Ref.current.value.slice(0, 1000) : parrafo2Ref.current.value,
+        parrafo3: parrafo3Ref.current.value.length > 800 ? parrafo3Ref.current.value.slice(0, 800) : parrafo3Ref.current.value,
         categoria: categoriaRef.current.value,
-        imagen1: imagen1Ref.current.value,
-        imagen2: imagen2Ref.current.value,
-        autor: autorRef.current.value,
-        fecha: fechaRef.current.value,
+        imagen1: imagen1Ref.current.value.length > 800 ? imagen1Ref.current.value.slice(0, 800) : imagen1Ref.current.value,
+        imagen2: imagen2Ref.current.value.length > 800 ? imagen2Ref.current.value.slice(0, 800) : imagen2Ref.current.value,
+        autor: autorRef.current.value.length > 30 ? autorRef.current.value.slice(0, 30) : autorRef.current.value,
+        fecha: fechaRef.current.value.length > 20 ? fechaRef.current.value.slice(0, 20) : fechaRef.current.value,
       };
       try {
         const respuesta = await fetch(URL + "/" + id, {
@@ -132,6 +132,7 @@ const EditarNoticia = (props) => {
               placeholder="Escriba un título"
               defaultValue={noticia.titulo}
               ref={tituloRef}
+              maxLength="150"
             />
           </Form.Group>
           <Form.Group>
@@ -141,6 +142,7 @@ const EditarNoticia = (props) => {
               placeholder="Escriba un subtítulo"
               defaultValue={noticia.subtitulo}
               ref={subtituloRef}
+              maxLength="150"
             />
           </Form.Group>
           <Form.Group>
@@ -150,6 +152,7 @@ const EditarNoticia = (props) => {
               placeholder="Ejemplo: flores.jpg"
               defaultValue={noticia.imagen1}
               ref={imagen1Ref}
+              maxLength="1000"
             />
           </Form.Group>
           <Form.Group>
@@ -159,6 +162,7 @@ const EditarNoticia = (props) => {
               placeholder="Ejemplo: arboles.jpg"
               defaultValue={noticia.imagen2}
               ref={imagen2Ref}
+              maxLength="1000"
             />
           </Form.Group>
           <Form.Group>
@@ -167,6 +171,7 @@ const EditarNoticia = (props) => {
               placeholder="Ingrese hasta 800 caracteres"
               defaultValue={noticia.parrafo1}
               ref={parrafo1Ref}
+              maxLength="800"
             />
           </Form.Group>
           <Form.Group>
@@ -175,6 +180,7 @@ const EditarNoticia = (props) => {
               placeholder="Ingrese hasta 800 caracteres"
               defaultValue={noticia.parrafo2}
               ref={parrafo2Ref}
+              maxLength="800"
             />
           </Form.Group>
           <Form.Group>
@@ -183,6 +189,7 @@ const EditarNoticia = (props) => {
               placeholder="Ingrese hasta 800 caracteres"
               defaultValue={noticia.parrafo3}
               ref={parrafo3Ref}
+              maxLength="800"
             />
           </Form.Group>
           <Form.Group>
@@ -190,6 +197,7 @@ const EditarNoticia = (props) => {
             <Form.Control
               defaultValue={noticia.autor}
               ref={autorRef}
+              maxLength="30"
               type="text"
               placeholder="Ingrese el autor de la noticia"
             />
@@ -212,7 +220,7 @@ const EditarNoticia = (props) => {
               ))}
             </Form.Control>
           </Form.Group>
-          <Button className='boton' type="submit">
+          <Button className="boton" type="submit">
             Agregar
           </Button>
         </Form>

@@ -108,43 +108,47 @@ const NuevaNoticia = (props) => {
             ) : null}
             <Form.Label>Título principal</Form.Label>
             <Form.Control
-              onChange={(e) => setTitulo(e.target.value)}
+              onChange={(e) => setTitulo(titulo.length > 150 ? e.target.value.slice(0, 150) : e.target.value)}
               type="text"
               placeholder="Escriba un título"
               value={titulo}
+              maxLength='150'
             />
           </Form.Group>
           <Form.Group>
             <Form.Label>Subtítulo</Form.Label>
             <Form.Control
-              onChange={(e) => setSubtitulo(e.target.value)}
+              onChange={(e) => setSubtitulo(subtitulo.length > 150 ? e.target.value.slice(0, 150) : e.target.value)}
               type="text"
               placeholder="Escriba un subtítulo"
               value={subtitulo}
+              maxLength='150'
             />
           </Form.Group>
           <Form.Group>
             <Form.Label>Archivo imagen 1</Form.Label>
             <Form.Control
-              onChange={(e) => setImagen1(e.target.value)}
+              onChange={(e) => setImagen1(imagen1.length > 1000 ? e.target.value.slice(0, 1000) : e.target.value)}
               type="text"
               placeholder="Ejemplo: flores.jpg"
               value={imagen1}
+              maxLength='1000'
             />
           </Form.Group>
           <Form.Group>
             <Form.Label>Archivo imagen 2</Form.Label>
             <Form.Control
-              onChange={(e) => setImagen2(e.target.value)}
+              onChange={(e) => setImagen2(imagen2.length > 1000 ? e.target.value.slice(0, 1000) : e.target.value)}
               type="text"
               placeholder="Ejemplo: arboles.jpg"
               value={imagen2}
+              maxLength='1000'
             />
           </Form.Group>
           <Form.Group>
             <Form.Label>Párrafo 1</Form.Label>
             <Form.Control
-              onChange={(e) => setParrafo1(e.target.value)}
+              onChange={(e) => setParrafo1(parrafo1.length > 800 ? e.target.value.slice(0, 800) : e.target.value)}
               as="textarea"
               rows={3}
               value={parrafo1}
@@ -155,7 +159,7 @@ const NuevaNoticia = (props) => {
           <Form.Group>
             <Form.Label>Párrafo 2</Form.Label>
             <Form.Control
-              onChange={(e) => setParrafo2(e.target.value)}
+              onChange={(e) => setParrafo2(parrafo2.length > 800 ? e.target.value.slice(0, 800) : e.target.value)}
               as="textarea"
               rows={3}
               value={parrafo2}
@@ -166,7 +170,7 @@ const NuevaNoticia = (props) => {
           <Form.Group>
             <Form.Label>Párrafo 3</Form.Label>
             <Form.Control
-              onChange={(e) => setParrafo3(e.target.value)}
+              onChange={(e) => setParrafo3(parrafo3.length > 800 ? e.target.value.slice(0, 800) : e.target.value)}
               as="textarea"
               rows={3}
               value={parrafo3}
@@ -177,17 +181,18 @@ const NuevaNoticia = (props) => {
           <Form.Group>
             <Form.Label>Autor</Form.Label>
             <Form.Control
-              onChange={(e) => setAutor(e.target.value)}
+              onChange={(e) => setAutor(autor.length > 30 ? e.target.value.slice(0, 30) : e.target.value)}
               type='text'
               value={autor}
+              maxLength='30'
               placeholder="Ingrese el autor de la noticia"
             />
           </Form.Group>
           <Form.Group>
             <Form.Label>Fecha</Form.Label>
             <Form.Control
-              onChange={(e) => setFecha(e.target.value)}
-              type='text'
+              onChange={(e) => setFecha(fecha.length > 20 ? e.target.value.slice(0, 0) : e.target.value)}
+              type='date'
               value={fecha}
               placeholder="Ingrese la fecha"
             />
