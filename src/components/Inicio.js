@@ -50,7 +50,7 @@ const Inicio = (props) => {
                 key={destacada && destacada._id}
                 exact={true}
                 to={`/detalle/${destacada && destacada._id}`}
-                className="text-decoration-none text-dark mb-4 px-2"
+                className="text-decoration-none text-dark mb-4 px-2 w-100"
               >
                 <img
                   src={destacada && destacada.imagen1}
