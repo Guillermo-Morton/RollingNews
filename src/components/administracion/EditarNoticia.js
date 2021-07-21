@@ -207,7 +207,7 @@ const EditarNoticia = (props) => {
             <Form.Control
               defaultValue={noticia.fecha}
               ref={fechaRef}
-              type="text"
+              type="date"
               placeholder="Ingrese la fecha"
             />
           </Form.Group>
